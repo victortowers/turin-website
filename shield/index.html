@@ -143,8 +143,8 @@
         .header {
             width: 100%;
             vertical-align: top;
-            background-color: #a537a5;
-
+            background-color: #a137a5;
+            transition: 0.45s ease-in-out;
         }
 
         .frosted-glass {
@@ -161,6 +161,8 @@
             flex: 0 0 100%;
             margin: 0.6rem;
             margin-bottom: 0.3rem;
+            background-color: #aaaaaa; 
+            opacity: 0.99;
             
         }
         
@@ -195,6 +197,15 @@
                 margin-right: 0.3rem;
                 border-radius: 8px;
                 column-gap: 10rem;
+                background-color: #aaaaaa; 
+                opacity: 0.99;
+                transition: 0.28s ease-in-out;
+            }
+
+            .frosted-glass:hover {
+                background-color: #9a9a9a; 
+                opacity: 0.99;
+                transition: 0.28s ease-in-out;
             }
             
             .metric-label {
@@ -203,6 +214,11 @@
 
             .row {
                 flex-direction: row;
+            }
+
+            .header:hover {
+                background-color: #9837a5;
+                transition: 0.45s ease-in-out;
             }
         }
     </style>
@@ -243,10 +259,16 @@
             </div>
 
             <div class="n2" style="padding-top: 0.4rem; padding-bottom: 0.5rem; padding-left: 0.75rem">
-                - R$ 35.90 pelo pacote Turin Shield, 55.000 chamadas e Webhooks com Eventos Ilimitados.
+                - R$ 35.90 pelo produto Turin Shield para a Defesa Civil, 55.000 chamadas e Webhooks com Eventos Ilimitados.
                 Inclui accesso ao nosso API e Webhooks. Personalização de região, alertas mais específicos e
                 resumos dos eventos, para uso próprio ou notificações.
+            </div>
+
+            <div class="n2" style="padding-top: 0.4rem; padding-bottom: 0.5rem; padding-left: 0.75rem">
+                - R$ 49.90 para o pacote Turin Shield, que contém os dois produtos. Webhooks com Eventos Ilimitados, todas as vantagens.
+                O Uso de Chamadas é independente.
             </div>  
+
             <div class="n2" style="padding-top: 0.6rem; padding-bottom: 0.5rem; padding-left: 0.75rem; font-size: 13px; color: #eee">
                 * Eventos Ilimitados somente para o produto "Turin Shield para Defesa Civil", a mesma descrita nesta página;<br>
                 * 55.000 (cinquenta e cinco mil) chamadas são aproximadamente 1.19 por minuto, durante 31 dias;<br>
@@ -256,25 +278,22 @@
         </div>
 
         <div class="frosted-glass">
-            <div class="border-top a1 title">Turin Shield para a Defesa Civil</div>
-            <div class="n2" style="margin-top: 0.4rem; padding-top: 0.4rem;">Dados Abertos da Defesa Civil, mais confiáveis e rápidas. Conecte seus
-                aplicativos e servidores via chamadas API ou via Webhooks, o que preferir. Comece a receber avisos e alertas oficiais do Brasil inteiro,
-                e antecipe-se aos eventos a vir.
+            <div class="border-top a1 title">Turin Shield para o Metrô SP</div>
+            <div class="n2" style="margin-top: 0.4rem; padding-top: 0.4rem;">Os Dados do Sistema Metroferroviário de São Paulo também estão disponíveis, somente em formato Webhook e API.
             </div>
 
-            <div class="a1" style="margin-top: 0.6rem; padding-top: 1rem; font-size: 21px;">Nossos Diferenciais</div>
-            <div class="n2" style="padding-top: 0.3rem; padding-bottom: 0rem; padding-left: 0.75rem">- Integração via Webhooks permite a atualização dos seus sistemas em segundos. Automatize seus sistemas
-                e utilize nossos dados para o envio de alertas com APIs estáveis e rápidos.
+            <div class="a1" style="margin-top: 0.6rem; padding-top: 1rem; font-size: 21px;">Recursos Oferecidos</div>
+            <div class="n2" style="padding-top: 0.3rem; padding-bottom: 0rem; padding-left: 0.75rem">- Integração via Webhooks permite a atualização 
+                do seus sistemas e do seu site, de forma rápida e automatizada, sem a necessidade de gastar chamadas;
             </div>
-            <div class="n2" style="padding-top: 0.4rem; padding-bottom: 0rem; padding-left: 0.75rem">- Filtramos o que não interessa. Um alerta em SP não importa para o Gaúcho. Informe coordinadas ou uma região,
-                e nós cuidamos do resto. Alertas em um raio de 40km, enviados. Alertas em outro estado, ignorados.
+            <div class="n2" style="padding-top: 0.4rem; padding-bottom: 0rem; padding-left: 0.75rem">- Todas as linhas do sistema, incluindo o Metrô, 
+                TIC Trens, CPTM, Via Mobilidade e Via Quatro.
             </div>
-            <div class="n2" style="padding-top: 0.4rem; padding-bottom: 0rem; padding-left: 0.75rem">- Transformamos o JSON confuso da Defesa Civil em
-                frases curtas, simples e rápidas com a tecnologia Canarinho. Exiba estas mensagens diretamente nas notificações, sites e/ou apps de sua
-                preferência.
+            <div class="n2" style="padding-top: 0.4rem; padding-bottom: 0rem; padding-left: 0.75rem">- API consistente e performante, feita para aplicativos
+                de navegação e de transporte, com dados continuamente atualizados.
             </div>
-            <div class="n2" style="padding-top: 0.4rem; padding-bottom: 0rem; padding-left: 0.75rem">- Feed via RSS nos permite o compartilhamento de
-                nossos dados para todos nossos clientes, independentemente se são programadores ou não.
+            <div class="n2" style="padding-top: 0.4rem; padding-bottom: 0rem; padding-left: 0.75rem">- Feed de RSS é oferecida para os usuários
+                que preferirem este formato e/ou tecnologia.
             </div>
             <div class="a1" style="margin-top: 0.6rem; padding-top: 1rem; font-size: 21px;">Nossos Custos</div>
             <div class="n2" style="padding-top: 0.4rem; padding-bottom: 0rem; padding-left: 0.75rem">
@@ -282,16 +301,18 @@
             </div>
 
             <div class="n2" style="padding-top: 0.4rem; padding-bottom: 0.5rem; padding-left: 0.75rem">
-                - R$ 35.90 pelo pacote Turin Shield, 55.000 chamadas e Webhooks com Eventos Ilimitados.
-                Inclui accesso ao nosso API e Webhooks. Personalização de região, alertas mais específicos e
-                resumos dos eventos, para uso próprio ou notificações.
+                - R$ 24.90 pelo produto Turin Shield para o Metrô de São Paulo, 55.000 chamadas e Webhooks com Eventos Ilimitados.
+                Inclui accesso ao nosso API e Webhooks. 
             </div>  
+
             <div class="n2" style="padding-top: 0.6rem; padding-bottom: 0.5rem; padding-left: 0.75rem; font-size: 13px; color: #eee">
-                * Eventos Ilimitados somente para o produto "Turin Shield para Defesa Civil", a mesma descrita nesta página;<br>
+                * Eventos Ilimitados somente para o produto "Turin Shield para Metrô SP", a mesma descrita nesta página;<br>
+                * A atualização de dados ocorre somente 1 (uma) vez a cada 5 (cinco) minutos; <br>
                 * 55.000 (cinquenta e cinco mil) chamadas são aproximadamente 1.19 por minuto, durante 31 dias;<br>
                 * Chamadas adicionais poderão ser adquiridas por R$ 0.59 a cada 1.000 (mil);<br>
                 * A compra de chamadas adicionais é desativada por padrão.<br>
             </div>
+
         </div>
     </div>
 </body>
