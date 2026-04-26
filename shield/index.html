@@ -14,12 +14,13 @@
             --brand-main: #FFD700;
             --brand-dark: #333;
             --bg-light: #f9f9f9;
+            --mid-color: #bec1b9;
         }
 
         body {
             margin: 0;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-light);
+            background-color: var(--mid-color);
             color: var(--brand-dark);
             justify-content: center;
             align-items: center;
@@ -109,24 +110,23 @@
         .margin-sm {margin: 1rem;}
         .align-right {text-align: right;  margin-right: 2%;}
         .align-left {text-align: left;  margin-left: 2%;}
-        .align-left1 {text-align: left;  margin-left: 12px;}
         .monospace {font-family: monospace;}
 
         
 
         .external-grid { display: grid; grid-template-columns: 1fr auto; gap: 1.75% 3.5%; width: min(100%, 750px); border-top: 1px solid #a537a5; margin-top: 0.6rem;}
         .metric-grid { display: grid; grid-template-columns: 1fr auto; gap: 1.75% 3.5%; width: min(100%, 350px); border-top: 1px solid #eee;}
-        .metric-label { font-size: 1.1rem; color: #eee; letter-spacing: 1px; line-height: 1.1rem; align-content: flex-start; justify-content: center;}
+        .metric-label { font-size: 1.1rem; color: #eee; letter-spacing: 1px; line-height: 1.1rem; align-content: center; justify-content: center;}
         .metric-value { font-size: 1rem; font-weight: 700;}
         .ui-roadnames { font-size: 1rem; font-weight: 200;}
-
+        .align-left1 {text-align: center;}
 
         .UPPERCASE {text-transform: uppercase;}
         .lowercase {text-transform: none;}
         .names-list span, .traffic-list span {line-height: 1.3rem;}
 
         .master-1 {display: flex; flex: 0 0 55%; grid-template-columns: 1fr auto;}
-        .master-2 {display: flex; align-items: center; justify-content: flex-start; height: 3rem}
+        .master-2 {display: flex; align-items: center; justify-content: center; height: 3rem}
         .container-1 {background-color: #6d7c6e; color: white; padding: 12px; flex: 0 0 45%; width: 15rem; border-radius: 12px 0 0 12px;}
         .container-2 {background-color: #bec1b9; color: white; padding: 12px; flex: auto; width: 15rem; border-radius: 0 12px 12px 0;}
 
@@ -148,17 +148,19 @@
         }
 
         .frosted-glass {
-            background: rgba(0, 0, 0, 0.21);
-            backdrop-filter: blur(12px) saturate(150%);
+            background: rgba(0, 0, 0, 0.14);
+            backdrop-filter: blur(120px) saturate(150%);
             -webkit-backdrop-filter: blur(12px) saturate(150%);
             padding: 1rem;
             padding-left: 1.2rem;
 
             border: 1px solid rgba(255, 255, 255, 0.25);
-            border-radius: 0 0 12px 12px;
+            border-radius: 12px;
             box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05), 0 4px 12px rgba(0,0,0,0.1);
             color: #fff;
             flex: 0 0 100%;
+            margin: 0.6rem;
+            margin-bottom: 0.3rem;
             
         }
         
@@ -177,21 +179,30 @@
             font-weight: 500;
             line-height: 2.1rem
         }
-        .desktop {opacity: 0;}
+        
+        .desktop {opacity: 0;  width: 0;}
         .mobile {opacity: 1}
+        .row {flex-direction: column; row-gap: 0.6rem;}
 
         @media (min-width: 768px) {
-            .desktop {opacity: 1}
+            .desktop {opacity: 1; width: auto;}
             .mobile {opacity: 0; display: none}
+            .align-left1 {text-align: left;  margin-left: 12px;}
 
             .frosted-glass {
                 flex: 0 0 48%;
                 margin: 0.6rem;
+                margin-right: 0.3rem;
                 border-radius: 8px;
+                column-gap: 10rem;
             }
             
             .metric-label {
                 justify-content: left;
+            }
+
+            .row {
+                flex-direction: row;
             }
         }
     </style>
@@ -204,7 +215,46 @@
             <div id="ui-header" class="master-2 metric-label n1 UPPERCASE" style="color: #fff">TurinFlow:&nbsp;<span class="master-2 metric-label n1 lowercase mobile" style="color: #eee">Surpreendente.</span><span class="master-2 metric-label n1 lowercase desktop" style="color: #eee">Simples e Surpreendente.</span></div>
         </div>
     </div>
-    <div style="height: auto; display: flex;">
+    <div class="row" style="height: auto; display: flex;">
+        <div class="frosted-glass">
+            <div class="border-top a1 title">Turin Shield para a Defesa Civil</div>
+            <div class="n2" style="margin-top: 0.4rem; padding-top: 0.4rem;">Dados Abertos da Defesa Civil, mais confiáveis e rápidas. Conecte seus
+                aplicativos e servidores via chamadas API ou via Webhooks, o que preferir. Comece a receber avisos e alertas oficiais do Brasil inteiro,
+                e antecipe-se aos eventos a vir.
+            </div>
+
+            <div class="a1" style="margin-top: 0.6rem; padding-top: 1rem; font-size: 21px;">Nossos Diferenciais</div>
+            <div class="n2" style="padding-top: 0.3rem; padding-bottom: 0rem; padding-left: 0.75rem">- Integração via Webhooks permite a atualização dos seus sistemas em segundos. Automatize seus sistemas
+                e utilize nossos dados para o envio de alertas com APIs estáveis e rápidos.
+            </div>
+            <div class="n2" style="padding-top: 0.4rem; padding-bottom: 0rem; padding-left: 0.75rem">- Filtramos o que não interessa. Um alerta em SP não importa para o Gaúcho. Informe coordinadas ou uma região,
+                e nós cuidamos do resto. Alertas em um raio de 40km, enviados. Alertas em outro estado, ignorados.
+            </div>
+            <div class="n2" style="padding-top: 0.4rem; padding-bottom: 0rem; padding-left: 0.75rem">- Transformamos o JSON confuso da Defesa Civil em
+                frases curtas, simples e rápidas com a tecnologia Canarinho. Exiba estas mensagens diretamente nas notificações, sites e/ou apps de sua
+                preferência.
+            </div>
+            <div class="n2" style="padding-top: 0.4rem; padding-bottom: 0rem; padding-left: 0.75rem">- Feed via RSS nos permite o compartilhamento de
+                nossos dados para todos nossos clientes, independentemente se são programadores ou não.
+            </div>
+            <div class="a1" style="margin-top: 0.6rem; padding-top: 1rem; font-size: 21px;">Nossos Custos</div>
+            <div class="n2" style="padding-top: 0.4rem; padding-bottom: 0rem; padding-left: 0.75rem">
+                - Plano Grátis utilizando Feeds RSS;
+            </div>
+
+            <div class="n2" style="padding-top: 0.4rem; padding-bottom: 0.5rem; padding-left: 0.75rem">
+                - R$ 35.90 pelo pacote Turin Shield, 55.000 chamadas e Webhooks com Eventos Ilimitados.
+                Inclui accesso ao nosso API e Webhooks. Personalização de região, alertas mais específicos e
+                resumos dos eventos, para uso próprio ou notificações.
+            </div>  
+            <div class="n2" style="padding-top: 0.6rem; padding-bottom: 0.5rem; padding-left: 0.75rem; font-size: 13px; color: #eee">
+                * Eventos Ilimitados somente para o produto "Turin Shield para Defesa Civil", a mesma descrita nesta página;<br>
+                * 55.000 (cinquenta e cinco mil) chamadas são aproximadamente 1.19 por minuto, durante 31 dias;<br>
+                * Chamadas adicionais poderão ser adquiridas por R$ 0.59 a cada 1.000 (mil);<br>
+                * A compra de chamadas adicionais é desativada por padrão.<br>
+            </div>
+        </div>
+
         <div class="frosted-glass">
             <div class="border-top a1 title">Turin Shield para a Defesa Civil</div>
             <div class="n2" style="margin-top: 0.4rem; padding-top: 0.4rem;">Dados Abertos da Defesa Civil, mais confiáveis e rápidas. Conecte seus
