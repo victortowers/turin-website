@@ -1,11 +1,349 @@
----
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TurinFlow | Projeto Canário</title>
+    <style>
+        :root {
+            --brand-main: #FFD700;
+            --brand-dark: #333;
+            --bg-light: #f9f9f9;
+        }
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
----
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--brand-dark);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
 
-<Layout>
-	<Welcome />
-</Layout>
+        #loader {
+            text-align: center;
+            transition: opacity 0.4s ease-out;
+        }
+
+        .canary-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+            display: inline-block;
+            animation: float 2s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .scale-container {
+            width: 240px;
+            height: 4px;
+            background: #eee;
+            margin: 20px auto;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .scale-progress {
+            width: 0%;
+            height: 100%;
+            background: var(--brand-main);
+            transition: width 0.3s ease;
+        }
+
+        .shimmer {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+            animation: shimmer 1.5s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* --- DASHBOARD UI --- */
+        #dashboard {
+            display: flex;
+            width: min(85%, 1300px);
+            height: min(85vh, 750px);
+            border-radius: 12px;
+            flex-direction: row;
+            overflow: hidden;
+            padding: 0rem;
+            animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            
+            background: rgba(69, 86, 75, 0.28);
+            backdrop-filter: blur(12px) saturate(150%);
+            -webkit-backdrop-filter: blur(12px) saturate(150%);
+
+            border: 1px solid rgba(0, 0, 0, 0.55);
+            box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05), 0 4px 12px rgba(0,0,0,0.1);
+            color: #fff;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 { font-size: 2.4rem; margin: 0; color: #eeeeee; font-weight: 500; }
+        .small {font-size: 1rem; font-weight: 600; color: #eeeedd; margin: 0 0 4px 0;}
+        .inset {margin-left: 0.05%}
+        .margin-sm {margin: 1rem;}
+        .align-right {text-align: right;  margin-right: 2%;}
+        .align-left {text-align: left;  margin-left: 2%;}
+        .align-left1 {text-align: left;  margin-left: 1%;}
+        .monospace {font-family: monospace;}
+
+        .external-grid { display: grid; grid-template-columns: 1fr auto; gap: 1.75% 3.5%; width: min(100%, 750px); border-top: 1px solid #a537a5; margin-top: 0.6rem;}
+        .metric-grid { display: grid; grid-template-columns: 1fr auto; gap: 1.75% 3.5%; width: min(100%, 350px); border-top: 1px solid #eee;}
+        .metric-label { font-size: 1.1rem; color: #eee; text-transform: uppercase; letter-spacing: 1px; margin-top: 12px; line-height: 1.34rem;}
+        .metric-value { font-size: 1rem; font-weight: 700;}
+        .ui-roadnames { font-size: 1rem; font-weight: 200;}
+
+        .names-list span, .traffic-list span {line-height: 1.3rem;}
+
+        .master-1 {display: flex; flex: 0 0 55%; grid-template-columns: 1fr auto;}
+        .master-2 {flex: 0 0 28%; padding: 12px;}
+        .container-1 {background-color: #6d7c6e; color: white; padding: 12px; flex: 0 0 55%; width: 15rem; border-radius: 12px 0 0 12px;}
+        .container-2 {background-color: #bec1b9; color: white; padding: 12px; flex: auto; width: 15rem; border-radius: 0 12px 12px 0;}
+
+        .names-list { display: flex; flex-direction: column; gap: 7px}
+        .traffic-list { display: flex; flex-direction: column; gap: 7px}
+
+        .error-btn {
+            background: var(--brand-dark);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+    </style>
+</head>
+
+<script
+    src="https://sp.turinflow.com.br/api/script.js"
+    data-site-id="3a248a45ee62"
+    defer
+></script>
+
+<body>
+
+    <!-- THE LOADING THEATER -->
+    <div id="loader">
+        <div class="canary-icon">🐦</div>
+        <p id="loader-text">O Canário está juntando os dados. Aguarde...</p>
+        <div class="scale-container">
+            <div id="progress-bar" class="scale-progress"></div>
+            <div class="shimmer"></div>
+        </div>
+    </div>
+
+    <!-- THE PRODUCTION DASHBOARD -->
+    <div id="dashboard">
+        <div class="master-1">
+        <div id="names" class="container-1">
+            <div class="metric-label align-right monospace">Nome da Região</div>
+            <div id="ui-stress" class="metric-value align-right monospace">-----------------</div>
+            <div id="names2" class="names-list"></div>
+
+        </div>
+
+        <div id="stress-index" class="container-2">
+                <div class="metric-label monospace align-left">Atraso Real</div>
+                <div id="ui-delay" class="metric-value monospace align-left">-----------</div>
+                <div id="stress-index2" class="traffic-list"></div>
+        </div>
+        </div>
+
+    <div class="master-2 align-left1">
+        <div id="ui-header" class="metric-label monospace">Visão Geral</div>
+        <div id="ui-status" class="small inset monospace" style="line-height: 1.5rem;"><i>Trânsito em tempo real, para todos.</i></div>
+        <div class="metric-grid">
+            <p style="font-size: 0.7rem; color: #eee; margin-top: max(3px, 1.1%); text-align: left; margin-bottom: max(3px, 1.1%);">
+            Dados por Turin. Análises feitas pelo Canarinho.
+            </p>
+        </div>
+        <p style="font-size: 0.9rem; color: #fdfdfd; margin-top: max(12px, 2.8%); text-align: left; margin-bottom: max(11px, 1.1%);">
+            Queremos que a vida dos moradores de Alphaville seja mais tranquila, rápida e fácil. Portanto, a partir de hoje,
+            lançamos o recurso "Visão Geral", com os dados Turin. A partir desta parceria, conseguimos atingir maior precisão
+            sobre as condições das vias em Alphaville, da maneira mais rápida e prática. <br><br>
+
+            Todos merecem uma vida menos estressante e previsibilidade na volta para casa. TurinFlow e o Canarinho ficarão
+            de olho nas vias, 24 horas por dia, para você nunca estar desatualizado.
+            </p>
+        
+        <div style="gap: 0rem; border:1px solid rgba(69, 86, 75, 0.28); padding: 4px; padding-left: 12px;">
+        <div style="font-size: 0.9rem; color: #fdfdfd; margin-top: max(12px, 2.8%);">
+            Atualizado às <span id="time_updated"></span>. 
+        </div>
+        <div class="metric-label" style="font-size: 0.5rem; margin-top: 0rem; margin-bottom: max(3px, 1.1%); color: #eee; margin-bottom: 14px;">
+            <i>(Atualização Automática)</i></div>
+        </div>
+    </div>
+        
+    </div>
+
+    <script>
+        const API_BASE = "http://localhost:8000";
+
+        /**
+         * World-Class PoW Solver
+         * Uses SubtleCrypto for hardware-level speed
+         */
+        async function solveChallenge(salt, difficulty) {
+            const prefix = "0".repeat(difficulty);
+            let nonce = 0;
+            const progressBar = document.getElementById('progress-bar');
+
+            while (true) {
+                const data = salt + nonce;
+                const msgBuffer = new TextEncoder().encode(data);
+                const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+                const hashArray = Array.from(new Uint8Array(hashBuffer));
+                const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+                if (hashHex.startsWith(prefix)) return nonce;
+                nonce++;
+
+                // Update "Feather Weight" animation every 500 attempts
+                if (nonce % 500 === 0) {
+                    // Simulating weight accumulation up to 90%
+                    if (progressBar) {
+                        const p = Math.min(90, (nonce / 5000) * 100);
+                        const safeP = Number.isFinite(p) ? p : 0;
+                        progressBar.style.width = `${safeP|| 0}%`;
+                    }
+
+                    // Brief pause to keep UI thread alive
+                    await new Promise(r => setTimeout(r, 0));
+                }
+            }
+        }
+
+        /**
+         * The Unified Data Workflow
+         */
+        async function runCanaryEngine(options={}, first_loading=false) {
+            const { timeout = 8100 } = options;
+            const controller = new AbortController();
+            const timer = setTimeout(() => controller.abort(), timeout);
+
+            try {
+                // 1. Get Challenge
+                const challengeRes = await fetch(`${API_BASE}/v1/challenge`, {signal: controller.signal});
+                if (!challengeRes.ok) throw new Error("Server Offline");
+                const { salt, seed, difficulty } = await challengeRes.json();
+
+                // 2. Solve (The "Feather" math)
+                const nonce = await solveChallenge(salt, difficulty);
+                if (first_loading) {
+                    document.getElementById('progress-bar').style.width = '100%';
+                    document.getElementById('loader-text').innerText = "Voo autorizado! Aguardando a base de dados...";
+                }
+                // 3. Fetch Real-time Pulse
+                const pulseRes = await fetch(`${API_BASE}/v1/raw-pulse`, {
+                    headers: {
+                        'x-salt': salt,
+                        'x-nonce': nonce.toString(),
+                        'x-seed': seed
+                    },
+                    signal: controller.signal
+                });
+
+                if (!pulseRes.ok) throw new Error("Acesso negado");
+                const result = await pulseRes.json();
+
+                // We pick the top route for the simple demo card
+                renderUI(result)
+
+            } catch (err) {
+                console.error(err);
+                document.getElementById('loader').innerHTML = `
+                    <div class="canary-icon">🥀</div>
+                    <p>O Canário cansou de esperar.</p>
+                    <button class="error-btn" onclick="location.reload()">Tentar de Novo</button>
+                `;
+            } finally {
+                clearTimeout(timer);
+            }
+        }
+
+        /**
+         * Render Data with 90-second Precision Logic
+         */
+        function renderUI(data) {
+            // Hide Loader, Show Dashboard
+            document.getElementById('loader').style.opacity = '0';
+            document.getElementById('loader').style.display = 'none';
+            uiLoader(data)
+            document.getElementById('dashboard').style.opacity = '100';
+            document.getElementById('dashboard').style.display = 'flex';
+        }
+
+        function uiLoader(data) {
+            setTimeout(() => {
+                const namesContainer = document.getElementById('names2');
+                const statusContainer = document.getElementById('stress-index2');
+            
+                document.getElementById('names2').innerHTML = '';
+                const namesHtml = data.map(route => `
+                    <span class="monospace align-right ui-roadnames">
+                        ${route.route_id.replace(/_/g, ' ')}
+                    </span>
+                `).join('');
+
+                // 3. Build the 'Status' string
+                // Hint: Use the ui_color we set in the SQL view earlier
+                document.getElementById('stress-index2').innerHTML = '';
+                const statusHtml = data.map(route => `
+                    <span class="monospace align-left ui-roadnames">
+                        ${route.delay < 0 ? "<0.01 min": (route.delay == null ? "<0.01 min": route.delay + " Minutos"|| "Dados Indisponíveis")}  <span style="color: ${getStatusColor(route.stress_score)}">(${route.status_label})</span>
+                    </span>
+                `).join('');
+
+                // 4. Inject into the DOM ONCE (High Performance)
+                namesContainer.innerHTML += namesHtml;
+                statusContainer.innerHTML += statusHtml;
+
+                let date = new Date()
+                document.getElementById('time_updated').innerText = date.toLocaleTimeString();
+            
+            }, 400)};
+
+        function getStatusColor(score) {
+            if (score < 60) return '#72a88d';
+            if (score > 100) return '#e63946';
+            if (score > 95) return '#e69839';
+            if (score > 85) return '#eba409';
+            if (score > 75) return '#e6e639'; 
+            if (score >= 60) return '#6d7c6e';
+                          
+        }
+
+        function reloadPage() {
+            runCanaryEngine()
+        }
+
+        function firstLoading(loading) {
+            document.getElementById('dashboard').style.opacity = '0';
+            document.getElementById('dashboard').style.display = 'none';
+            runCanaryEngine(first_loading=true)
+
+        }
+        // Start the engine
+        window.onload = firstLoading;
+        setInterval(reloadPage, 1 * 60 * 1000);
+    </script>
+</body>
+</html>
