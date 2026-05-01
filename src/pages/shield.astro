@@ -1,0 +1,261 @@
+---
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro'
+---
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TurinFlow | Alertas em Tempo Real</title>
+    <style>
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        :root {
+            --brand-main: #FFD700;
+            --brand-dark: #333;
+            --bg-light: #f9f9f9;
+            --mid-color1: #bec1b9;
+            --mid-color: #131b21;
+            --darker-1: #474646;
+        }
+
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--darker-1);
+            color: var(--brand-dark);
+            justify-content: center;
+            align-items: center;
+        }
+
+        @font-face {
+            font-family: "n1";
+            src: url("https://www.turinflow.com.br/assets/NotoSans-Thin.woff2");
+        }
+
+        @font-face {
+            font-family: "a1";
+            src: url("https://www.turinflow.com.br/assets/Articulat%20CF%20Bold.woff2");
+        }
+
+        @font-face {
+            font-family: "n2";
+            src: url("https://www.turinflow.com.br/assets/NotoSans-Light.woff2");
+        }
+
+        .n1 {
+            font-family: n1, -apple-system, BlinkMacSystemFont;
+        }
+
+        .a1 {
+            font-family: a1, -apple-system, BlinkMacSystemFont;
+        }
+        
+        .n2 {
+            font-family: n2, -apple-system, BlinkMacSystemFont;
+        }
+
+        .external-grid { display: grid; grid-template-columns: 1fr auto; gap: 1.75% 3.5%; width: min(100%, 750px); border-top: 1px solid #a537a5; margin-top: 0.6rem;}
+        .metric-grid { display: grid; grid-template-columns: 1fr auto; gap: 1.75% 3.5%; width: min(100%, 350px); border-top: 1px solid #eee;}
+        .metric-label { font-size: 1.1rem; color: #eee; letter-spacing: 1px; line-height: 1.1rem; align-content: center; justify-content: center;}
+        .metric-value { font-size: 1rem; font-weight: 700;}
+        .ui-roadnames { font-size: 1rem; font-weight: 200;}
+        .align-left1 {text-align: center;}
+
+        .UPPERCASE {text-transform: uppercase;}
+        .lowercase {text-transform: none;}
+        .names-list span, .traffic-list span {line-height: 1.3rem;}
+
+        .master-1 {display: flex; flex: 0 0 55%; grid-template-columns: 1fr auto;}
+        .master-2 {display: flex; align-items: center; justify-content: center; height: 3rem}
+
+        .error-btn {
+            background: var(--brand-dark);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .header {
+            width: 100%;
+            vertical-align: top;
+            background-color: #a137a5;
+            transition: 0.45s ease-in-out;
+        }
+
+        .frosted-glass {
+            background: rgba(0, 0, 0, 0.14);
+            backdrop-filter: blur(120px) saturate(150%);
+            -webkit-backdrop-filter: blur(12px) saturate(150%);
+            padding: 1rem;
+
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 12px;
+            box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05), 0 4px 12px rgba(0,0,0,0.1);
+            color: #fff;
+            flex: 0 0 100%;
+            margin: 0.6rem;
+            margin-bottom: 0.3rem;
+            background-color: rgba(0, 0, 0, 0.14);
+            opacity: 0.99;
+            
+        }
+        
+        .border-top {
+            border-bottom: 1px solid #fff;
+            margin: 0.4rem;
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.4rem;
+            
+        }
+
+        .title {
+            font-size: 1.8rem; 
+            margin: 0; 
+            color: #eeeeee; 
+            font-weight: 500;
+            line-height: 2.1rem
+        }
+
+        .desktop {opacity: 0;  width: 0;}
+        .mobile {opacity: 1}
+        .row {flex-direction: column; row-gap: 0.6rem;}
+        .mobile-1 {font-size: 18px; line-height: 32px;}
+        .space-evenly {justify-content: space-evenly;}
+        .footer1 {display: flex; justify-content: center;}
+
+        .button {
+            text-decoration: none;
+            color: #ccc;
+            border-radius: 5px;
+            transition: 0.19s ease-in-out;
+            padding-left: 0.3rem;
+            padding-right: 0.5rem;
+            padding-top: 0.1rem;
+            padding-bottom: 0.1rem;
+            line-height: 29px;
+            
+
+        }
+
+        .button:hover {
+            background-color: #a537a5;
+            transition: 0.19s ease-in-out;
+        }
+        
+
+        @media (min-width: 768px) {
+            .desktop {opacity: 1; width: auto;}
+            .mobile {opacity: 0; display: none}
+            .align-left1 {text-align: left;  margin-left: 12px;}
+            .space-evenly {justify-content: flex-start;}
+            .padding-1 {margin-left: 1.5rem; width: 10rem;}
+            .mobile-1 {width: min(150px, 19%); min-width: 10rem;}
+
+            .frosted-glass {
+                flex: 0 0 48%;
+                margin: 0.6rem;
+                border-radius: 8px;
+                column-gap: 10rem;
+                background-color: rgba(0, 0, 0, 0.14);
+                opacity: 1;
+                transition: 0.28s ease-in-out;
+            }
+
+            .frosted-glass:hover {
+                background-color: var(--darker-1);
+                opacity: 1;
+                transition: 0.28s ease-in-out;
+            }
+            
+            .metric-label {
+                justify-content: left;
+            }
+
+            .row {
+                flex-direction: row;
+            }
+
+            .header:hover {
+                background-color: #9837a5;
+                transition: 0.45s ease-in-out;
+            }
+
+            .padding-1 {
+                padding-bottom: 2rem;
+                padding-right: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<script
+    src="https://sp.turinflow.com.br/api/script.js"
+    data-site-id="3a248a45ee62"
+    defer
+></script>
+
+<body>
+
+    <!-- THE PRODUCTION DASHBOARD -->
+    <Header />
+    <div class="row" style="height: auto; display: flex; background-color: var(--mid-color); border-radius: 0 0 10px 10px; padding-bottom: 1rem; justify-content: space-evenly;">
+        <div class="frosted-glass">
+            <div class="border-top a1 title">Alertas rápidas, em Tempo Real.</div>
+            <div class="n2" style="margin-top: 0.4rem; padding-top: 0.4rem;">Alertas de Alphaville e região, onde em São Paulo estiver.<br>
+                Antes mesmo de ligar seu carro ou abrir o GPS, já saiba o que esperar.<br>
+                Elimine surpresas com Alertas de Trânsito. Ficamos de alerta para você nunca precisar.
+            </div>
+
+            <div class="n2" style="margin-top: 0.4rem; padding-top: 0.4rem; color: #fff;">
+                Tudo configurável via aplicativo, tudo para te ajudar na hora que mais precisa. Médias Históricas 
+                e sugestões de ações, aliados na hora de sair do trabalho e na hora de voltar para Alphaville.
+                Presente e alerta, quanto você precisa. Nas horas vagas, de olho para você nunca sair despreparado.
+            </div>
+
+            <div>
+            <div class="a1" style="margin-top: 0.6rem; padding-top: 1rem; font-size: 21px; width: 36%; margin-bottom: 3px; padding-bottom: 1px;">Tipos de Notificações</div>
+            <div class="n2" style="color: #fff;">
+                * Alertas de Acidentes;<br>
+                * Focos de Trânsito; <br>
+                * Alagamentos e Inundações;<br>
+                * Previsões de Chuvas;<br>
+                * Obras e Interrupções de Fluxo;<br>
+                * Alertas da Defesa Civil.<br>
+            </div>
+            </div>
+        </div>
+
+        <div class="frosted-glass">
+            <div class="border-top a1 title">Turin Shield Protege Você</div>
+            <div class="n2" style="margin-top: 0.4rem; padding-top: 0.4rem;">Turin Shield é a nossa tecnologia de previsão de trânsito.
+                Utilizando nossas médias históricas, Análises do tempo, alertas da Defesa Civil, Incidentes em Tempo Real, Locais de Foco
+                de Trânsito (Locais de Gargalo) e outros fatores viários, prevemos se sua viagem será conforme o planejado ou necessita de
+                ajustes.
+            </div>
+
+            <div class="n2" style="margin-top: 0.4rem; padding-top: 0.4rem;">Tudo isso, em poucos segundos, para você nunca estar atrasado.
+                Volte para casa, e atravesse por Alphaville sabendo que o trânsito está normal. Quando não estiver, Turin Shield ativa os Alertas
+                para ninguém ficar preso no trânsito. 
+            </div>
+
+            <div class="n2" style="margin-top: 0.4rem; padding-top: 0.4rem;">Integrações passivas entre usuário e Plataforma
+                permite o compartilhamento de dados para o aprimoramento de dados para todos os usuários (em breve).
+            </div>
+        </div>
+
+
+        </div>         
+    </div>
+    <Footer />
+</body>
+</html>
+
