@@ -81,7 +81,7 @@ import '../assets/styles/globals.css';
     </div>
 
     <script>
-        const API_BASE = "http://localhost:8000";
+        const API_BASE = "https://api.turinflow.com.br";
 
         /**
          * World-Class PoW Solver
@@ -121,7 +121,7 @@ import '../assets/styles/globals.css';
          * The Unified Data Workflow
          */
         async function runCanaryEngine(options={}, first_loading=false) {
-            const { timeout = 8100 } = options;
+            const { timeout = 11000 } = options;
             const controller = new AbortController();
             const timer = setTimeout(() => controller.abort(), timeout);
 
