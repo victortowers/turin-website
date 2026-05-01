@@ -1,0 +1,200 @@
+<div class="footer">
+        <div class="border-top title n1 UPPERCASE footer1" style="margin: 1rem; margin-bottom: 0.8rem; font-size: 21px; color: #fff;">
+            TurinFlow:&nbsp;<span class="title n1" style="margin-right: 4px; font-size: 21px; color: #fff">Surpreendente.</span>
+        </div>      
+        <div class="space-evenly padding-1" style="display: flex; flex-direction: row; width: 100%; flex-wrap: wrap; white-space: nowrap; row-gap: 2rem;">
+            <div class="n2 footer-flex mobile-1 padding1" style="color: #fff;">
+                <div style="font-weight: 700; padding-left: 0.25rem; font-size: 19px; color: #fff">Aplicativo</div>
+                <a class="button">Quem Somos > <br></a>
+                <a class="button">Plataforma > <br></a>
+                <a class="button">Planos > <br></a>
+                <a class="button" href="https://turinflow.com.br">Site > <br></a>
+        </div>
+
+        <div class="n2 footer-flex mobile-1 padding1" style="color: #fff;">
+            <div style="font-weight: 700; padding-left: 0.25rem; font-size: 19px; color: #fff">Funcionalidades</div>
+                <a class="button">Turin + Famílias > <br></a>
+                <a class="button">Alertas Rápidas > <br></a>
+                <a class="button">Mobilidade > <br></a> 
+                <a class="button">Canarinho > <br></a>
+                <a class="button">Trânsito > <br></a>
+        </div>
+
+        <div class="n2 footer-flex mobile-1 padding1" style="color: #fff;">
+            <div style="font-weight: 700; padding-left: 0.25rem; font-size: 19px; color: #fff">Recursos</div>
+                <a class="button">Documentação > <br></a>
+                <a class="button">Atualizações > <br></a>
+                <a class="button">FAQ (Ajuda) > <br></a> 
+                <a class="button">Em breve > <br></a>
+        </div>
+
+        <div class="n2 footer-flex mobile-1 padding1" style="color: #fff;">
+            <div style="font-weight: 700; padding-left: 0.25rem; font-size: 19px; color: #fff">Sistemas</div>
+                <a class="button">Infraestrutura > <br></a>
+                <a class="button">Segurança > <br></a>
+        </div>
+
+        <div class="n2 footer-flex mobile-1 padding1" style="color: #fff;">
+            <div style="font-weight: 700; padding-left: 0.25rem; font-size: 19px; color: #fff">Suporte</div>
+                <a class="button">Suporte/Contato > <br></a>
+                <a class="button">Status do App > <br></a>
+        </div>
+
+        <div class="n2 footer-flex mobile-1 padding1" style="color: #fff; padding-bottom: 1rem;">
+            <div style="font-weight: 700; padding-left: 0.25rem; font-size: 19px; color: #fff">Legal</div>
+                <a class="button">Termos de Uso > <br></a>
+                <a class="button">Privacidade > <br></a>
+            </div>
+        </div>  
+
+    </div>
+
+    <style>
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        :root {
+            --brand-main: #FFD700;
+            --brand-dark: #333;
+            --bg-light: #f9f9f9;
+            --mid-color1: #bec1b9;
+            --mid-color: #131b21;
+            --darker-1: #474646;
+        }
+
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--darker-1);
+            color: var(--brand-dark);
+            justify-content: center;
+            align-items: center;
+        }
+
+        @font-face {
+            font-family: "n1";
+            src: url("https://www.turinflow.com.br/assets/NotoSans-Thin.woff2");
+        }
+
+        @font-face {
+            font-family: "n2";
+            src: url("https://www.turinflow.com.br/assets/NotoSans-Light.woff2");
+        }
+
+        .n1 {font-family: n1, -apple-system, BlinkMacSystemFont;}
+        .n2 {font-family: n2, -apple-system, BlinkMacSystemFont;}
+        .UPPERCASE {text-transform: uppercase;}
+
+        .footer {
+            width: 100%;
+            vertical-align: bottom;
+            background-color: var(--darker-1);
+            transition: 0.45s ease-in-out;
+            height: auto;
+        }
+
+        .frosted-glass {
+            background: rgba(0, 0, 0, 0.14);
+            backdrop-filter: blur(120px) saturate(150%);
+            -webkit-backdrop-filter: blur(12px) saturate(150%);
+            padding: 1rem;
+
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 12px;
+            box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05), 0 4px 12px rgba(0,0,0,0.1);
+            color: #fff;
+            flex: 0 0 100%;
+            margin: 0.6rem;
+            margin-bottom: 0.3rem;
+            background-color: rgba(0, 0, 0, 0.14);
+            opacity: 0.99;
+            
+        }
+        
+        .border-top {
+            border-bottom: 1px solid #fff;
+            margin: 0.4rem;
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.4rem;
+            
+        }
+
+        .title {
+            font-size: 1.8rem; 
+            margin: 0; 
+            color: #eeeeee; 
+            font-weight: 500;
+            line-height: 2.1rem
+        }
+        .footer-flex {flex: 0 0 38%;}
+        .desktop {opacity: 0;  width: 0;}
+        .mobile {opacity: 1}
+        .row {flex-direction: column; row-gap: 0.6rem;}
+        .mobile-1 {font-size: 18px; line-height: 32px;}
+        .space-evenly {justify-content: space-evenly;}
+        .footer1 {display: flex; justify-content: center;}
+
+        .button {
+            text-decoration: none;
+            color: #ccc;
+            border-radius: 5px;
+            transition: 0.19s ease-in-out;
+            padding-left: 0.3rem;
+            padding-right: 0.5rem;
+            padding-top: 0.1rem;
+            padding-bottom: 0.1rem;
+            line-height: 29px;
+        }
+
+        .button:hover {
+            background-color: #a537a5;
+            transition: 0.19s ease-in-out;
+        }
+
+        @media (min-width: 768px) {
+            .desktop {opacity: 1; width: auto;}
+            .mobile {opacity: 0; display: none}
+            .space-evenly {justify-content: flex-start;}
+            .padding-1 {margin-left: 1.5rem; width: 10rem;}
+            .footer1 {display: block; padding-left: 0.4rem;}
+            .mobile-1 {width: min(150px, 19%); min-width: 10rem;}
+
+            .frosted-glass {
+                flex: 0 0 48%;
+                margin: 0.6rem;
+                border-radius: 8px;
+                column-gap: 10rem;
+                background-color: rgba(0, 0, 0, 0.14);
+                opacity: 0.60;
+                transition: 0.28s ease-in-out;
+            }
+
+            .frosted-glass:hover {
+                background-color: var(--darker-1);
+                opacity: 0.60;
+                transition: 0.28s ease-in-out;
+            }
+        
+            .row {
+                flex-direction: row;
+            }
+
+            .header:hover {
+                background-color: #9837a5;
+                transition: 0.45s ease-in-out;
+            }
+
+            .footer-flex {
+                flex: min(180px, 23%);
+                flex-grow: 0;
+                justify-content: flex-start;
+            }
+
+            .padding-1 {
+                padding-bottom: 2rem;
+                padding-right: 1rem;
+            }
+        }
+    </style>
