@@ -1,6 +1,8 @@
 ---
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro'
+
+import '../assets/styles/fonts.css';
 ---
 
 <!DOCTYPE html>
@@ -31,33 +33,6 @@ import Header from '../components/Header.astro'
             color: var(--brand-dark);
             justify-content: center;
             align-items: center;
-        }
-
-        @font-face {
-            font-family: "n1";
-            src: url("https://www.turinflow.com.br/assets/NotoSans-Thin.woff2");
-        }
-
-        @font-face {
-            font-family: "a1";
-            src: url("https://www.turinflow.com.br/assets/Articulat%20CF%20Bold.woff2");
-        }
-
-        @font-face {
-            font-family: "n2";
-            src: url("https://www.turinflow.com.br/assets/NotoSans-Light.woff2");
-        }
-
-        .n1 {
-            font-family: n1, -apple-system, BlinkMacSystemFont;
-        }
-
-        .a1 {
-            font-family: a1, -apple-system, BlinkMacSystemFont;
-        }
-        
-        .n2 {
-            font-family: n2, -apple-system, BlinkMacSystemFont;
         }
 
         .external-grid { display: grid; grid-template-columns: 1fr auto; gap: 1.75% 3.5%; width: min(100%, 750px); border-top: 1px solid #a537a5; margin-top: 0.6rem;}
