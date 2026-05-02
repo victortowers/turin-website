@@ -1,0 +1,213 @@
+---
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro'
+
+import '../assets/styles/fonts.css';
+---
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TurinFlow | Alertas em Tempo Real</title>
+    <style>
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        :root {
+            --brand-main: #FFD700;
+            --brand-dark: #333;
+            --bg-light: #f9f9f9;
+            --mid-color1: #bec1b9;
+            --mid-color: #131b21;
+            --darker-1: #474646;
+        }
+
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--darker-1);
+            color: var(--brand-dark);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .external-grid { display: grid; grid-template-columns: 1fr auto; gap: 1.75% 3.5%; width: min(100%, 750px); border-top: 1px solid #a537a5; margin-top: 0.6rem;}
+        .metric-grid { display: grid; grid-template-columns: 1fr auto; gap: 1.75% 3.5%; width: min(100%, 350px); border-top: 1px solid #eee;}
+        .metric-label { font-size: 1.1rem; color: #eee; letter-spacing: 1px; line-height: 1.1rem; align-content: center; justify-content: center;}
+        .metric-value { font-size: 1rem; font-weight: 700;}
+        .ui-roadnames { font-size: 1rem; font-weight: 200;}
+        .align-left1 {text-align: center;}
+
+        .UPPERCASE {text-transform: uppercase;}
+        .lowercase {text-transform: none;}
+        .names-list span, .traffic-list span {line-height: 1.3rem;}
+
+        .master-1 {display: flex; flex: 0 0 55%; grid-template-columns: 1fr auto;}
+        .master-2 {display: flex; align-items: center; justify-content: center; height: 3rem}
+
+        .error-btn {
+            background: var(--brand-dark);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .header {
+            width: 100%;
+            vertical-align: top;
+            background-color: #a137a5;
+            transition: 0.45s ease-in-out;
+        }
+
+        .frosted-glass {
+            background: rgba(0, 0, 0, 0.14);
+            backdrop-filter: blur(120px) saturate(150%);
+            -webkit-backdrop-filter: blur(12px) saturate(150%);
+            padding: 1rem;
+
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 12px;
+            box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05), 0 4px 12px rgba(0,0,0,0.1);
+            color: #fff;
+            flex: 0 0 100%;
+            margin: 0.6rem;
+            margin-bottom: 0.3rem;
+            background-color: rgba(0, 0, 0, 0.14);
+            opacity: 0.99;
+            
+        }
+        
+        .border-top {
+            border-bottom: 1px solid #fff;
+            margin: 0.4rem;
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.4rem;
+            
+        }
+
+        .title {
+            font-size: 1.8rem; 
+            margin: 0; 
+            color: #eeeeee; 
+            font-weight: 500;
+            line-height: 2.1rem
+        }
+
+        .desktop {opacity: 0;  width: 0;}
+        .mobile {opacity: 1}
+        .row {flex-direction: column; row-gap: 0.6rem;}
+        .mobile-1 {font-size: 18px; line-height: 32px;}
+        .space-evenly {justify-content: space-evenly;}
+        .footer1 {display: flex; justify-content: center;}
+
+        .button {
+            text-decoration: none;
+            color: #ccc;
+            border-radius: 5px;
+            transition: 0.19s ease-in-out;
+            padding-left: 0.3rem;
+            padding-right: 0.5rem;
+            padding-top: 0.1rem;
+            padding-bottom: 0.1rem;
+            line-height: 29px;
+            
+
+        }
+
+        .button:hover {
+            background-color: #a537a5;
+            transition: 0.19s ease-in-out;
+        }
+        
+
+        @media (min-width: 768px) {
+            .desktop {opacity: 1; width: auto;}
+            .mobile {opacity: 0; display: none}
+            .align-left1 {text-align: left;  margin-left: 12px;}
+            .space-evenly {justify-content: flex-start;}
+            .padding-1 {margin-left: 1.5rem; width: 10rem;}
+            .mobile-1 {width: min(150px, 19%); min-width: 10rem;}
+
+            .frosted-glass {
+                flex: 0 0 48%;
+                margin: 0.6rem;
+                border-radius: 8px;
+                column-gap: 10rem;
+                background-color: rgba(0, 0, 0, 0.14);
+                opacity: 1;
+                transition: 0.28s ease-in-out;
+            }
+
+            .frosted-glass:hover {
+                background-color: var(--darker-1);
+                opacity: 1;
+                transition: 0.28s ease-in-out;
+            }
+            
+            .metric-label {
+                justify-content: left;
+            }
+
+            .row {
+                flex-direction: row;
+            }
+
+            .header:hover {
+                background-color: #9837a5;
+                transition: 0.45s ease-in-out;
+            }
+
+            .padding-1 {
+                padding-bottom: 2rem;
+                padding-right: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<script
+    src="https://sp.turinflow.com.br/api/script.js"
+    data-site-id="3a248a45ee62"
+    defer
+></script>
+
+<body>
+
+    <!-- THE PRODUCTION DASHBOARD -->
+    <Header />
+    <div class="row" style="height: auto; display: flex; background-color: var(--mid-color); border-radius: 0 0 10px 10px; padding-bottom: 1rem; justify-content: space-evenly;">
+        <div class="frosted-glass">
+            <div class="border-top a1 title">Visão Geral: Um panorama em tudo.</div>
+            <div class="n2" style="margin-top: 0.4rem; padding-top: 0.4rem;">Visão Geral mostra todos os ângulos
+            do trânsito em Alphaville, em tempo real. Mostramos o atraso comparado às médias históricas e compilamos
+            milhares de fontes de dados em uma simples estatística. Disponível pelo App e pelo site.
+            </div>
+        </div>
+
+        <div class="frosted-glass">
+            <div class="border-top a1 title">Um aliado quando você precisa.</div>
+            <div class="n2" style="margin-top: 0.4rem; padding-top: 0.4rem;">O sistema de trânsito em Alphaville
+            é altamente imprevisível e complexo. Com Turin, tiramos essa complexidade e o-ilustramos em páginas simples
+            de entender e compreender. Focos de trânsito, visíveis em segundos.
+            </div>
+
+            <div class="n2" style="margin-top: 0.4rem; padding-top: 0.4rem;">Tudo isso, integrado dentro dos nossos
+            aplicativos. Junto às outras funcionalidades implementadas, Turin e o Canarinho está pronto para ser seu aliado
+            no seu dia-a-dia, mesmo fora de Alphaville.
+            </div>
+        </div>
+
+
+        </div>         
+    </div>
+    <Footer />
+</body>
+</html>
+
