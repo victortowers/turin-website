@@ -1,11 +1,12 @@
 ---
 import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro'
+import Header from '../components/Header.astro';
 
 import '../assets/styles/fonts.css';
-import '../assets/styles/rows.css';
 import '../assets/styles/padding.css';
+import '../assets/styles/rows.css';
 import '../assets/styles/frosted-glass.css';
+import '../assets/styles/border-top.css';
 ---
 
 <!DOCTYPE html>
@@ -24,6 +25,7 @@ import '../assets/styles/frosted-glass.css';
             --brand-main: #FFD700;
             --brand-dark: #333;
             --bg-light: #f9f9f9;
+            --light-2: #eee;
             --mid-color1: #bec1b9;
             --mid-color: #131b21;
             --darker-1: #474646;
@@ -38,50 +40,10 @@ import '../assets/styles/frosted-glass.css';
             align-items: center;
             overflow-x: hidden;
         }
-
-        .external-grid { display: grid; grid-template-columns: 1fr auto; gap: 1.75% 3.5%; width: min(100%, 750px); border-top: 1px solid #a537a5; margin-top: 0.6rem;}
-        .metric-grid { display: grid; grid-template-columns: 1fr auto; gap: 1.75% 3.5%; width: min(100%, 350px); border-top: 1px solid #eee;}
-        .metric-label { font-size: 1.1rem; color: #eee; letter-spacing: 1px; line-height: 1.1rem; align-content: center; justify-content: center;}
-        .metric-value { font-size: 1rem; font-weight: 700;}
-        .ui-roadnames { font-size: 1rem; font-weight: 200;}
-        .align-left1 {text-align: center;}
-
-        .UPPERCASE {text-transform: uppercase;}
-        .lowercase {text-transform: none;}
-       
-        .border-top {
-            border-bottom: 1px solid #fff;
-            margin: 0.4rem;
-            margin-bottom: 0.8rem;
-            padding-bottom: 0.4rem;
-            
-        }
-
-        .desktop {opacity: 0;  width: 0;}
-        .mobile {opacity: 1}
-        .mobile-1 {font-size: 18px; line-height: 32px;}
-        .space-evenly {justify-content: space-evenly;}
-        .footer1 {display: flex; justify-content: center;}
-
+        
         @media (min-width: 768px) {
-            .desktop {opacity: 1; width: auto;}
-            .mobile {opacity: 0; display: none}
-            .align-left1 {text-align: left;  margin-left: 12px;}
-            .space-evenly {justify-content: flex-start;}
-            .padding-1 {margin-left: 1.5rem; width: 10rem;}
-            .mobile-1 {width: min(150px, 19%); min-width: 10rem;}
-
-            .metric-label {
-                justify-content: left;
-            }
-
             .row {
                 flex-direction: row;
-            }
-
-            .header:hover {
-                background-color: #9837a5;
-                transition: 0.45s ease-in-out;
             }
 
             .padding-1 {
@@ -152,4 +114,3 @@ import '../assets/styles/frosted-glass.css';
     <Footer />
 </body>
 </html>
-

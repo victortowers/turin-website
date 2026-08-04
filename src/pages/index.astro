@@ -81,7 +81,7 @@ import '../assets/styles/globals.css';
     </div>
 
     <script>
-        const API_BASE = "https://api.turinflow.com.br";
+        let API_BASE = "https://api.turinflow.com.br";
 
         /**
          * World-Class PoW Solver
@@ -162,6 +162,8 @@ import '../assets/styles/globals.css';
                 `;
             } finally {
                 clearTimeout(timer);
+                let API_BASE = "https://backup.turinflow.com.br";
+
             }
         }
 
