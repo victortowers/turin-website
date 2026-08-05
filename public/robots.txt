@@ -13,4 +13,4 @@ Disallow: /
 User-agent: Google-Extended
 Disallow: /
 
-Sitemap: https://turinflow.com.br/sitemap.xml
+Sitemap: https://turinflow.com.br/sitemap-index.xml
