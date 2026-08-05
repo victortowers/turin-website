@@ -14,5 +14,5 @@ To be developed, first on iOS. On-device travel time model + traffic incident AP
 Zero maps needed — pairs with Waze or Google Maps.
 
 ## Agent Discovery
-- Sitemap: https://turinflow.com.br/sitemap.xml
+- Sitemap: https://turinflow.com.br/sitemap-index.xml
 - DNS-AID: _aid.feito.app TXT
