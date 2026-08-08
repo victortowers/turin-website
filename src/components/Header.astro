@@ -1,23 +1,25 @@
 <div class="header">
         <div>
-            <div id="ui-header" class="master-2 " style="background-color: rgba(29, 59, 177, 0.05)">
-                <div class="n1 UPPERCASE desktop" style="margin-left: 18px; color: #fff; justify-content: center; padding-left: 0.3rem; padding-right: 0.3rem; flex-basis: 180px"> TURINFLOW </div>
+            <div id="ui-header" class="master-2" style="background-color: rgba(0, 51, 255, 0.15); border-radius: 0 0 calc(100vw * 0.011) calc(100vw * 0.011);">
+                <div class="n1 UPPERCASE desktop" style="margin-left: 18px; color: #fff; justify-content: center; padding-left: 0.3rem; padding-right: 0.3rem; flex-basis: 180px; font-size: 1rem;"> TURINFLOW </div>
                 <div class="metric-label n2 desktop" style="justify-content: center; margin: auto; flex-grow: 58; gap: 15px; font-size: 1rem; justify-content: center;">
-                    <span class="lowercase desktop" style="color: #eee; margin: 12px; flex-basis: 100px; justify-content: center">TRÂNSITO</span>
-                    <span class="lowercase desktop" style="color: #eee; margin: 12px; flex-basis: 100px; justify-content: center">FAMÍLIAS</span>
-                    <span class="lowercase desktop" style="color: #eee; margin: 12px; flex-basis: 100px; justify-content: center">CANARINHO</span>
+                    <span class="lowercase desktop" style="color: #fff; margin: 12px; flex-basis: 100px; justify-content: center">TRÂNSITO</span>
+                    <span class="lowercase desktop" style="color: #fff; margin: 12px; flex-basis: 100px; justify-content: center">FAMÍLIAS</span>
+                    <span class="lowercase desktop" style="color: #fff; margin: 12px; flex-basis: 100px; justify-content: center">CANARINHO</span>
                 </div>
                 
-                <div class="n1 UPPERCASE desktop" style="margin-right: 18px; color: #fff; justify-content: center; padding-left: 0.3rem; padding-right: 0.3rem; flex-basis: 180px">
-                    <span class="lowercase desktop" style="color: #eee; margin: 3px; flex-basis: 20px; padding: 0.2rem;">LOGIN</span>
-                    <span class="lowercase desktop" style="color: #eee; margin: 3px; padding: 0.2rem;">🞄</span>
-                    <span class="lowercase desktop" style="color: #eee; margin: 3px; flex-basis: 20px; padding: 0.2rem;">SIGNUP</span>
+                <div class="n1 UPPERCASE desktop" style="margin-right: 18px; color: #fff; justify-content: center; padding-left: 0.3rem; padding-right: 0.3rem; flex-basis: 180px; align-items: center;">
+                    <span class="lowercase desktop" style="color: #fff; margin: 3px; flex-basis: 20px; padding: 0.2rem; line-height: 1rem;">LOGIN</span>
+                    <span style="width: 3px; height:3px; background: currentColor; border-radius: 50%; margin: 3px;"></span>
+                    <span class="lowercase desktop" style="color: #fff; margin: 3px; flex-basis: 20px; padding: 0.2rem; line-height: 1rem;">SIGNUP</span>
                 </div>
 
-                <div id="ui-header" class="master-2 metric-label n2 UPPERCASE mobile" style="color: #fff; justify-content: center;">
-                    <span class="lowercase mobile header-text1">TURINFLOW</span>
-                    <span class="lowercase mobile header-text2">🞄</span>
-                    <span class="lowercase mobile header-text1">CANARINHO</span>
+                <div id="ui-header" class="master-2 metric-label UPPERCASE mobile" style="color: #fff; justify-content: center; align-items: center;">
+                    <span class="lowercase mobile header-text1 n2">TURINFLOW</span>
+                    <span class="lowercase mobile" style="color: #fff; margin: 3px; padding: 0.2rem;"><svg viewBox="0 0 100 100" width="4" height="4" aria-hidden="true" focusable="false">
+  <circle cx="50" cy="50" r="50" fill="currentColor"/>
+</svg></span>
+                    <span class="lowercase mobile header-text1 n2">CANARINHO</span>
                 </div>
 
             </div>
@@ -28,27 +30,54 @@
 </div>
 
 <style>
-.header-text1 {color: #eee; margin: 3px; flex-basis: 80px; padding: 0.2rem;}
-.header-text2 {color: #eee; margin: 3px; padding: 0.2rem;}
+.header-text1 {color: #fff; margin: 3px; flex-basis: 80px; padding: 0.2rem;}
+.header-text2 {color: #fff; margin: 3px; padding: 0.2rem;}
 
 .UPPERCASE {text-transform: uppercase;}
 .lowercase {text-transform: none;}
 .align-left1 {text-align: left;}
 .align-right1 {text-align: right; justify-content: right;}
-.master-2 {display: flex; align-items: center; justify-content: center; height: 3rem; flex-direction: row; flex-wrap: nowrap;}
+.master-2 {display: flex; align-items: center; justify-content: center; height: 56px; flex-direction: row; flex-wrap: nowrap;}
 
-.metric-label { display: flex; font-size: 1.1rem; color: #eee; letter-spacing: 1px; line-height: 1.1rem; align-content: center; justify-content: center;}
+.metric-label { display: flex; font-size: 1.1rem; color: #fff; letter-spacing: 1px; line-height: 1.1rem; align-content: center; justify-content: center;}
 .desktop {opacity: 0; display: none}
 .mobile {opacity: 1; display: flex}
 
-.header {width: 100%; vertical-align: top; background-color: rgba(23, 19, 18, 0.05); transition: 0.80s ease-in-out;}
+.header {
+    width: 100%;
+    top: 0; 
+    vertical-align: top; 
+    background-color: rgba(23, 19, 18, 0.49); 
+    transition: 0.80s ease-in-out; 
+    backdrop-filter: blur(10px); 
+    position: sticky; 
+    z-index: 200;
+    border-radius: 0 0 calc(100vw * 0.011) calc(100vw * 0.011);
+    color: #fff;
+    
+}
+
+.header-dot {
+  width: 5px;
+  height: 5px;
+  background: currentColor;
+  border-radius: 50%;
+}
 
 @media (min-width: 760px) {
     .metric-label {justify-content: left;}
-    .header:hover {background-color: rgba(29, 59, 177, 0.65); transition: 0.80s ease-in-out;}
+    .header:hover {background-color: rgba(23, 19, 18, 0.56); transition: 0.80s ease-in-out;}
+    .header {border-radius: 0 0 calc(100vw * 0.00636) calc(100vw * 0.00636);}
     .desktop {opacity: 1; display: flex}
     .mobile {opacity: 0; display: none}
     .align-left1 {margin-left: 12px;}
     
+}
+
+.header-dot {
+  width: 3px;
+  height: 3px;
+  background: currentColor;
+  border-radius: 50%;
 }
 </style>
