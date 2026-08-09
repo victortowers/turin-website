@@ -13,6 +13,16 @@
             src: url("https://www.turinflow.com.br/assets/NotoSans-Light.woff2");
         }
 
+        @font-face {
+            font-family: "g2";
+            src: url("https://www.turinflow.com.br/assets/GoogleSansFlex_120pt-ExtraLight.ttf");
+        }
+
+        @font-face {
+            font-family: "g1";
+            src: url("https://www.turinflow.com.br/assets/GoogleSansFlex_120pt-Thin.ttf");
+        }
+
         .n1 {
             font-family: n1, -apple-system, BlinkMacSystemFont;
         }
@@ -23,4 +33,12 @@
         
         .n2 {
             font-family: n2, -apple-system, BlinkMacSystemFont;
+        }
+
+        .g1 {
+            font-family: g1, -apple-system, BlinkMacSystemFont;
+        }
+
+        .g2 {
+            font-family: g2, -apple-system, BlinkMacSystemFont;
         }
