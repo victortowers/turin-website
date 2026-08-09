@@ -1,0 +1,27 @@
+<div class="header">
+        <div class=" align-left1" style="margin-left: 0px">
+            <div id="ui-header" class="master-2 metric-label n1 UPPERCASE" style="color: #fff">TurinFlow e Canarinho:&nbsp;<span class="master-2 metric-label n1 lowercase mobile" style="color: #eee">Surpreendente.</span><span class="master-2 metric-label n1 lowercase desktop" style="color: #eee">Simples e Surpreendente.</span></div>
+        </div>
+</div>
+
+<style>
+
+.UPPERCASE {text-transform: uppercase;}
+.lowercase {text-transform: none;}
+.align-left1 {text-align: left;  margin-left: 12px;}
+.master-2 {display: flex; align-items: center; justify-content: center; height: 3rem}
+
+.metric-label { font-size: 1.1rem; color: #eee; letter-spacing: 1px; line-height: 1.1rem; align-content: center; justify-content: center;}
+.desktop {opacity: 0;  width: 0;}
+.mobile {opacity: 1}
+
+.header {width: 100%; vertical-align: top; background-color: rgba(29, 59, 177, 0.4); transition: 0.46s ease-in-out;}
+
+@media (min-width: 768px) {
+    .metric-label {justify-content: left;}
+    .header:hover {background-color: rgba(29, 59, 177, 0.2); transition: 0.46s ease-in-out;}
+    .desktop {opacity: 1; width: auto;}
+    .mobile {opacity: 0; display: none}
+
+}
+</style>
