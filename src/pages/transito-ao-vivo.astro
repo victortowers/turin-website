@@ -1,0 +1,238 @@
+---
+import '../assets/styles/globals.css';
+---
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TurinFlow | Projeto Canário</title>
+    <style>
+        :root {
+            --brand-main: #FFD700;
+            --brand-dark: #333;
+            --bg-light: #f9f9f9;
+        }
+    </style>
+</head>
+
+<script
+    src="https://sp.turinflow.com.br/api/script.js"
+    data-site-id="3a248a45ee62"
+    defer
+></script>
+
+<body>
+
+    <!-- THE LOADING THEATER -->
+    <div id="loader">
+        <div class="canary-icon">🐦</div>
+        <p id="loader-text">O Canário está juntando os dados. Aguarde...</p>
+        <div class="scale-container">
+            <div id="progress-bar" class="scale-progress"></div>
+            <div class="shimmer"></div>
+        </div>
+    </div>
+
+    <!-- THE PRODUCTION DASHBOARD -->
+    <div id="dashboard">
+        <div class="master-1">
+        <div id="names" class="container-1">
+            <div class="metric-label align-right monospace">Nome da Região</div>
+            <div id="ui-stress" class="metric-value align-right monospace">-----------------</div>
+            <div id="names2" class="names-list"></div>
+
+        </div>
+
+        <div id="stress-index" class="container-2">
+                <div class="metric-label monospace align-left">Atraso Real</div>
+                <div id="ui-delay" class="metric-value monospace align-left">-----------</div>
+                <div id="stress-index2" class="traffic-list"></div>
+        </div>
+        </div>
+
+    <div class="master-2 align-left1">
+        <div id="ui-header" class="metric-label monospace">Visão Geral</div>
+        <div id="ui-status" class="small inset monospace" style="line-height: 1.5rem;"><i>Trânsito em tempo real, para todos.</i></div>
+        <div class="metric-grid">
+            <p style="font-size: 0.7rem; color: #eee; margin-top: max(3px, 1.1%); text-align: left; margin-bottom: max(3px, 1.1%);">
+            Dados por Turin. Análises feitas pelo Canarinho.
+            </p>
+        </div>
+        <p style="font-size: 0.9rem; color: #fdfdfd; margin-top: max(12px, 2.8%); text-align: left; margin-bottom: max(11px, 1.1%);">
+            Queremos que a vida dos moradores de Alphaville seja mais tranquila, rápida e fácil. Portanto, a partir de hoje,
+            lançamos o recurso "Visão Geral", com os dados Turin. A partir desta parceria, conseguimos atingir maior precisão
+            sobre as condições das vias em Alphaville, da maneira mais rápida e prática. <br><br>
+
+            Todos merecem uma vida menos estressante e previsibilidade na volta para casa. TurinFlow e o Canarinho ficarão
+            de olho nas vias, 24 horas por dia, para você nunca estar desatualizado.
+            </p>
+        
+        <div style="gap: 0rem; border:1px solid rgba(69, 86, 75, 0.28); padding-left: 12px; line-height: 1.2rem; width: 55%;">
+        <div style="font-size: 0.9rem; color: #fdfdfd; margin-top: 0.3rem;">
+            Atualizado às <span id="time_updated"></span>. 
+        </div>
+        <div class="metric-label" style="font-size: 0.5rem; margin-top: 0rem; color: #eee; line-height: 0.75rem; padding-bottom: 0.45rem;">
+            <i>(Atualização Automática)</i></div>
+        </div>
+    </div>
+        
+    </div>
+
+    <script>
+        let API_BASE = "https://api.turinflow.com.br";
+
+        /**
+         * World-Class PoW Solver
+         * Uses SubtleCrypto for hardware-level speed
+         */
+        async function solveChallenge(salt, difficulty) {
+            const prefix = "0".repeat(difficulty);
+            let nonce = 0;
+            const progressBar = document.getElementById('progress-bar');
+
+            while (true) {
+                const data = salt + nonce;
+                const msgBuffer = new TextEncoder().encode(data);
+                const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+                const hashArray = Array.from(new Uint8Array(hashBuffer));
+                const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+                if (hashHex.startsWith(prefix)) return nonce;
+                nonce++;
+
+                // Update "Feather Weight" animation every 500 attempts
+                if (nonce % 500 === 0) {
+                    // Simulating weight accumulation up to 90%
+                    if (progressBar) {
+                        const p = Math.min(90, (nonce / 5000) * 100);
+                        const safeP = Number.isFinite(p) ? p : 0;
+                        progressBar.style.width = `${safeP|| 0}%`;
+                    }
+
+                    // Brief pause to keep UI thread alive
+                    await new Promise(r => setTimeout(r, 0));
+                }
+            }
+        }
+
+        /**
+         * The Unified Data Workflow
+         */
+        async function runCanaryEngine(options={}, first_loading=false) {
+            const { timeout = 11000 } = options;
+            const controller = new AbortController();
+            const timer = setTimeout(() => controller.abort(), timeout);
+
+            try {
+                // 1. Get Challenge
+                const challengeRes = await fetch(`${API_BASE}/v1/challenge`, {signal: controller.signal});
+                if (!challengeRes.ok) throw new Error("Server Offline");
+                const { salt, seed, difficulty } = await challengeRes.json();
+
+                // 2. Solve (The "Feather" math)
+                const nonce = await solveChallenge(salt, difficulty);
+                if (first_loading) {
+                    document.getElementById('progress-bar').style.width = '100%';
+                    document.getElementById('loader-text').innerText = "Voo autorizado! Aguardando a base de dados...";
+                }
+                // 3. Fetch Real-time Pulse
+                const pulseRes = await fetch(`${API_BASE}/v1/raw-pulse`, {
+                    headers: {
+                        'x-salt': salt,
+                        'x-nonce': nonce.toString(),
+                        'x-seed': seed
+                    },
+                    signal: controller.signal
+                });
+
+                if (!pulseRes.ok) throw new Error("Acesso negado");
+                const result = await pulseRes.json();
+
+                // We pick the top route for the simple demo card
+                renderUI(result)
+
+            } catch (err) {
+                console.error(err);
+                document.getElementById('loader').innerHTML = `
+                    <div class="canary-icon">🥀</div>
+                    <p>O Canário cansou de esperar.</p>
+                    <button class="error-btn" onclick="location.reload()">Tentar de Novo</button>
+                `;
+            } finally {
+                clearTimeout(timer);
+                let API_BASE = "https://backup.turinflow.com.br";
+
+            }
+        }
+
+        /**
+         * Render Data with 90-second Precision Logic
+         */
+        function renderUI(data) {
+            // Hide Loader, Show Dashboard
+            document.getElementById('loader').style.opacity = '0';
+            document.getElementById('loader').style.display = 'none';
+            uiLoader(data)
+            document.getElementById('dashboard').style.opacity = '100';
+            document.getElementById('dashboard').style.display = 'flex';
+        }
+
+        function uiLoader(data) {
+            setTimeout(() => {
+                const namesContainer = document.getElementById('names2');
+                const statusContainer = document.getElementById('stress-index2');
+            
+                document.getElementById('names2').innerHTML = '';
+                const namesHtml = data.map(route => `
+                    <span class="monospace align-right ui-roadnames">
+                        ${route.route_id.replace(/_/g, ' ')}
+                    </span>
+                `).join('');
+
+                // 3. Build the 'Status' string
+                // Hint: Use the ui_color we set in the SQL view earlier
+                document.getElementById('stress-index2').innerHTML = '';
+                const statusHtml = data.map(route => `
+                    <span class="monospace align-left ui-roadnames">
+                        ${route.delay < 0 ? "<0.01 min": (route.delay == null ? "<0.01 min": route.delay + " Minutos"|| "Dados Indisponíveis")}  <span style="color: ${getStatusColor(route.stress_score)}">(${route.status_label})</span>
+                    </span>
+                `).join('');
+
+                // 4. Inject into the DOM ONCE (High Performance)
+                namesContainer.innerHTML += namesHtml;
+                statusContainer.innerHTML += statusHtml;
+
+                let date = new Date()
+                document.getElementById('time_updated').innerText = date.toLocaleTimeString();
+            
+            }, 400)};
+
+        function getStatusColor(score) {
+            if (score < 60) return '#72a88d';
+            if (score > 100) return '#e63946';
+            if (score > 95) return '#e69839';
+            if (score > 85) return '#eba409';
+            if (score > 75) return '#e6e639'; 
+            if (score >= 60) return '#6d7c6e';
+                          
+        }
+
+        function reloadPage() {
+            runCanaryEngine()
+        }
+
+        function firstLoading(loading) {
+            let first_loading = true;
+            document.getElementById('dashboard').style.opacity = '0';
+            document.getElementById('dashboard').style.display = 'none';
+            runCanaryEngine(first_loading)
+
+        }
+        // Start the engine
+        window.onload = firstLoading;
+        setInterval(reloadPage, 4 * 60 * 1000);
+    </script>
+</body>
+</html>

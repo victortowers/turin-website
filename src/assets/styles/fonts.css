@@ -23,6 +23,26 @@
             src: url("https://www.turinflow.com.br/assets/GoogleSansFlex_120pt-Thin.ttf");
         }
 
+        @font-face {
+            font-family: "s1";
+            src: url("https://www.turinflow.com.br/assets/SpaceMono-Regular.ttf");
+        }
+
+        @font-face {
+            font-family: "s2";
+            src: url("https://www.turinflow.com.br/assets/SpaceMono-Italic.ttf");
+        }
+
+        @font-face {
+            font-family: "s3";
+            src: url("https://www.turinflow.com.br/assets/SpaceMono-Bold.ttf");
+        }
+
+        @font-face {
+            font-family: "s4";
+            src: url("https://www.turinflow.com.br/assets/SpaceMono-BoldItalic.ttf");
+        }
+
         .n1 {
             font-family: n1, -apple-system, BlinkMacSystemFont;
         }
@@ -41,4 +61,20 @@
 
         .g2 {
             font-family: g2, -apple-system, BlinkMacSystemFont;
+        }
+
+        .s1 {
+            font-family: s1, system-ui, -apple-system, BlinkMacSystemFont;
+        }
+
+        .s2 {
+            font-family: s2, system-ui, -apple-system, BlinkMacSystemFont;
+        }
+
+        .s3 {
+            font-family: s3, system-ui, -apple-system, BlinkMacSystemFont;
+        }
+
+        .s4 {
+            font-family: s4, system-ui, -apple-system, BlinkMacSystemFont;
         }
