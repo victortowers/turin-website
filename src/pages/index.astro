@@ -32,10 +32,25 @@ import '../assets/styles/body.css';
             --darker-1: #474646;
         }
 
-        .row {flex-direction: column; row-gap: 0.6rem;}       
-        
+        .row {flex-direction: column; row-gap: 0.6rem;}
+        .row-reverse {flex-direction: row; row-gap: 0.6rem; }    
+
+        .font-default {
+            height: calc(100vw * 0.091); 
+            font-size: clamp(25px, calc(100vw * 0.076), 165px); 
+            line-height: clamp(25px, calc(100vw * 0.076), 170px);
+        }
+
         @media (min-width: 768px) {
             .row {flex-direction: row;}
+            .row-reverse {flex-direction: column;}
+
+            .font-default {
+            height: calc(100vw * 0.091); 
+            font-size: clamp(25px, calc(100vw * 0.076), 165px); 
+            line-height: clamp(25px, calc(100vw * 0.076), 170px);
+            }
+
         }
     </style>
 </head>
@@ -48,15 +63,72 @@ import '../assets/styles/body.css';
 
 <body>
     <Header />
-        <div style="margin-top: 8rem; margin-bottom: 8rem;">
-            <div class="s1" style="font-size: 69px; line-height: 69px; color: #111; justify-self: center; margin-bottom: 8px;">NUNCA MAIS SAIA ATRASADO.</div>
-            <div class="g2" style="font-size: 21px; line-height: 21px; color: #000; justify-self: center;">Turin ajuda você para sempre sair adiantado. Ajudamos você a coordenar sua viagem mais importante do dia.</div>
+        <div style="margin-top: 2rem; margin-bottom: 8rem;">
+            <div class="s1" style="width: 85vw; font-size: clamp(40px, calc(100vw * 0.131), 165px); line-height: clamp(40px, calc(100vw * 0.131), 170px); color: #111; justify-self: center; margin-bottom: 8px;">NUNCA MAIS SAIA ATRASADO.</div>
+            <div class="g2" style="width: 85vw; font-size: 21px; line-height: 21px; color: #000; justify-self: center;">Turin ajuda você para sempre sair adiantado. Ajudamos você a coordenar sua viagem mais importante do dia.</div>
+        </div>
+
+        <div style="background-color: #add1d1; padding-top: 2rem; padding-bottom: 8rem;">
+            <div class="s1" style="width: 85vw; font-size: clamp(40px, calc(100vw * 0.131), 165px); line-height: clamp(40px, calc(100vw * 0.131), 170px); color: #111; justify-self: center; margin-bottom: 8px;">INCIDENTES, EM TEMPO REAL.</div>
+            <div class="g2" style="width: 85vw; font-size: 21px; line-height: 21px; color: #000; justify-self: center;">Acidentes, Trânsito e Obras Inesperadas nunca mais! Avisaremos se necessário, dando a você controle sobre suas viagems todos os dias.</div>
+
+        </div>
+
+        <div style="background-color: #bc9bf4; padding-top: 2rem; padding-bottom: 8rem; min-height: 710px;">
+            <div class="row" style="width: 85vw; display: flex; justify-self: center; justify-content: space-between; height: 550px;">
+                <div style="display: flex; flex-direction: column; flex: 0 0 33%;">
+                    <span class="s1" style="margin: 9px; font-size: 21px; line-height: 21px; color: #000; text-align: center;">Família em primeiro lugar.</span>
+                    <div style="height: 75%; margin: 4px; background-color: #ddd; justify-self: center;"></div>
+                    <span class="g2" style="margin: 9px; font-size: 17px; line-height: 23px; color: #000; text-align: center;">Protegemos sua família. Cheque quem chegou em casa, e saiba instantaneamente se alguém saiu.</span>
+                </div>
+
+                <div style="display: flex; flex-direction: column; flex: 0 0 33%;">
+                    <span class="s1" style="margin: 9px; font-size: 21px; line-height: 21px; color: #000; text-align: center;">Chegando no horário certo.</span>
+                    <div style="height: 75%; margin: 4px; background-color: #555; justify-self: center;"></div>
+                    <span class="g2" style="margin: 9px; font-size: 17px; line-height: 23px; color: #000; text-align: center;">Saia no horário certo para chegar no horário certo. Para você, ou para a família inteira.</span>
+                </div>
+
+                <div style="display: flex; flex-direction: column; flex: 0 0 33%">
+                    <span class="s1" style="margin: 9px; font-size: 21px; line-height: 21px; color: #000; text-align: center;">Coordenando sua vida inteira.</span>
+                    <div style="height: 75%; margin: 4px; background-color: #000; justify-self: center;"></div>
+
+                    <span class="g2" style="margin: 9px; font-size: 17px; line-height: 23px; color: #000; text-align: center;">Com o Canarinho, coordene cada viagem do seu dia. A academia, a escola de seu filho, o seu trabalho. Cuide dos detalhes. Cuidaremos do seu trajeto.</span>
+                </div>
+            </div>
+        </div>
+
+
+        <div style="background-color: #dec1fd; padding-top: 2rem; padding-bottom: 8rem; min-height: 710px; height: auto;">
+            
+            <div class="row" style="width: 85vw; gap: 10px; display: flex; justify-self: center; justify-content: space-between; row-gap: calc(100vw * 0.02); height: auto; flex-wrap: wrap;">
+        
+                <span class="s1" style="width: 85vw; margin-top: calc(100vw * 0.03500); margin-bottom: calc(100vw * 0.01500); height: calc(100vw * 0.1); font-size: calc(100vw * 0.073); line-height: calc(100vw * 0.073); color: #111; justify-self: bottom; border-bottom: 1px solid #fff; text-align: center; align-items: flex-start;">NOSSOS RECURSOS</span>
+                <span class="n2" style="margin: 9px; font-size: 17px; line-height: 23px; color: #000; text-align: center;">Alertas de Trânsito e Acidentes</span>
+                <span class="n2" style="margin: 9px; font-size: 17px; line-height: 23px; color: #000; text-align: center;">Previsão de Chegada [1]</span>
+                <span class="n2" style="margin: 9px; font-size: 17px; line-height: 23px; color: #000; text-align: center;">Integração Google Maps e Waze</span>
+                <span class="n2" style="margin: 9px; font-size: 17px; line-height: 23px; color: #000; text-align: center;">Coordenação de Chegada (chegue juntos)</span>
+                <span class="n2" style="margin: 9px; font-size: 17px; line-height: 23px; color: #000; text-align: center;">Assitente Canarinho (saiba do necessário)</span>
+                <span class="n2" style="margin: 9px; font-size: 17px; line-height: 23px; color: #000; text-align: center;">Saída Inteligente [2]</span>
+                <span class="n2" style="margin: 9px; font-size: 17px; line-height: 23px; color: #000; text-align: center;">Rotas mais Frequentes</span>
+                <span class="n2" style="margin: 9px; font-size: 17px; line-height: 23px; color: #000; text-align: center;">Notificações Personalizados</span>
+                <span class="n2" style="margin: 9px; font-size: 17px; line-height: 23px; color: #000; text-align: center;">Adaptação à sua rotina</span>
+                <span class="n2" style="margin: 9px; font-size: 17px; line-height: 23px; color: #000; text-align: center;">Eficiente no 4G e 5G</span>
+                <span class="n2" style="margin: 9px; font-size: 17px; line-height: 23px; color: #000; text-align: center;">Avisos de chegada (para Familiares) [3]</span>
+                <span class="n2" style="margin: 9px; font-size: 17px; line-height: 23px; color: #000; text-align: center;">Avisos de Saídas (para Familiares) [5]</span>
+                <span class="n2" style="margin: 9px; font-size: 17px; line-height: 23px; color: #000; text-align: center;">Adaptado para o trânsito de SP</span>
+                <span class="n2" style="margin: 9px; font-size: 17px; line-height: 23px; color: #000; text-align: center;">Seus dados no seu dispositivo</span>
+                <span class="n2" style="margin: 9px; font-size: 17px; line-height: 23px; color: #000; text-align: center;">Rotas sem internet [4]</span>
+                <span class="n2" style="margin: 9px; font-size: 17px; line-height: 23px; color: #000; text-align: center;">Compartilhe com até 5 pessoas</span>
+                <span class="n2" style="margin: 9px; font-size: 17px; line-height: 23px; color: #000; text-align: center;">Alertas de Inprevistos</span>
+
+                <span class="n2" style="margin: 9px; font-size: 17px; line-height: 23px; color: #000; text-align: center;">Notificações Interativas (somente para iOS)</span>
+            </div>
         </div>
 
         <div style="background-color: #fff;">
 
-            <div class="s1" style="padding-top: 4rem; font-size: 60px; line-height: 60px; color: #eee; justify-self: center; margin-bottom: 8px;">NASCEMOS EM BREVE.</div>
-            <div class="g2" style="padding-bottom: 8rem; font-size: 21px; line-height: 21px; color: #111; justify-self: center;">Em breve, disponível na App Store e no Google Play.</div>            
+            <div class="s1" style="width: 85vw; padding-top: 4rem; font-size: clamp(40px, calc(100vw * 0.131), 165px); line-height: clamp(40px, calc(100vw * 0.131), 165px); color: #eee; justify-self: center; margin-bottom: 8px;">FAÇA PARTE DO NOSSO FUTURO.</div>
+            <div class="g2" style="width: 85vw; padding-bottom: 8rem; font-size: 21px; line-height: 21px; color: #111; justify-self: center;">Em breve, disponível na App Store e no Google Play.</div>            
         </div>
 
         <div class="s1" style="padding-top: 4rem; font-size: calc(100vw * 0.159); line-height: calc(100vw * 0.159); color: #aaa; justify-self: center; margin-bottom: 8px;">TURINFLOW</div>
