@@ -232,9 +232,6 @@ Disallow: /
 User-agent: mycentralaiscraperbot
 Disallow: /
 
-User-agent: oai-searchbot
-Disallow: /
-
 User-agent: pangubot
 Disallow: /
 
