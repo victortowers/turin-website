@@ -1,12 +1,13 @@
 ---
 import '../assets/styles/fonts.css';
+import qr_code from '../assets/qr_code.png';
 ---
 
 <div class="s1" style="padding-top: 4rem; font-size: calc(100vw * 0.159); line-height: calc(100vw * 0.159); color: #aaa; text-align: center; margin-bottom: 8px;">TURINFLOW</div>
-<div class="g2" style="padding-bottom: 4rem; font-size: 21px; line-height: 21px; color: #111; margin-inline: auto; text-align: center;">Simplesmente surpreendente.</div>
+<div class="g2" style="padding-bottom: 4rem; font-size: 21px; line-height: 21px; color: #111; margin-inline: auto; text-align: center;">Saia na hora certa.</div>
 
 <div class="footer">      
-        <div class="space-evenly" style="background-color: #959595; border-radius: 6px 6px 6px 6px; padding-left: 13px; padding-right: 13px; padding-top: 1.5rem; padding-bottom: 3rem;  display: flex; flex-direction: row; width: 93vw; flex-wrap: wrap; white-space: nowrap; justify-self: center; justify-content: space-between;">
+        <div class="space-evenly" style="background-color: #888888; border-radius: 6px 6px 6px 6px; padding-left: 13px; padding-right: 13px; padding-top: 1.5rem; padding-bottom: 2rem;  display: flex; flex-direction: row; width: 93vw; flex-wrap: wrap; white-space: nowrap; justify-self: center;">
         <div class="n2 footer-flex mobile-1 padding1" style="color: #fff;">
             <div style="font-weight: 700; padding-left: 0.25rem; font-size: 19px; color: #fff">Aplicativo</div>
                 <a class="button">Quem Somos > <br></a>
@@ -39,23 +40,21 @@ import '../assets/styles/fonts.css';
                 <a class="button">Segurança > <br></a>
         </div>
 
-        <div class="n2 footer-flex mobile-1 padding1" style="color: #fff;">
-            <div style="font-weight: 700; padding-left: 0.25rem; font-size: 19px; color: #fff">Suporte</div>
-                <a class="button">Suporte/Contato > <br></a>
-                <a class="button">Status do App > <br></a>
-        </div>
-
         <div class="n2 footer-flex mobile-1 padding1" style="color: #fff; padding-bottom: 1rem;">
             <div style="font-weight: 700; padding-left: 0.25rem; font-size: 19px; color: #fff">Legal</div>
                 <a class="button">Termos de Uso > <br></a>
                 <a class="button">Privacidade > <br></a>
             </div>
-        </div>  
 
+            <div class="n2 mobile-1" style="color: #fff;min-width: 15vw; min-height: 15vw; background-color: #fff;">
+                <img style="width: auto; height: 15vw; object-fit: contain;"src={qr_code.src} />
+            </div>
+        </div> 
+        
         <div class="border-bottom title1 s1 UPPERCASE footer1" style="display: flex; color: #666; font-size: 1rem; font-weight: 500; line-height: 1.3rem; padding-top: 1rem; width: 95vw; ">
             <span class="title1 s1 bottom-1" style="font-size: 1rem; color: #666; font-weight: 500; line-height: 1.3rem;">Turin:&nbsp;Saia na hora certa.</span>
             <div class="title1 s1 desktop" style="padding-left: 4px; padding-right: 4px; gap: 26px; display: flex; justify-content: space-between; font-size: 1rem; color: #666; font-weight: 500; line-height: 1.3rem;">
-                <a style="text-decoration: none;" href="https://vtinc.com.br">Página de Status</a>
+                <a style="text-decoration: none; color: #666;" href="https://vtinc.com.br">Página de Status</a>
                 <span>VTINC</span>
             </div>
         </div>
@@ -110,7 +109,7 @@ import '../assets/styles/fonts.css';
         @media (min-width: 768px) {
             .desktop {opacity: 1; width: auto;}
             .mobile {opacity: 0; display: none}
-            .space-evenly {justify-content: flex-start;}
+            .space-evenly {justify-content: space-evenly;}
             .padding-1 {margin-left: 1.5rem; width: 10rem;}
             .footer1 {display: block; padding-left: 0.4rem;}
             .mobile-1 {width: min(150px, 19%); min-width: 10rem;}
