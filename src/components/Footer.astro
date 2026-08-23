@@ -1,166 +1,152 @@
-<div class="footer">
-        <div class="border-top title1 n1 UPPERCASE footer1" style="margin: 1rem; margin-bottom: 0.8rem; font-size: 21px; color: #fff;">
-            TurinFlow:&nbsp;<span class="title1 n1" style="margin-right: 4px; font-size: 21px; color: #fff">Surpreendente.</span>
-        </div>      
-        <div class="space-evenly padding-1" style="display: flex; flex-direction: row; width: 100%; flex-wrap: wrap; white-space: nowrap; row-gap: 2rem;">
-        <div class="n2 footer-flex mobile-1 padding1" style="color: #fff;">
-            <div style="font-weight: 700; padding-left: 0.25rem; font-size: 19px; color: #fff">Aplicativo</div>
-                <a class="button">Quem Somos > <br></a>
-                <a class="button">Visão Geral > <br></a>
-                <a class="button">Plataforma > <br></a>
-                <a class="button">Planos > <br></a>
-                <a class="button" href="https://turinflow.com.br">Site > <br></a>
-        </div>
+---
+import '../assets/styles/fonts.css';
+---
 
-        <div class="n2 footer-flex mobile-1 padding1" style="color: #fff;">
-            <div style="font-weight: 700; padding-left: 0.25rem; font-size: 19px; color: #fff">Funcionalidades</div>
-                <a class="button">Turin + Famílias > <br></a>
-                <a class="button" href="https://turinflow.com.br/shield">Alertas Rápidas > <br></a>
-                <a class="button">Mobilidade > <br></a> 
-                <a class="button" href="https://turinflow.com.br/canarinho">Canarinho > <br></a>
-                <a class="button" href="https://turinflow.com.br/transito">Trânsito > <br></a>
-        </div>
+<div class="s1" style="padding-top: 4rem; font-size: calc(100vw * 0.159); line-height: calc(100vw * 0.159); color: #aaa; text-align: center; margin-bottom: 8px;">TURINFLOW</div>
+<div class="g2" style="padding-bottom: 4rem; font-size: 21px; line-height: 21px; color: #111; margin-inline: auto; text-align: center;">Não cai. Sem frescura.</div>
 
-        <div class="n2 footer-flex mobile-1 padding1" style="color: #fff;">
-            <div style="font-weight: 700; padding-left: 0.25rem; font-size: 19px; color: #fff">Recursos</div>
-                <a class="button">Documentação > <br></a>
-                <a class="button">Atualizações > <br></a>
-                <a class="button">FAQ (Ajuda) > <br></a> 
-                <a class="button">Em breve > <br></a>
-        </div>
+<footer class="footer">
+  <div class="footer-cols">
 
-        <div class="n2 footer-flex mobile-1 padding1" style="color: #fff;">
-            <div style="font-weight: 700; padding-left: 0.25rem; font-size: 19px; color: #fff">Sistemas</div>
-                <a class="button">Infraestrutura > <br></a>
-                <a class="button">Segurança > <br></a>
-        </div>
-
-        <div class="n2 footer-flex mobile-1 padding1" style="color: #fff;">
-            <div style="font-weight: 700; padding-left: 0.25rem; font-size: 19px; color: #fff">Suporte</div>
-                <a class="button">Suporte/Contato > <br></a>
-                <a class="button">Status do App > <br></a>
-        </div>
-
-        <div class="n2 footer-flex mobile-1 padding1" style="color: #fff; padding-bottom: 1rem;">
-            <div style="font-weight: 700; padding-left: 0.25rem; font-size: 19px; color: #fff">Legal</div>
-                <a class="button">Termos de Uso > <br></a>
-                <a class="button">Privacidade > <br></a>
-            </div>
-        </div>  
-
+    <!-- 1. Download -->
+    <div class="footer-col">
+      <div class="footer-title">Baixe o app</div>
+      <a class="button" href="https://apps.apple.com/br/app/ID">Baixar na App Store</a>
+      <a class="button" href="https://play.google.com/store/apps/details?id=ID">Baixar no Google Play</a>
+      <div class="qr" role="img" aria-label="QR code para baixar o app">QR CODE</div>
+      <div class="support">Atendimento: seg. a sex., 8h às 18h</div>
     </div>
 
-    <style>
-        .footer {
-            width: 100%;
-            vertical-align: bottom;
-            background-color: var(--darker-1);
-            transition: 0.45s ease-in-out;
-            height: auto;
-        }
+    <!-- 2. O aplicativo -->
+    <div class="footer-col">
+      <div class="footer-title">O aplicativo</div>
+      <a class="button" href="https://turinflow.com.br/transito">Trânsito</a>
+      <a class="button" href="https://turinflow.com.br/canarinho">Canarinho</a>
+      <a class="button" href="https://turinflow.com.br/shield">Alertas rápidos</a>
+      <a class="button" href="https://turinflow.com.br/familias">Para famílias</a>
+      <a class="button" href="https://turinflow.com.br/escolas">Para escolas</a>
+    </div>
 
-        .frosted-glass {
-            background: rgba(0, 0, 0, 0.14);
-            backdrop-filter: blur(120px) saturate(150%);
-            -webkit-backdrop-filter: blur(12px) saturate(150%);
-            padding: 1rem;
+    <!-- 3. Ajuda -->
+    <div class="footer-col">
+      <div class="footer-title">Ajuda</div>
+      <a class="button" href="https://turinflow.com.br/como-funciona">Como funciona</a>
+      <a class="button" href="https://turinflow.com.br/faq">Perguntas frequentes</a>
+      <a class="button" href="https://wa.me/5500000000000">Fale conosco (WhatsApp)</a>
+      <a class="button" href="https://turinflow.com.br/status">Status do app</a>
+    </div>
 
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            border-radius: 12px;
-            box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05), 0 4px 12px rgba(0,0,0,0.1);
-            color: #fff;
-            flex: 0 0 100%;
-            margin: 0.6rem;
-            margin-bottom: 0.3rem;
-            background-color: rgba(0, 0, 0, 0.14);
-            opacity: 0.99;
-            
-        }
-        
-        .border-top {
-            border-bottom: 1px solid #fff;
-            margin: 0.4rem;
-            margin-bottom: 0.8rem;
-            padding-bottom: 0.4rem;
-            
-        }
+    <!-- 4. Legal -->
+    <div class="footer-col">
+      <div class="footer-title">Legal</div>
+      <a class="button" href="https://turinflow.com.br/termos">Termos de Uso</a>
+      <a class="button" href="https://turinflow.com.br/privacidade">Privacidade (LGPD)</a>
+    </div>
 
-        .title1 {
-            font-size: 1.8rem; 
-            margin: 0; 
-            color: #eeeeee; 
-            font-weight: 500;
-            line-height: 2.1rem
-        }
+  </div>
 
-        .footer-flex {flex: 0 0 38%;}
-        .desktop {opacity: 0;  width: 0;}
-        .mobile {opacity: 1}
-        .row {flex-direction: column; row-gap: 0.6rem;}
-        .mobile-1 {font-size: 18px; line-height: 32px;}
-        .UPPERCASE {text-transform: uppercase;}
-        .space-evenly {justify-content: space-evenly;}
-        .footer1 {display: flex; justify-content: center;}
+  <div class="border-bottom"></div>
 
-        .button {
-            text-decoration: none;
-            color: #ccc;
-            border-radius: 5px;
-            transition: 0.41s ease-in-out;
-            padding-left: 0.3rem;
-            padding-right: 0.5rem;
-            padding-top: 0.1rem;
-            padding-bottom: 0.1rem;
-            line-height: 29px;
-        }
+  <div class="footer-bottom">
+    <span>© 2025 Turin Sistemas LTDA · CNPJ 00.000.000/0001-00 · Todos os direitos reservados</span>
+    <span class="made-in-brasil">Feito no Brasil 🇧🇷</span>
+    <span class="social">
+      <a class="button" href="https://facebook.com/SUA_PAGINA">Facebook</a>
+      <a class="button" href="https://instagram.com/SUA_PAGINA">Instagram</a>
+    </span>
+  </div>
+</footer>
 
-        .button:hover {
-            background-color: rgba(29, 59, 177, 0.4);
-            transition: 0.41s ease-in-out;
-        }
+<style>
+  .footer {
+    background-color: #eee;
+    transition: background-color 0.45s ease-in-out;
+    padding-top: 4px;
+  }
 
-        @media (min-width: 768px) {
-            .desktop {opacity: 1; width: auto;}
-            .mobile {opacity: 0; display: none}
-            .space-evenly {justify-content: flex-start;}
-            .padding-1 {margin-left: 1.5rem; width: 10rem;}
-            .footer1 {display: block; padding-left: 0.4rem;}
-            .mobile-1 {width: min(150px, 19%); min-width: 10rem;}
+  .footer-cols {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    width: min(95vw, 1200px);
+    margin-inline: auto;
+    padding: 1rem;
+  }
 
-            .frosted-glass {
-                flex: 0 0 48%;
-                margin: 0.6rem;
-                border-radius: 8px;
-                column-gap: 10rem;
-                background-color: rgba(0, 0, 0, 0.14);
-                opacity: 0.60;
-                transition: 0.28s ease-in-out;
-            }
+  .footer-col {
+    flex: 0 0 45%;
+    min-width: 10rem;
+    padding: 1rem;
+    box-sizing: border-box;
+    color: #222;
+    font-size: 18px;
+    line-height: 32px;
+  }
 
-            .frosted-glass:hover {
-                background-color: var(--darker-1);
-                opacity: 0.60;
-                transition: 0.28s ease-in-out;
-            }
-        
-            .row {
-                flex-direction: row;
-            }
+  .footer-title {
+    font-weight: 700;
+    padding-left: 0.25rem;
+    font-size: 19px;
+    color: #111;
+  }
 
-            .header:hover {
-                background-color: #9837a5;
-                transition: 0.45s ease-in-out;
-            }
+  .button {
+    display: block;
+    text-decoration: none;
+    color: #333;
+    border-radius: 5px;
+    transition: 0.41s ease-in-out;
+    padding: 0.1rem 0.5rem 0.1rem 0.3rem;
+    line-height: 29px;
+  }
 
-            .footer-flex {
-                flex: min(180px, 23%);
-                flex-grow: 0;
-                justify-content: flex-start;
-            }
+  .button:hover {
+    background-color: rgba(29, 59, 177, 0.4);
+    color: #fff;
+  }
 
-            .padding-1 {
-                padding-bottom: 2rem;
-                padding-right: 1rem;
-            }
-        }
-    </style>
+  .qr {
+    margin-top: 0.6rem;
+    width: 120px;
+    height: 120px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    font-size: 12px;
+    text-align: center;
+  }
+
+  .support {
+    margin-top: 0.5rem;
+    font-size: 15px;
+    color: #555;
+    padding-left: 0.3rem;
+  }
+
+  .border-bottom {
+    border-bottom: 1px solid #aaa;
+    margin: 0.4rem 1rem;
+  }
+
+  .footer-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.6rem 1.2rem 1.2rem;
+    color: #888;
+    font-size: 14px;
+  }
+
+  .footer-bottom .button { display: inline-block; color: #555; }
+
+  @media (min-width: 768px) {
+    .footer-cols { justify-content: flex-start; }
+    .footer-col { flex: 0 0 min(200px, 23%); flex-grow: 0; }
+  }
+</style>
