@@ -25,16 +25,13 @@
 # AND RELATED RIGHTS IN THE DIGITAL SINGLE MARKET.
 
 User-agent: *
-Content-Signal: search=yes,ai-train=no,ai-input=yes,use=full,
+Content-Signal: search=yes,ai-train=no,ai-input=yes,use=full
 Allow: /
 
 User-agent: GPTBot
 Disallow: /
 
 User-agent: ClaudeBot
-Disallow: /
-
-User-agent: CCBot
 Disallow: /
 
 User-agent: Google-Extended
@@ -199,19 +196,10 @@ Disallow: /
 User-agent: big-sur-ai
 Disallow: /
 
-User-agent: claudebot
-Disallow: /
-
 User-agent: deepseekbot
 Disallow: /
 
 User-agent: digitaloceangenai-crawler
-Disallow: /
-
-User-agent: gptbot
-Disallow: /
-
-User-agent: google-extended
 Disallow: /
 
 User-agent: grok
