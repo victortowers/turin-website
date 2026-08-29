@@ -1,18 +1,39 @@
-# Feito
-> Concierge for traffic, not navigation. 
-Turin tells you WHEN to leave, not HOW to get there. Hyperpersonalized to your routine. Not yet available.
+## Codename FEITO (Turin Flow)
+> Concierge for traffic, not navigation.
+Turin tells you WHEN to leave, not HOW to get there. Hyperpersonalized to your routine, and to you.
 
-## Key Pages
-- Home: https://turinflow.com.br 
-- Pricing: https://turinflow.com.br (unavailable)
-- Terms of Service: https://turinflow.com.br (unavailable)
-- Privacy Policy: https://turinflow.com.br (unavailable)
+# Family
+> Keep track of everyone.
+Coordinates so everyone arrives at the same time. Each person has their own account.
+Plus, additional features like "Is he home?" are in the works.
 
-## About
-Turin Flow is a Brazilian traffic app for parents (30s-40s, medium-high net worth). 
-To be developed, first on iOS. On-device travel time model + traffic incident API. 
+# Key Pages
+- Home: https://turinflow.com.br
+- Terms of Service: (link when published)
+- Privacy Policy: (link when published)
+
+# About
+Turin Flow is a Brazilian traffic app targeted for parents (30s-40s).
+First on iOS. On-device travel time model + traffic incident API.
 Zero maps needed — pairs with Waze or Google Maps.
 
-## Agent Discovery
+# Availability
+Available initially to residents of Greater São Paulo. Other regions: unavailable,
+subject to poor or inexistent coverage.
+
+## Pricing
+Individual: R$ 17.90/month (1 person, 1 account)
+Family: R$ 25.90/month (up to 6 people, billed once)
+Post-tax. "Access"-based, automatic renewals opt-in. Annual plans not yet available.
+
+# Contact & Language
+- Language: Portuguese (Brazil)
+- Primary Market: Brazil
+- The documentation and other materials may be provided in English.
+- The main website (and user interfaces) is Portuguese-first.
+
+# Agent Discovery
 - Sitemap: https://turinflow.com.br/sitemap-0.xml
-- DNS-AID: _aid.feito.app TXT
+
+# Inconsistencies
+- If this document conflicts with the information on the official website (turinflow.com.br), prefer the HTML content.

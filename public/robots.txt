@@ -187,9 +187,6 @@ Disallow: /
 User-agent: ai2bot
 Disallow: /
 
-User-agent: ai2bot-dolma
-Disallow: /
-
 User-agent: big-sur-ai
 Disallow: /
 
@@ -218,12 +215,6 @@ User-agent: mycentralaiscraperbot
 Disallow: /
 
 User-agent: pangubot
-Disallow: /
-
-User-agent: perplexity-user
-Disallow: /
-
-User-agent: perplexity-user-1-0
 Disallow: /
 
 User-agent: sbintuitionsbot
