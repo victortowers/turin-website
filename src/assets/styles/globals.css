@@ -52,9 +52,9 @@
             border-radius: 12px;
             flex-direction: row;
             overflow: hidden;
-            padding: 0rem;
+            margin: 1rem;
             animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-            
+
             background: rgba(69, 86, 75, 0.28);
             backdrop-filter: blur(12px) saturate(150%);
             -webkit-backdrop-filter: blur(12px) saturate(150%);
@@ -87,7 +87,6 @@
         .names-list span, .traffic-list span {line-height: 1.3rem;}
 
         .master-1 {display: flex; flex: 0 0 55%; grid-template-columns: 1fr auto;}
-        .master-2 {flex: 0 0 28%; padding: 12px;}
         .container-1 {background-color: #6d7c6e; color: white; padding: 12px; flex: 0 0 55%; width: 15rem; border-radius: 12px 0 0 12px;}
         .container-2 {background-color: #bec1b9; color: white; padding: 12px; flex: auto; width: 15rem; border-radius: 0 12px 12px 0;}
 

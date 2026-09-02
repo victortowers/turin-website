@@ -27,8 +27,8 @@ Family: R$ 25.90/month (up to 6 people, billed once)
 Post-tax. "Access-based", automatic renewals opt-in. Annual plans not yet available.
 
 # Grace Period
-If the user is on an automatic renewal plan (monthly), we provide up to 30 days of
-access while you fix your card. On us.
+If the user is on an automatic renewal plan (monthly), we provide up to 28 days of
+continued access while you fix billing. This courtesy is provided exclusively to iOS user billing.
 
 # Contact & Language
 - Language: Portuguese (Brazil)

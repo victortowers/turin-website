@@ -19,7 +19,7 @@ import qr_code from "../assets/qr_code.png";
 <div class="footer">
     <div
         class="space-evenly dynamic-size"
-        style="row-gap: 1rem; background-color: #888888; border-radius: 6px 6px 6px 6px; padding-left: 1.5rem; padding-right: 1.5rem; padding-top: 1.5rem; padding-bottom: 2rem; display: flex; flex-direction: row; flex-wrap: wrap; white-space: nowrap; justify-self: center;"
+        style="backdrop-filter: blur(12px); row-gap: 1rem; background-color: rgba(111, 129, 111, 1); border-radius: 6px 6px 6px 6px; padding-left: 1.5rem; padding-right: 1.5rem; padding-top: 1.5rem; padding-bottom: 2rem; display: flex; flex-direction: row; flex-wrap: wrap; white-space: nowrap; justify-self: center;"
     >
         <div class="n2 footer-flex mobile-1 padding1" style="color: #fff;">
             <div
@@ -40,16 +40,10 @@ import qr_code from "../assets/qr_code.png";
             >
                 Recursos
             </div>
-            <a class="button" href="https://turinflow.com.br/familias"
-                >Turin + Famílias > <br /></a
-            >
-            <a class="button" href="https://turinflow.com.br/canarinho"
-                >Canarinho > <br /></a
-            >
-            <a class="button" href="https://turinflow.com.br/transito"
-                >Trânsito > <br /></a
-            >
-            <a class="button">Alertas > <br /></a>
+            <a class="button" href="/familias">Turin + Famílias > <br /></a>
+            <a class="button" href="/canarinho">Canarinho > <br /></a>
+            <a class="button" href="/transito">Trânsito > <br /></a>
+            <a class="button" href="/alertas">Alertas > <br /></a>
         </div>
 
         <div class="n2 footer-flex mobile-1 padding1" style="color: #fff;">
@@ -58,9 +52,11 @@ import qr_code from "../assets/qr_code.png";
             >
                 Adicionais
             </div>
-            <a class="button">Trânsito ao Vivo > <br /></a>
-            <a class="button">Defesa Civil > <br /></a>
-            <a class="button">Empresas > <br /></a>
+            <a class="button" href="/transito-ao-vivo"
+                >Trânsito ao Vivo > <br /></a
+            >
+            <a class="button" href="/defesa-civil">Defesa Civil > <br /></a>
+            <a class="button" href="/nero">Empresas > <br /></a>
         </div>
 
         <div class="n2 footer-flex mobile-1 padding1" style="color: #fff;">
@@ -83,12 +79,8 @@ import qr_code from "../assets/qr_code.png";
             >
                 Legal
             </div>
-            <a class="button" href="https://turinflow.com.br/termos"
-                >Termos de Uso > <br /></a
-            >
-            <a class="button" href="https://turinflow.com.br/privacidade"
-                >Privacidade > <br /></a
-            >
+            <a class="button" href="/termos">Termos de Uso > <br /></a>
+            <a class="button" href="/privacidade">Privacidade > <br /></a>
         </div>
 
         <div class="n2 mobile-1" style="color: #fff; height: auto;">
@@ -125,7 +117,6 @@ import qr_code from "../assets/qr_code.png";
     .footer {
         width: 100%;
         vertical-align: bottom;
-        background-color: #eee;
         transition: 0.45s ease-in-out;
         height: auto;
         padding-top: 4px;
@@ -231,22 +222,6 @@ import qr_code from "../assets/qr_code.png";
         }
         .border-bottom {
             justify-content: space-between;
-        }
-
-        .frosted-glass {
-            flex: 0 0 48%;
-            margin: 0.6rem;
-            border-radius: 8px;
-            column-gap: 10rem;
-            background-color: rgba(0, 0, 0, 0.14);
-            opacity: 0.6;
-            transition: 0.28s ease-in-out;
-        }
-
-        .frosted-glass:hover {
-            background-color: var(--darker-1);
-            opacity: 0.6;
-            transition: 0.28s ease-in-out;
         }
 
         .row {
