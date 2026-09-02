@@ -1,5 +1,4 @@
 ---
-import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 import Bottom from "../components/bottom-logo.astro";
 
@@ -13,16 +12,10 @@ import "../assets/styles/body.css";
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Turin: Saia no horário certo.</title>
+
         <meta
             name="description"
-            content="Ajuda você a decidir quando sair, e não como chegar."
-        />
-        <!-- This is the llms.txt discovery line -->
-        <link
-            rel="alternate"
-            type="text/markdown"
-            href="/llms.txt"
-            title="llms.txt (em Inglês)"
+            content="Trânsito em tempo real para você sempre sair no horário certo."
         />
         <link rel="canonical" href="https://turinflow.com.br/" />
         <style>
@@ -40,10 +33,6 @@ import "../assets/styles/body.css";
                 --mid-color1: #bec1b9;
                 --mid-color: #131b21;
                 --darker-1: #474646;
-            }
-
-            #body {
-                animation-timeline: view();
             }
 
             .row {
@@ -108,15 +97,6 @@ import "../assets/styles/body.css";
                 .widgets-1 {
                     flex: 0 0 32%;
                 }
-
-                .hover3 {
-                    color: #444444;
-                    transition: 0.32s ease-in-out;
-                }
-                .hover3:hover {
-                    color: rgba(75, 100, 100, 1);
-                    transition: 0.25s ease-in-out;
-                }
             }
 
             @media (min-width: 900px) {
@@ -136,17 +116,18 @@ import "../assets/styles/body.css";
         <Header />
         <div style="margin-top: 2rem; margin-bottom: 8rem;">
             <div
-                class="s1 hover3"
-                style="width: 85vw; font-size: clamp(40px, calc(100vw * 0.131), 165px); line-height: clamp(40px, calc(100vw * 0.131), 170px); margin-inline: auto; margin-bottom: 8px;"
+                class="s1"
+                style="width: 85vw; font-size: clamp(40px, calc(100vw * 0.131), 165px); line-height: clamp(40px, calc(100vw * 0.131), 170px); color: #444444; margin-inline: auto; margin-bottom: 8px;"
             >
-                NUNCA MAIS SAIA ATRASADO.
+                PARA FAMÍLIAS.
             </div>
             <div
                 class="g2"
                 style="width: 85vw; font-size: 21px; line-height: 21px; color: #000; margin-inline: auto;"
             >
-                Turin ajuda você para sempre sair adiantado. Ajudamos você a
-                coordenar sua viagem mais importante do dia.
+                Turin é muito mais que alertas de trânsito. Agora, também somos
+                um aplicativo, dessa vez, focada na sua família e em todos os
+                pequenos detalhes.
             </div>
         </div>
 
@@ -154,18 +135,18 @@ import "../assets/styles/body.css";
             style="background-color: #add1d1; padding-top: 2rem; padding-bottom: 8rem;"
         >
             <div
-                class="s1 hover3"
-                style="width: 85vw; font-size: clamp(40px, calc(100vw * 0.131), 165px); line-height: clamp(40px, calc(100vw * 0.131), 170px); margin-inline: auto; margin-bottom: 8px;"
+                class="s1"
+                style="width: 85vw; font-size: clamp(40px, calc(100vw * 0.131), 165px); line-height: clamp(40px, calc(100vw * 0.131), 170px); color: #333333; margin-inline: auto; margin-bottom: 8px;"
             >
-                INCIDENTES, AGORA EM TEMPO REAL.
+                COORDENE TUDO.
             </div>
             <div
                 class="g2"
                 style="width: 85vw; font-size: 21px; line-height: 21px; color: #000; margin-inline: auto;"
             >
-                Nunca saia de casa sem saber o que você encontrará. Avisaremos
-                você de tudo, se necessário, dando a você controle sobre suas
-                viagens todos os dias.
+                Protegemos sua família. Cheque quem está em casa,
+                instantaneamente. Não rastreamos sua localização, e só
+                analizaremos quando alguém sair.
             </div>
         </div>
 
@@ -213,7 +194,7 @@ import "../assets/styles/body.css";
                     <span
                         class="g2"
                         style="margin: 9px; font-size: 17px; line-height: 23px; color: #000; text-align: center;"
-                        >Com o Turin, coordene cada viagem do seu dia. A
+                        >Com o Canarinho, coordene cada viagem do seu dia. A
                         academia, a escola de seu filho, o seu trabalho. Cuide
                         dos detalhes. Cuidaremos do seu trajeto.</span
                     >
@@ -256,7 +237,7 @@ import "../assets/styles/body.css";
                 <span
                     class="n2"
                     style="margin: 9px; font-size: 17px; line-height: 23px; color: #000; text-align: center;"
-                    >Assistente Inteligente (saiba do necessário)</span
+                    >Assitente Canarinho (saiba do necessário)</span
                 >
                 <span
                     class="n2"
@@ -316,7 +297,7 @@ import "../assets/styles/body.css";
                 <span
                     class="n2"
                     style="margin: 9px; font-size: 17px; line-height: 23px; color: #000; text-align: center;"
-                    >Alertas de Imprevistos</span
+                    >Alertas de Inprevistos</span
                 >
 
                 <span

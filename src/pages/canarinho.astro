@@ -1,135 +1,197 @@
 ---
-import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro'
+import Footer from "../components/bottom-logo.astro";
+import Header from "../components/Header.astro";
 
-import '../assets/styles/fonts.css';
-import '../assets/styles/rows.css';
-import '../assets/styles/frosted-glass.css';
-
+import "../assets/styles/fonts.css";
+import "../assets/styles/rows.css";
+import "../assets/styles/frosted-glass.css";
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Analista Canarinho | TurinFlow</title>
-    <style>
-
-        *, *::before, *::after {
-            box-sizing: border-box;
-        }
-
-        :root {
-            --brand-main: #FFD700;
-            --brand-dark: #333;
-            --bg-light: #f9f9f9;
-            --light-2: #eee;
-            --mid-color1: #bec1b9;
-            --mid-color: #131b21;
-            --darker-1: #474646;
-        }
-
-        body {
-            margin: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--darker-1);
-            color: var(--brand-dark);
-            justify-content: center;
-            align-items: center;
-            overflow-x: hidden;
-        }
-
-        .border-top {
-            border-bottom: 1px solid #555;
-            margin: 0.4rem;
-            margin-bottom: 0.8rem;
-            padding-bottom: 0.4rem;
-            
-        }
-
-        .align-left1 {text-align: center;}
-        .UPPERCASE {text-transform: uppercase;}
-        .lowercase {text-transform: none;}
-        
-        .desktop {opacity: 0;  width: 0;}
-        .mobile {opacity: 1}
-        .mobile-1 {font-size: 18px; line-height: 32px;}
-        .space-evenly {justify-content: space-evenly;}
-    
-        @media (min-width: 768px) {
-            .desktop {opacity: 1; width: auto;}
-            .mobile {opacity: 0; display: none}
-            .align-left1 {text-align: left;  margin-left: 12px;}
-            .space-evenly {justify-content: flex-start;}
-            .padding-1 {margin-left: 1.5rem; width: 10rem;}
-            .mobile-1 {width: min(150px, 19%); min-width: 10rem;}
-            
-            .row {
-                flex-direction: row;
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Analista Canarinho | TurinFlow</title>
+        <style>
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box;
             }
 
-            .padding-1 {
-                padding-bottom: 2rem;
-                padding-right: 1rem;
+            :root {
+                --brand-main: #ffd700;
+                --brand-dark: #333;
+                --bg-light: #f9f9f9;
+                --light-2: #eee;
+                --mid-color1: #bec1b9;
+                --mid-color: #131b21;
+                --darker-1: #474646;
             }
-        }
-    </style>
-</head>
 
-<script
-    src="https://sp.turinflow.com.br/api/script.js"
-    data-site-id="3a248a45ee62"
-    defer
-></script>
+            body {
+                margin: 0;
+                font-family:
+                    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                    Helvetica, Arial, sans-serif;
+                background-color: #eeeeee;
+                color: #a11111;
+                justify-content: center;
+                align-items: center;
+                overflow-x: hidden;
+            }
 
-<body>
+            .border-top {
+                border-bottom: 1px solid #555;
+                margin: 0.4rem;
+                margin-bottom: 0.8rem;
+                padding-bottom: 0.4rem;
+            }
 
-    <!-- THE PRODUCTION DASHBOARD -->
-    <Header />
-    <div class="row">
-        <div class="frosted-glass">
-            <div class="border-top a1 title">Veja o que está acontecendo, em uma só mensagem.</div>
-            <div class="n2" style="margin-top: 0.4rem; padding-top: 0.4rem; padding-left: 0.65rem;">Canarinho é o nosso analista de trânsito em Alphaville, em tempo real.
-                Em uma só mensagem, comunica incidentes, alagamentos e trânsito que pode te atrapalhar.
-                Canarinho não envia o que não é relevante. Somente assuntos mais graves e com consequências diretas
-                ele age. Espere menos mensagens dele.
+            .align-left1 {
+                text-align: center;
+            }
+            .UPPERCASE {
+                text-transform: uppercase;
+            }
+            .lowercase {
+                text-transform: none;
+            }
+
+            .desktop {
+                opacity: 0;
+                width: 0;
+            }
+            .mobile {
+                opacity: 1;
+            }
+            .mobile-1 {
+                font-size: 18px;
+                line-height: 32px;
+            }
+            .space-evenly {
+                justify-content: space-evenly;
+            }
+
+            @media (min-width: 768px) {
+                .desktop {
+                    opacity: 1;
+                    width: auto;
+                }
+                .mobile {
+                    opacity: 0;
+                    display: none;
+                }
+                .align-left1 {
+                    text-align: left;
+                    margin-left: 12px;
+                }
+                .space-evenly {
+                    justify-content: flex-start;
+                }
+                .padding-1 {
+                    margin-left: 1.5rem;
+                    width: 10rem;
+                }
+                .mobile-1 {
+                    width: min(150px, 19%);
+                    min-width: 10rem;
+                }
+
+                .row {
+                    flex-direction: row;
+                }
+
+                .padding-1 {
+                    padding-bottom: 2rem;
+                    padding-right: 1rem;
+                }
+            }
+        </style>
+    </head>
+
+    <script
+        src="https://sp.turinflow.com.br/api/script.js"
+        data-site-id="3a248a45ee62"
+        defer></script>
+
+    <body>
+        <!-- THE PRODUCTION DASHBOARD -->
+        <Header />
+        <div class="row">
+            <div class="frosted-glass">
+                <div class="border-top a1 title">
+                    Veja o que está acontecendo, em uma só mensagem.
+                </div>
+                <div
+                    class="n2"
+                    style="margin-top: 0.4rem; padding-top: 0.4rem; padding-left: 0.65rem;"
+                >
+                    Canarinho é o nosso analista de trânsito em Alphaville, em
+                    tempo real. Em uma só mensagem, comunica incidentes,
+                    alagamentos e trânsito que pode te atrapalhar. Canarinho não
+                    envia o que não é relevante. Somente assuntos mais graves e
+                    com consequências diretas ele age. Espere menos mensagens
+                    dele.
+                </div>
+
+                <div
+                    class="n2"
+                    style="margin-top: 0.4rem; padding-top: 0.4rem; padding-left: 0.65rem;"
+                >
+                    Com acesso à toda nossa tecnologia Turin Shield e o emprego
+                    de novas tecnologias, ele envia mensagens aos nossos
+                    usuários (via notificações) e via um Grupo no Whatsapp (em
+                    breve). Resume tudo o que importa. Apenas 1-2 Mensagens por
+                    dia (analista Canarinho), respeitando o silêncio do usuário.
+                </div>
+
+                <div style="padding-left: 0.5rem;">
+                    <div
+                        class="a1"
+                        style="margin-top: 0.6rem; padding-top: 1rem; font-size: 21px; width: 51%; margin-bottom: 3px; padding-bottom: 1px;"
+                    >
+                        Tipos de Notificações
+                    </div>
+                    <div class="n2">
+                        * Alertas de Acidentes (somente Casos Graves);<br />
+                        * Focos de Trânsito (somente Casos Moderados ou Graves); <br
+                        />
+                        * <s>Previsões de Chuvas;</s><br /><br />
+                        * Obras e Interrupções de Fluxo (Casos Graves);<br />
+                        * Alertas da Defesa Civil;<br />
+                        * Alagamentos e Inundações (Casos Graves, somente Alphaville).<br
+                        />
+                    </div>
+                </div>
             </div>
 
-            <div class="n2" style="margin-top: 0.4rem; padding-top: 0.4rem; padding-left: 0.65rem;">
-                Com acesso à toda nossa tecnologia Turin Shield e o emprego de novas tecnologias, ele envia mensagens aos nossos usuários (via notificações)
-                e via um Grupo no Whatsapp (em breve). Resume tudo o que importa. 
-                Apenas 1-2 Mensagens por dia (analista Canarinho), respeitando o silêncio do usuário.
-            </div>
+            <div class="frosted-glass">
+                <div class="border-top a1 title">
+                    Turin e Canarinho, uma equipe incrível.
+                </div>
+                <div
+                    class="n2"
+                    style="margin-top: 0.4rem; padding-top: 0.4rem; padding-left: 0.65rem;"
+                >
+                    Turin é nosso generalista. Ele fica de olho em tudo para
+                    nunca perder nada. Canarinho é cuidadoso. Aguarda mais de
+                    uma fonte para confirmar suspeitas e avisar os usuários.
+                    Nosso especialista em Alphaville junto à equipe Turin
+                    analisa todos as circunstâncias para nunca ficar na mão.
+                </div>
 
-            <div style="padding-left: 0.5rem;">
-            <div class="a1" style="margin-top: 0.6rem; padding-top: 1rem; font-size: 21px; width: 51%; margin-bottom: 3px; padding-bottom: 1px;">Tipos de Notificações</div>
-            <div class="n2">
-                * Alertas de Acidentes (somente Casos Graves);<br>
-                * Focos de Trânsito (somente Casos Moderados ou Graves); <br>
-                * <s>Previsões de Chuvas;</s><br><br>
-                * Obras e Interrupções de Fluxo (Casos Graves);<br>
-                * Alertas da Defesa Civil;<br>
-                * Alagamentos e Inundações (Casos Graves, somente Alphaville).<br>
-            </div>
+                <div
+                    class="n2"
+                    style="margin-top: 0.4rem; padding-top: 0.4rem; padding-left: 0.65rem;"
+                >
+                    Trabalhamos para você nunca ficar sair na hora errada. Na
+                    hora certa de sair, abra o seu aplicativo de navegação
+                    (Waze, Google Maps, Apple Maps) e siga o seu caminho.
+                </div>
             </div>
         </div>
-
-        <div class="frosted-glass">
-            <div class="border-top a1 title">Turin e Canarinho, uma equipe incrível.</div>
-            <div class="n2" style="margin-top: 0.4rem; padding-top: 0.4rem; padding-left: 0.65rem;">Turin é nosso generalista. Ele fica de olho
-                em tudo para nunca perder nada. Canarinho é cuidadoso. Aguarda mais de uma fonte para confirmar suspeitas e
-                avisar os usuários. Nosso especialista em Alphaville junto à equipe Turin analisa todos as circunstâncias para nunca
-                ficar na mão. 
-            </div>
-
-            <div class="n2" style="margin-top: 0.4rem; padding-top: 0.4rem; padding-left: 0.65rem;">Trabalhamos para você nunca ficar sair 
-                na hora errada. Na hora certa de sair, abra o seu aplicativo de navegação (Waze, Google Maps, Apple Maps) 
-                e siga o seu caminho.
-            </div>
-        </div>
-    </div>         
-    <Footer />
-</body>
+        <Footer />
+    </body>
 </html>
-

@@ -1,129 +1,200 @@
 ---
-import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro'
+import Footer from "../components/bottom-logo.astro";
+import Header from "../components/Header.astro";
 
-import '../assets/styles/fonts.css';
-import '../assets/styles/rows.css';
-import '../assets/styles/padding.css';
-import '../assets/styles/frosted-glass.css';
+import "../assets/styles/fonts.css";
+import "../assets/styles/rows.css";
+import "../assets/styles/padding.css";
+import "../assets/styles/frosted-glass.css";
 ---
 
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TurinFlow | Trânsito em Tempo Real</title>
-    <style>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>TurinFlow | Trânsito em Tempo Real</title>
+        <style>
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box;
+            }
 
-        *, *::before, *::after {
-            box-sizing: border-box;
-        }
+            :root {
+                --brand-main: #ffd700;
+                --brand-dark: #333;
+                --bg-light: #f9f9f9;
+                --mid-color1: #bec1b9;
+                --mid-color: #131b21;
+                --darker-1: #474646;
+            }
 
-        :root {
-            --brand-main: #FFD700;
-            --brand-dark: #333;
-            --bg-light: #f9f9f9;
-            --mid-color1: #bec1b9;
-            --mid-color: #131b21;
-            --darker-1: #474646;
-        }
+            body {
+                margin: 0;
+                font-family:
+                    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                    Helvetica, Arial, sans-serif;
+                background-color: #eee;
+                color: var(--brand-dark);
+                justify-content: center;
+                align-items: center;
+                overflow-x: hidden;
+            }
 
-        body {
-            margin: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--darker-1);
-            color: var(--brand-dark);
-            justify-content: center;
-            align-items: center;
-            overflow-x: hidden;
-        }
-
-        .external-grid { display: grid; grid-template-columns: 1fr auto; gap: 1.75% 3.5%; width: min(100%, 750px); border-top: 1px solid #a537a5; margin-top: 0.6rem;}
-        .metric-grid { display: grid; grid-template-columns: 1fr auto; gap: 1.75% 3.5%; width: min(100%, 350px); border-top: 1px solid #eee;}
-        .metric-label { font-size: 1.1rem; color: #eee; letter-spacing: 1px; line-height: 1.1rem; align-content: center; justify-content: center;}
-        .metric-value { font-size: 1rem; font-weight: 700;}
-        .ui-roadnames { font-size: 1rem; font-weight: 200;}
-        .align-left1 {text-align: center;}
-
-        .UPPERCASE {text-transform: uppercase;}
-        .lowercase {text-transform: none;}
-       
-        .border-top {
-            border-bottom: 1px solid #fff;
-            margin: 0.4rem;
-            margin-bottom: 0.8rem;
-            padding-bottom: 0.4rem;
-            
-        }
-
-        .desktop {opacity: 0;  width: 0;}
-        .mobile {opacity: 1}
-        .mobile-1 {font-size: 18px; line-height: 32px;}
-        .space-evenly {justify-content: space-evenly;}
-        .footer1 {display: flex; justify-content: center;}
-
-        @media (min-width: 768px) {
-            .desktop {opacity: 1; width: auto;}
-            .mobile {opacity: 0; display: none}
-            .align-left1 {text-align: left;  margin-left: 12px;}
-            .space-evenly {justify-content: flex-start;}
-            .padding-1 {margin-left: 1.5rem; width: 10rem;}
-            .mobile-1 {width: min(150px, 19%); min-width: 10rem;}
-
+            .external-grid {
+                display: grid;
+                grid-template-columns: 1fr auto;
+                gap: 1.75% 3.5%;
+                width: min(100%, 750px);
+                border-top: 1px solid #a537a5;
+                margin-top: 0.6rem;
+            }
+            .metric-grid {
+                display: grid;
+                grid-template-columns: 1fr auto;
+                gap: 1.75% 3.5%;
+                width: min(100%, 350px);
+                border-top: 1px solid #eee;
+            }
             .metric-label {
-                justify-content: left;
+                font-size: 1.1rem;
+                color: #eee;
+                letter-spacing: 1px;
+                line-height: 1.1rem;
+                align-content: center;
+                justify-content: center;
+            }
+            .metric-value {
+                font-size: 1rem;
+                font-weight: 700;
+            }
+            .ui-roadnames {
+                font-size: 1rem;
+                font-weight: 200;
+            }
+            .align-left1 {
+                text-align: center;
             }
 
-            .row {
-                flex-direction: row;
+            .UPPERCASE {
+                text-transform: uppercase;
+            }
+            .lowercase {
+                text-transform: none;
             }
 
-            .header:hover {
-                background-color: #9837a5;
-                transition: 0.45s ease-in-out;
+            .border-top {
+                border-bottom: 1px solid #fff;
+                margin: 0.4rem;
+                margin-bottom: 0.8rem;
+                padding-bottom: 0.4rem;
             }
 
-            .padding-1 {
-                padding-bottom: 2rem;
-                padding-right: 1rem;
+            .desktop {
+                opacity: 0;
+                width: 0;
             }
-        }
-    </style>
-</head>
+            .mobile {
+                opacity: 1;
+            }
+            .mobile-1 {
+                font-size: 18px;
+                line-height: 32px;
+            }
+            .space-evenly {
+                justify-content: space-evenly;
+            }
+            .footer1 {
+                display: flex;
+                justify-content: center;
+            }
 
-<script
-    src="https://sp.turinflow.com.br/api/script.js"
-    data-site-id="3a248a45ee62"
-    defer
-></script>
+            @media (min-width: 768px) {
+                .desktop {
+                    opacity: 1;
+                    width: auto;
+                }
+                .mobile {
+                    opacity: 0;
+                    display: none;
+                }
+                .align-left1 {
+                    text-align: left;
+                    margin-left: 12px;
+                }
+                .space-evenly {
+                    justify-content: flex-start;
+                }
+                .padding-1 {
+                    margin-left: 1.5rem;
+                    width: 10rem;
+                }
+                .mobile-1 {
+                    width: min(150px, 19%);
+                    min-width: 10rem;
+                }
 
-<body>
-    <Header />
-    <div class="row">
-        <div class="frosted-glass">
-            <div class="border-top a1 title">Visão Geral: Um panorama em tudo.</div>
-            <div class="n2 padding2">Visão Geral mostra todos os ângulos
-            do trânsito em Alphaville, em tempo real. Mostramos o atraso comparado às médias históricas e compilamos
-            milhares de fontes de dados em uma simples estatística. Disponível pelo App e pelo site.
+                .metric-label {
+                    justify-content: left;
+                }
+
+                .row {
+                    flex-direction: row;
+                }
+
+                .header:hover {
+                    background-color: #9837a5;
+                    transition: 0.45s ease-in-out;
+                }
+
+                .padding-1 {
+                    padding-bottom: 2rem;
+                    padding-right: 1rem;
+                }
+            }
+        </style>
+    </head>
+
+    <script
+        src="https://sp.turinflow.com.br/api/script.js"
+        data-site-id="3a248a45ee62"
+        defer></script>
+
+    <body>
+        <Header />
+        <div class="row">
+            <div class="frosted-glass">
+                <div class="border-top a1 title">
+                    Visão Geral: Um panorama em tudo.
+                </div>
+                <div class="n2 padding2">
+                    Visão Geral mostra todos os ângulos do trânsito em
+                    Alphaville, em tempo real. Mostramos o atraso comparado às
+                    médias históricas e compilamos milhares de fontes de dados
+                    em uma simples estatística. Disponível pelo App e pelo site.
+                </div>
+            </div>
+
+            <div class="frosted-glass">
+                <div class="border-top a1 title">
+                    Um aliado quando você precisa.
+                </div>
+                <div class="n2 padding2">
+                    O sistema de trânsito em Alphaville é altamente imprevisível
+                    e complexo. Com Turin, tiramos essa complexidade e
+                    o-ilustramos em páginas simples de entender e compreender.
+                    Focos de trânsito, visíveis em segundos.
+                </div>
+
+                <div class="n2 padding2">
+                    Tudo isso, integrado dentro dos nossos aplicativos. Junto às
+                    outras funcionalidades implementadas, Turin e o Canarinho
+                    está pronto para ser seu aliado no seu dia-a-dia, mesmo fora
+                    de Alphaville.
+                </div>
             </div>
         </div>
-
-        <div class="frosted-glass">
-            <div class="border-top a1 title">Um aliado quando você precisa.</div>
-            <div class="n2 padding2">O sistema de trânsito em Alphaville
-            é altamente imprevisível e complexo. Com Turin, tiramos essa complexidade e o-ilustramos em páginas simples
-            de entender e compreender. Focos de trânsito, visíveis em segundos.
-            </div>
-
-            <div class="n2 padding2">Tudo isso, integrado dentro dos nossos
-            aplicativos. Junto às outras funcionalidades implementadas, Turin e o Canarinho está pronto para ser seu aliado
-            no seu dia-a-dia, mesmo fora de Alphaville.
-            </div>
-        </div>
-        </div>         
-    <Footer />
-</body>
+        <Footer />
+    </body>
 </html>
-
