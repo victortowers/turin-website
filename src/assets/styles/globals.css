@@ -1,6 +1,7 @@
         #loader {
             text-align: center;
             transition: opacity 0.4s ease-out;
+            padding-top: 300px;
         }
 
         .canary-icon {

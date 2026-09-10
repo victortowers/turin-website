@@ -1,46 +1,55 @@
-@font-face {
+        @font-face {
             font-family: "n1";
             src: url("https://www.turinflow.com.br/assets/NotoSans-Thin.woff2");
+            font-display: swap;
         }
 
         @font-face {
             font-family: "a1";
             src: url("https://www.turinflow.com.br/assets/Articulat%20CF%20Bold.woff2");
+            font-display: swap;
         }
 
         @font-face {
             font-family: "n2";
             src: url("https://www.turinflow.com.br/assets/NotoSans-Light.woff2");
+            font-display: swap;
         }
 
         @font-face {
             font-family: "g2";
             src: url("https://www.turinflow.com.br/assets/GoogleSansFlex_120pt-ExtraLight.ttf");
+            font-display: swap;
         }
 
         @font-face {
             font-family: "g1";
             src: url("https://www.turinflow.com.br/assets/GoogleSansFlex_120pt-Thin.ttf");
+            font-display: swap;
         }
 
         @font-face {
             font-family: "s1";
             src: url("https://www.turinflow.com.br/assets/SpaceMono-Regular.ttf");
+            font-display: swap;
         }
 
         @font-face {
             font-family: "s2";
             src: url("https://www.turinflow.com.br/assets/SpaceMono-Italic.ttf");
+            font-display: swap;
         }
 
         @font-face {
             font-family: "s3";
             src: url("https://www.turinflow.com.br/assets/SpaceMono-Bold.ttf");
+            font-display: swap;
         }
 
         @font-face {
             font-family: "s4";
             src: url("https://www.turinflow.com.br/assets/SpaceMono-BoldItalic.ttf");
+            font-display: swap;
         }
 
         .n1 {
@@ -50,7 +59,7 @@
         .a1 {
             font-family: a1, -apple-system, BlinkMacSystemFont;
         }
-        
+
         .n2 {
             font-family: n2, -apple-system, BlinkMacSystemFont;
         }
