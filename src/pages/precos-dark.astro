@@ -1,0 +1,344 @@
+---
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import Bottom from "../components/bottom-logo2.astro";
+import Constuction from "../components/construction.astro";
+
+import "../assets/styles/fonts.css";
+import "../assets/styles/body.css";
+---
+
+<!doctype html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Preços de Turin</title>
+
+        <meta
+            name="description"
+            content="Trânsito em tempo real para você sempre sair no horário certo."
+        />
+        <link rel="canonical" href="https://turinflow.com.br/" />
+        <style>
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box;
+            }
+
+            :root {
+                --brand-main: #ffd700;
+                --brand-dark: #333;
+                --bg-light: #f9f9f9;
+                --light-2: #eee;
+                --mid-color1: #bec1b9;
+                --mid-color: #131b21;
+                --darker-1: #474646;
+            }
+
+            body {
+                background: linear-gradient(
+                    0deg,
+                    #eee 0%,
+                    #e4e4e4 65%,
+                    #555 100%
+                );
+            }
+
+            .row {
+                flex-direction: column;
+            }
+            .row-reverse {
+                flex-direction: row;
+                row-gap: 0.6rem;
+            }
+
+            .images {
+                height: 50vw;
+                margin: 16px;
+            }
+
+            .font-default {
+                height: calc(100vw * 0.091);
+                font-size: clamp(25px, calc(100vw * 0.076), 165px);
+                line-height: clamp(25px, calc(100vw * 0.076), 170px);
+            }
+
+            .images-flex {
+                width: 95vw;
+                display: flex;
+                margin-inline: auto;
+                justify-content: space-between;
+                height: 1100px;
+                gap: 1.3rem;
+            }
+
+            .widgets-1 {
+                display: flex;
+                flex-direction: column;
+                flex: 0 0 30%;
+                border: 1px solid #add1d1;
+                padding: 0.5rem;
+            }
+
+            .frosted-glass {
+                border: 1px solid rgba(255, 255, 255, 0.25);
+                padding: 1rem;
+                box-shadow:
+                    inset 0 0 0 1px rgba(0, 0, 0, 0.05),
+                    0 4px 12px rgba(0, 0, 0, 0.1);
+
+                background-color: rgba(130, 150, 160, 0.8);
+                backdrop-filter: blur(14px) saturate(150%);
+                width: 90vw;
+                margin-top: 0.3rem;
+                margin-bottom: 0.3rem;
+            }
+
+            .widgets2 {
+                ''width: 90vw;
+            }
+
+            .border-radius1,
+            .border-radius2,
+            .border-radius {
+                border-radius: 18px 18px 18px 18px;
+            }
+
+            .mobile-text {
+                text-align: center;
+            }
+
+            @media (min-width: 768px) {
+                .mobile-text {
+                    text-align: auto;
+                }
+
+                .row-reverse {
+                    flex-direction: column;
+                }
+
+                .border-radius1 {
+                    border-radius: 96px 18px 18px 18px;
+                }
+
+                .border-radius2 {
+                    border-radius: 18px 18px 96px 18px;
+                }
+
+                .images {
+                    height: 50%;
+                    margin: 16px;
+                }
+
+                .font-default {
+                    height: calc(100vw * 0.091);
+                    font-size: clamp(25px, calc(100vw * 0.076), 165px);
+                    line-height: clamp(25px, calc(100vw * 0.076), 170px);
+                }
+
+                .images-flex {
+                    width: 85vw;
+                    height: 550px;
+                    gap: 0.5rem;
+                }
+
+                .widgets-1 {
+                    flex: 0 0 32%;
+                }
+            }
+
+            @media (min-width: 900px) {
+                .row {
+                    flex-direction: row;
+                }
+
+                .widgets2 {
+                    width: 50%;
+                    padding: 4rem;
+                }
+            }
+        </style>
+    </head>
+
+    <script
+        src="https://sp.turinflow.com.br/api/script.js"
+        data-site-id="3a248a45ee62"
+        defer
+    ></script>
+    <body>
+        <Header />
+        <div>
+            <div
+                class="s1"
+                style="width: 85vw; padding-top: 4rem; font-size: clamp(40px, calc(100vw * 0.069), 165px); line-height: clamp(40px, calc(100vw * 0.069), 165px); margin-inline: auto; margin-bottom: 16px; color: #eee;"
+            >
+                PREÇOS
+            </div>
+            <div
+                class="g2"
+                style="letter-spacing: 1px;font-weight: 500; width: 85vw; padding-bottom: 4rem; font-size: 26px; line-height: 32px; color: #eee; margin-inline: auto;"
+            >
+                Aqui, divulgaremos os preços dos diferentes planos Turin. Pague
+                mensalmente ou anualmente. Escolha o jeito que você preferir.
+            </div>
+            .
+        </div>
+
+        <div style="width: 90vw; margin-inline: auto; display: flex; flex-direction: column; gap: 15px 15px; margin-bottom: 1rem;">
+            <div
+                class="frosted-glass border-radius1"
+                style="background-color: rgba(136, 155, 136, 0.45); border: 1px #aaa solid;"
+            >
+                <div
+                    class="s1"
+                    style="padding-top: 4rem; font-size: clamp(40px, calc(100vw * 0.069), 165px); line-height: clamp(40px, calc(100vw * 0.069), 165px); color: #eee; margin-inline: auto; margin-bottom: 16px; text-align: center;"
+                >
+                    TURIN
+                    <span class="g1" style="padding: 1rem; font-weight: 500;">
+                        500
+                    </span>
+                </div>
+                <div
+                    class="g2"
+                    style="font-weight: 500; padding-bottom: 8rem; font-size: 26px; line-height: 32px; color: #eee; margin-inline: auto; text-align: center;"
+                >
+                    Saiba mais sobre nosso melhor plano{" "}
+                    <a
+                        style="text-decoration-line: #eee; color: rgba(210, 210, 210, 1);"
+                        href="/rotinas"
+                    >
+                        aqui
+                    </a>
+                    .
+                </div>
+            </div>
+
+            <div
+                class="row"
+                style="display: flex; width: 90vw; height: auto; justify-content: space-between; row-gap: 15px; column-gap: 15px;"
+            >
+                <div
+                    class="frosted-glass border-radius widgets2"
+                    style="background-color: rgba(1, 1, 1, 0.35); border: 2px #bbb solid"
+                >
+                    <div
+                        class="s1"
+                        style="padding-top: 4rem; font-size: clamp(40px, calc(100vw * 0.069), 165px); line-height: clamp(40px, calc(100vw * 0.069), 165px); color: #eee; margin-inline: auto; margin-bottom: 16px; text-align: center;"
+                    >
+                        TURIN NERO
+                    </div>
+                    <div
+                        class="g2"
+                        style="font-weight: 500; padding-bottom: 8rem; font-size: 26px; line-height: 32px; color: #eee; margin-inline: auto; text-align: center;"
+                    >
+                        Explore mais sua nova tranquilidade{" "}
+                        <a
+                            style="text-decoration-line: #eee; color: rgba(210, 210, 210, 1);"
+                            href="/rotinas"
+                        >
+                            aqui
+                        </a>
+                        .
+                        <div
+                            class="g2"
+                            style="font-weight: 500; font-size: 26px; line-height: 32px; color: #eee; margin-inline: auto; text-align: center; padding-top: 4px;"
+                        >
+                            R$ --
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="frosted-glass border-radius widgets2"
+                    style="background-color: rgba(50, 50, 200, 0.35); ; border: 2px #bbb solid"
+                >
+                    <div
+                        class="s1"
+                        style="padding-top: 4rem; font-size: clamp(40px, calc(100vw * 0.069), 165px); line-height: clamp(40px, calc(100vw * 0.069), 165px); color: #eee; margin-inline: auto; margin-bottom: 16px; text-align: center;"
+                    >
+                        TURIN PLUS
+                    </div>
+                    <div
+                        class="g2"
+                        style="font-weight: 500; padding-bottom: 8rem; font-size: 26px; line-height: 32px; color: #eee; margin-inline: auto; text-align: center;"
+                    >
+                        Coordene sua vida inteira com Turin{" "}
+                        <a
+                            style="text-decoration-line: #eee; color: rgba(210, 210, 210, 1);"
+                            href="/rotinas"
+                        >
+                            aqui
+                        </a>
+                        .
+                        <div
+                            class="g2"
+                            style="font-weight: 500; font-size: 26px; line-height: 32px; color: #eee; margin-inline: auto; text-align: center; padding-top: 4px;"
+                        >
+                            R$ --
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="frosted-glass border-radius"
+                style="border: 2px #ddd solid;"
+            >
+                <div
+                    class="s1"
+                    style="padding-top: 4rem; font-size: clamp(40px, calc(100vw * 0.069), 165px); line-height: clamp(40px, calc(100vw * 0.069), 165px); color: #eee; margin-inline: auto; margin-bottom: 16px; text-align: center;"
+                >
+                    TURIN PILOTO
+                </div>
+                <div
+                    class="g2"
+                    style="font-weight: 500; padding-bottom: 8rem; font-size: 26px; line-height: 32px; color: #eee; margin-inline: auto; text-align: center;"
+                >
+                    Comece a explorar{" "}
+                    <a
+                        style="text-decoration-line: #eee; color: rgba(210, 210, 210, 1);"
+                        href="/rotinas"
+                    >
+                        aqui
+                    </a>
+                    .
+                    <div
+                        class="g2"
+                        style="font-weight: 500; font-size: 26px; line-height: 32px; color: #eee; margin-inline: auto; text-align: center;"
+                    >
+                        Sem custo para você.
+                    </div>
+                </div>
+            </div>
+            <div
+                class="frosted-glass border-radius2"
+                style="background-color: rgba(240, 245, 240, 0.5); width: 90vw; margin-inline: auto; border: 1px #ccc solid"
+            >
+                <div
+                    class="g1 mobile-text"
+                    style="width: 85vw; padding-top: 4rem; font-size: clamp(40px, calc(100vw * 0.069), 165px); line-height: clamp(40px, calc(100vw * 0.069), 165px); margin-inline: auto; margin-bottom: 16px; color: #888;"
+                >
+                    Ainda em dúvida?
+                </div>
+                <div
+                    class="g2 mobile-text"
+                    style="letter-spacing: 1px;font-weight: 500; width: 75vw; padding-bottom: 4rem; font-size: 26px; line-height: 32px; color: #888; margin-inline: auto;"
+                >
+                    Tente Turin Piloto. Simule a vida de alguém ou reorganize
+                    sua vida inteira com Turin, sem incorrer nenhum custo.{" "}
+                    <a
+                        style="color: #888; text-decoration-line: #888"
+                        href="/rotinas"
+                    >
+                        Comece aqui
+                    </a>
+                    .
+                </div>
+                .
+            </div>
+        </div>
+    </body>
+    <Bottom />
+</html>
