@@ -66,10 +66,12 @@
 
         .g1 {
             font-family: g1, -apple-system, BlinkMacSystemFont;
+            font-weight: 400;
         }
 
         .g2 {
             font-family: g2, -apple-system, BlinkMacSystemFont;
+            font-weight: 400;
         }
 
         .s1 {
