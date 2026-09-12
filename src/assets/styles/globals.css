@@ -1,4 +1,6 @@
-        #loader {
+
+
+#loader {
             text-align: center;
             transition: opacity 0.4s ease-out;
             padding-top: 300px;
@@ -76,7 +78,10 @@
         .align-right {text-align: right;  margin-right: 2%;}
         .align-left {text-align: left;  margin-left: 2%;}
         .align-left1 {text-align: left;  margin-left: 1%;}
-        .monospace {font-family: monospace;}
+
+        .monospace {
+            font-family: s1, monospace;
+        }
 
         .metric-grid { display: grid; grid-template-columns: 1fr auto; gap: 1.75% 3.5%; width: min(100%, 350px); border-top: 1px solid #eee;}
         .metric-label { font-size: 1.1rem; color: #eee; text-transform: uppercase; letter-spacing: 1px; margin-top: 12px; line-height: 1.34rem;}

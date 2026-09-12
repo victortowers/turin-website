@@ -19,7 +19,7 @@ import qr_code from "../assets/qr_code.png";
 <div class="footer">
     <div
         class="space-evenly dynamic-size"
-        style="backdrop-filter: blur(12px); row-gap: 1rem; background-color: rgba(111, 129, 111, 1); border-radius: 6px 6px 6px 6px; padding-left: 1.5rem; padding-right: 1.5rem; padding-top: 1.5rem; padding-bottom: 2rem; display: flex; flex-direction: row; flex-wrap: wrap; white-space: nowrap; justify-self: center;"
+        style="backdrop-filter: blur(12px); row-gap: 1rem; background-color: rgba(111, 129, 111, 1); border-radius: 6px 6px 6px 6px; padding-left: 1.5rem; padding-right: 1.5rem; padding-top: 1.5rem; display: flex; flex-direction: row; flex-wrap: wrap; white-space: nowrap; justify-self: center;"
     >
         <div class="n2 footer-flex mobile-1 padding1" style="color: #fff;">
             <div style="font-weight: 700; padding-left: 0.25rem; font-size: 19px; color: #fff;">
@@ -53,12 +53,8 @@ import qr_code from "../assets/qr_code.png";
             <a class="button" href="/transito">
                 Trânsito > <br />
             </a>
-            <a class="button" href="/alertas">
+            <a class="button">
                 Alertas > <br />
-            </a>
-
-            <a class="button" href="/nero">
-                Nero > <br />
             </a>
         </div>
 
@@ -81,22 +77,19 @@ import qr_code from "../assets/qr_code.png";
             </a>
         </div>
 
-        <div
-            class="n2 footer-flex mobile-1 padding1"
-            style="color: #fff; padding-bottom: 1rem;"
-        >
+        <div class="n2 footer-flex mobile-1 padding1" style="color: #fff;">
             <div style="font-weight: 700; padding-left: 0.25rem; font-size: 19px; color: #fff">
                 Legal
             </div>
-            <a class="button" href="/termos">
+            <a class="button">
                 Termos de Uso > <br />
             </a>
-            <a class="button" href="/privacidade">
+            <a class="button">
                 Privacidade > <br />
             </a>
         </div>
 
-        <div class="n2 mobile-1" style="color: #fff; height: auto;">
+        <div class="n2 mobile-1 image" style="color: #fff; height: auto;">
             <img
                 style="width: 100%; height: auto; object-fit: contain;"
                 src={qr_code.src}
@@ -118,11 +111,7 @@ import qr_code from "../assets/qr_code.png";
             class="title1 s1 desktop"
             style="padding-left: 4px; padding-right: 0.4rem; gap: 26px; display: flex; justify-content: space-between; font-size: 1rem; color: #666; font-weight: 500; line-height: 1.3rem; height: auto;"
         >
-            <a
-                class="desktop"
-                style="text-decoration: none; color: #666;"
-                href="/status"
-            >
+            <a class="desktop" style="text-decoration: none; color: #666;">
                 Página de Status
             </a>
             <span class="desktop">VTINC</span>
@@ -165,18 +154,25 @@ import qr_code from "../assets/qr_code.png";
         height: 0;
         display: none;
     }
+
     .mobile-1 {
-        width: min(42vw, 180px);
+        width: min(42vw, 160px);
         height: auto;
-        min-height: 200px;
-        min-width: 8rem;
+        min-height: 165px;
+        min-width: 140px;
+        padding-top: 0.35rem;
+        padding-bottom: 0.35rem;
+    }
+
+    .image {
+        padding-bottom: 2rem;
     }
 
     .UPPERCASE {
         text-transform: uppercase;
     }
     .space-evenly {
-        justify-content: space-between;
+        justify-content: space-around;
     }
     .footer1 {
         display: flex;
@@ -207,6 +203,7 @@ import qr_code from "../assets/qr_code.png";
 
     .dynamic-size {
         width: 83vw;
+        padding-bottom: 0rem;
     }
 
     @media (min-width: 768px) {
@@ -217,6 +214,7 @@ import qr_code from "../assets/qr_code.png";
 
         .dynamic-size {
             width: 93vw;
+            padding-bottom: 0.5rem;
         }
 
         .mobile {
