@@ -32,8 +32,8 @@ import qr_code from "../assets/qr_code.png";
             <a class="button">
                 Instalar > <br />
             </a>
-            <a class="button" href="/precos-dark">
-                Planos > <br />
+            <a class="button" href="/precos">
+                Preços > <br />
             </a>
             <a class="button" href="/">
                 Site > <br />
@@ -139,6 +139,7 @@ import qr_code from "../assets/qr_code.png";
         color: rgba(111, 136, 136, 0.45);
         transition: 0.25s ease-in-out;
     }
+
     .footer {
         width: 100%;
         vertical-align: bottom;
@@ -157,27 +158,18 @@ import qr_code from "../assets/qr_code.png";
     }
 
     .footer-flex {
-        flex: 0 0 38%;
+        flex: 0 0 min(180px, 23%);
     }
     .desktop {
-        opacity: 0;
         width: 0;
         height: 0;
         display: none;
     }
-    .mobile {
-        opacity: 1;
-    }
-    .row {
-        flex-direction: column;
-        row-gap: 0.8rem;
-    }
-
     .mobile-1 {
-        font-size: 18px;
-        line-height: 32px;
-        width: 35vw;
-        height: 200px;
+        width: min(42vw, 180px);
+        height: auto;
+        min-height: 200px;
+        min-width: 8rem;
     }
 
     .UPPERCASE {
@@ -192,7 +184,7 @@ import qr_code from "../assets/qr_code.png";
     }
     .bottom-1 {
         text-align: center;
-        justify-self: center;
+        display: flex;
     }
 
     .button {
@@ -205,6 +197,7 @@ import qr_code from "../assets/qr_code.png";
         padding-top: 0.1rem;
         padding-bottom: 0.1rem;
         line-height: 29px;
+        font-size: 17px;
     }
 
     .button:hover {
@@ -218,7 +211,6 @@ import qr_code from "../assets/qr_code.png";
 
     @media (min-width: 768px) {
         .desktop {
-            opacity: 1;
             width: auto;
             display: inherit;
         }
@@ -228,15 +220,10 @@ import qr_code from "../assets/qr_code.png";
         }
 
         .mobile {
-            opacity: 0;
             display: none;
         }
         .space-evenly {
             justify-content: space-evenly;
-        }
-        .padding-1 {
-            margin-left: 1.5rem;
-            width: 10rem;
         }
         .footer1 {
             display: block;
@@ -251,19 +238,10 @@ import qr_code from "../assets/qr_code.png";
             justify-content: space-between;
         }
 
-        .row {
-            flex-direction: row;
-        }
-
         .footer-flex {
             flex: min(180px, 23%);
             flex-grow: 0;
             justify-content: flex-start;
-        }
-
-        .padding-1 {
-            padding-bottom: 2rem;
-            padding-right: 1rem;
         }
     }
 </style>

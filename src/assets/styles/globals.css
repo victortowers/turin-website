@@ -73,13 +73,11 @@
         h1 { font-size: 2.4rem; margin: 0; color: #eeeeee; font-weight: 500; }
         .small {font-size: 1rem; font-weight: 600; color: #eeeedd; margin: 0 0 4px 0;}
         .inset {margin-left: 0.05%}
-        .margin-sm {margin: 1rem;}
         .align-right {text-align: right;  margin-right: 2%;}
         .align-left {text-align: left;  margin-left: 2%;}
         .align-left1 {text-align: left;  margin-left: 1%;}
         .monospace {font-family: monospace;}
 
-        .external-grid { display: grid; grid-template-columns: 1fr auto; gap: 1.75% 3.5%; width: min(100%, 750px); border-top: 1px solid #a537a5; margin-top: 0.6rem;}
         .metric-grid { display: grid; grid-template-columns: 1fr auto; gap: 1.75% 3.5%; width: min(100%, 350px); border-top: 1px solid #eee;}
         .metric-label { font-size: 1.1rem; color: #eee; text-transform: uppercase; letter-spacing: 1px; margin-top: 12px; line-height: 1.34rem;}
         .metric-value { font-size: 1rem; font-weight: 700;}

@@ -6,3 +6,9 @@
 !.env.example
 node_modules
 precos2.astro
+src/components/Footer.astro
+src/components/Header copy.astro
+src/components/Header copy 2.astro
+src/components/Header copy 3.astro
+src/components/Welcome.astro
+src/components/bottom-logo copy.astro

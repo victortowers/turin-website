@@ -42,16 +42,12 @@ import "../assets/styles/body.css";
                 --darker-1: #474646;
             }
 
-            #body {
+            body {
                 animation-timeline: view();
             }
 
             .row {
                 flex-direction: column;
-                row-gap: 0.6rem;
-            }
-            .row-reverse {
-                flex-direction: row;
                 row-gap: 0.6rem;
             }
 
@@ -84,19 +80,9 @@ import "../assets/styles/body.css";
             }
 
             @media (min-width: 768px) {
-                .row-reverse {
-                    flex-direction: column;
-                }
-
                 .images {
                     height: 50%;
                     margin: 16px;
-                }
-
-                .font-default {
-                    height: calc(100vw * 0.091);
-                    font-size: clamp(25px, calc(100vw * 0.076), 165px);
-                    line-height: clamp(25px, calc(100vw * 0.076), 170px);
                 }
 
                 .images-flex {
@@ -233,8 +219,8 @@ import "../assets/styles/body.css";
                 style="width: 85vw; gap: 10px; display: flex; margin-inline: auto; justify-content: space-between; row-gap: calc(100vw * 0.02); height: auto; flex-wrap: wrap;"
             >
                 <span
-                    class="s1"
-                    style="width: 85vw; margin-top: calc(100vw * 0.03500); margin-bottom: calc(100vw * 0.01500); height: calc(100vw * 0.1); font-size: calc(100vw * 0.073); line-height: calc(100vw * 0.073); color: #111; justify-self: bottom; border-bottom: 1px solid #fff; text-align: center; align-items: flex-start;"
+                    class="s1 hover3"
+                    style="width: 85vw; margin-top: calc(100vw * 0.03500); margin-bottom: calc(100vw * 0.01500); height: calc(100vw * 0.1); font-size: calc(100vw * 0.073); line-height: calc(100vw * 0.073); border-bottom: 1px solid #fff; text-align: center;"
                 >
                     NOSSOS RECURSOS
                 </span>
@@ -367,7 +353,7 @@ import "../assets/styles/body.css";
                 (Turin). Mesmo sem o aplicativo, conheça o que podemos fazer por
                 você, hoje.{" "}
                 <a
-                    style="text-decoration-line: #eee; color: rgba(90, 90, 90, 1);"
+                    style="text-decoration-color: #eee; color: rgba(90, 90, 90, 1);"
                     href="/rotinas"
                 >
                     Clique aqui para saber mais
@@ -385,7 +371,7 @@ import "../assets/styles/body.css";
             </div>
             <div
                 class="g2"
-                style="width: 85vw; padding-bottom: 8rem; font-size: 26px; line-height: 32px; color: #111; margin-inline: auto; color: rgba(90, 90, 90, 1)"
+                style="width: 85vw; padding-bottom: 8rem; font-size: 26px; line-height: 32px; margin-inline: auto; color: rgba(90, 90, 90, 1)"
             >
                 Em breve, disponível na App Store (para iOS) e na Play Store
                 (para Android).

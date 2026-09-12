@@ -39,20 +39,10 @@ import "../assets/styles/body.css";
                 flex-direction: column;
                 row-gap: 0.6rem;
             }
-            .row-reverse {
-                flex-direction: row;
-                row-gap: 0.6rem;
-            }
 
             .images {
                 height: 50vw;
                 margin: 16px;
-            }
-
-            .font-default {
-                height: calc(100vw * 0.091);
-                font-size: clamp(25px, calc(100vw * 0.076), 165px);
-                line-height: clamp(25px, calc(100vw * 0.076), 170px);
             }
 
             .images-flex {
@@ -73,19 +63,9 @@ import "../assets/styles/body.css";
             }
 
             @media (min-width: 768px) {
-                .row-reverse {
-                    flex-direction: column;
-                }
-
                 .images {
                     height: 50%;
                     margin: 16px;
-                }
-
-                .font-default {
-                    height: calc(100vw * 0.091);
-                    font-size: clamp(25px, calc(100vw * 0.076), 165px);
-                    line-height: clamp(25px, calc(100vw * 0.076), 170px);
                 }
 
                 .images-flex {
@@ -110,8 +90,8 @@ import "../assets/styles/body.css";
     <script
         src="https://sp.turinflow.com.br/api/script.js"
         data-site-id="3a248a45ee62"
-        defer></script>
-
+        defer
+    ></script>
     <body>
         <Header />
         <div style="margin-top: 2rem; margin-bottom: 8rem;">
@@ -131,9 +111,7 @@ import "../assets/styles/body.css";
             </div>
         </div>
 
-        <div
-            style="background-color: #add1d1; padding-top: 2rem; padding-bottom: 8rem;"
-        >
+        <div style="background-color: #add1d1; padding-top: 2rem; padding-bottom: 8rem;">
             <div
                 class="s1"
                 style="width: 85vw; font-size: clamp(40px, calc(100vw * 0.131), 165px); line-height: clamp(40px, calc(100vw * 0.131), 170px); color: #333333; margin-inline: auto; margin-bottom: 8px;"
@@ -150,61 +128,63 @@ import "../assets/styles/body.css";
             </div>
         </div>
 
-        <div
-            style="background-color: #e7dbfc; padding-top: 2rem; padding-bottom: 8rem; min-height: 710px;"
-        >
+        <div style="background-color: #e7dbfc; padding-top: 2rem; padding-bottom: 8rem; min-height: 710px;">
             <div class="row images-flex">
                 <div class="widgets-1">
                     <span
                         class="s1"
                         style="margin: 9px; font-size: 21px; line-height: 21px; color: #000; text-align: center;"
-                        >Família em primeiro lugar.</span
                     >
+                        Família em primeiro lugar.
+                    </span>
                     <div class="images" style="background-color: #ddd;"></div>
                     <span
                         class="g2"
                         style="margin: 9px; font-size: 17px; line-height: 23px; color: #000; text-align: center;"
-                        >Protegemos sua família. Cheque quem chegou em casa, e
-                        saiba instantaneamente se alguém saiu.</span
                     >
+                        Protegemos sua família. Cheque quem chegou em casa, e
+                        saiba instantaneamente se alguém saiu.
+                    </span>
                 </div>
 
                 <div class="widgets-1">
                     <span
                         class="s1"
                         style="margin: 9px; font-size: 21px; line-height: 21px; color: #000; text-align: center;"
-                        >Chegando no horário certo.</span
                     >
+                        Chegando no horário certo.
+                    </span>
                     <div class="images" style="background-color: #555;"></div>
                     <span
                         class="g2"
                         style="margin: 9px; font-size: 17px; line-height: 23px; color: #000; text-align: center;"
-                        >Saia no horário certo para chegar no horário certo.
-                        Para você, ou para a família inteira.</span
                     >
+                        Saia no horário certo para chegar no horário certo. Para
+                        você, ou para a família inteira.
+                    </span>
                 </div>
 
                 <div class="widgets-1">
                     <span
                         class="s1"
                         style="margin: 9px; font-size: 21px; line-height: 21px; color: #000; text-align: center;"
-                        >Coordenando sua vida inteira.</span
                     >
+                        Coordenando sua vida inteira.
+                    </span>
                     <div class="images" style="background-color: #000;"></div>
                     <span
                         class="g2"
                         style="margin: 9px; font-size: 17px; line-height: 23px; color: #000; text-align: center;"
-                        >Com o Canarinho, coordene cada viagem do seu dia. A
-                        academia, a escola de seu filho, o seu trabalho. Cuide
-                        dos detalhes. Cuidaremos do seu trajeto.</span
                     >
+                        Com o Canarinho, coordene cada viagem do seu dia. A
+                        academia, a escola de seu filho, o seu trabalho. Cuide
+                        dos detalhes. Cuidaremos do seu trajeto.
+                    </span>
                 </div>
             </div>
         </div>
 
-        <div
-            style="background-color: #dec1fd; padding-top: 2rem; padding-bottom: 8rem; min-height: 710px; height: auto;"
-        >
+        <div style="background-color: #dec1fd; padding-top: 2rem; padding-bottom: 8rem; min-height: 710px; height: auto;">
             <div
                 class="row"
                 style="width: 85vw; gap: 10px; display: flex; margin-inline: auto; justify-content: space-between; row-gap: calc(100vw * 0.02); height: auto; flex-wrap: wrap;"
@@ -212,99 +192,118 @@ import "../assets/styles/body.css";
                 <span
                     class="s1"
                     style="width: 85vw; margin-top: calc(100vw * 0.03500); margin-bottom: calc(100vw * 0.01500); height: calc(100vw * 0.1); font-size: calc(100vw * 0.073); line-height: calc(100vw * 0.073); color: #111; justify-self: bottom; border-bottom: 1px solid #fff; text-align: center; align-items: flex-start;"
-                    >NOSSOS RECURSOS</span
                 >
+                    NOSSOS RECURSOS
+                </span>
                 <span
                     class="n2"
                     style="margin: 9px; font-size: 17px; line-height: 23px; color: #000; text-align: center;"
-                    >Alertas de Trânsito e Acidentes</span
                 >
+                    Alertas de Trânsito e Acidentes
+                </span>
                 <span
                     class="n2"
                     style="margin: 9px; font-size: 17px; line-height: 23px; color: #000; text-align: center;"
-                    >Previsão de Chegada</span
                 >
+                    Previsão de Chegada
+                </span>
                 <span
                     class="n2"
                     style="margin: 9px; font-size: 17px; line-height: 23px; color: #000; text-align: center;"
-                    >Integração Google Maps e Waze</span
                 >
+                    Integração Google Maps e Waze
+                </span>
                 <span
                     class="n2"
                     style="margin: 9px; font-size: 17px; line-height: 23px; color: #000; text-align: center;"
-                    >Coordenação de Chegada (chegue nos mesmos horários)</span
                 >
+                    Coordenação de Chegada (chegue nos mesmos horários)
+                </span>
                 <span
                     class="n2"
                     style="margin: 9px; font-size: 17px; line-height: 23px; color: #000; text-align: center;"
-                    >Assitente Canarinho (saiba do necessário)</span
                 >
+                    Assitente Canarinho (saiba do necessário)
+                </span>
                 <span
                     class="n2"
                     style="margin: 9px; font-size: 17px; line-height: 23px; color: #000; text-align: center;"
-                    >Saída Inteligente</span
                 >
+                    Saída Inteligente
+                </span>
                 <span
                     class="n2"
                     style="margin: 9px; font-size: 17px; line-height: 23px; color: #000; text-align: center;"
-                    >Rotas mais Frequentes</span
                 >
+                    Rotas mais Frequentes
+                </span>
                 <span
                     class="n2"
                     style="margin: 9px; font-size: 17px; line-height: 23px; color: #000; text-align: center;"
-                    >Notificações Personalizados</span
                 >
+                    Notificações Personalizados
+                </span>
                 <span
                     class="n2"
                     style="margin: 9px; font-size: 17px; line-height: 23px; color: #000; text-align: center;"
-                    >Adaptação à sua rotina</span
                 >
+                    Adaptação à sua rotina
+                </span>
                 <span
                     class="n2"
                     style="margin: 9px; font-size: 17px; line-height: 23px; color: #000; text-align: center;"
-                    >Eficiente no 4G e 5G</span
                 >
+                    Eficiente no 4G e 5G
+                </span>
                 <span
                     class="n2"
                     style="margin: 9px; font-size: 17px; line-height: 23px; color: #000; text-align: center;"
-                    >Avisos de chegada (para Familiares)</span
                 >
+                    Avisos de chegada (para Familiares)
+                </span>
                 <span
                     class="n2"
                     style="margin: 9px; font-size: 17px; line-height: 23px; color: #000; text-align: center;"
-                    >Avisos de Saídas (para Familiares)</span
                 >
+                    Avisos de Saídas (para Familiares)
+                </span>
                 <span
                     class="n2"
                     style="margin: 9px; font-size: 17px; line-height: 23px; color: #000; text-align: center;"
-                    >Adaptado para o trânsito de SP</span
                 >
+                    Adaptado para o trânsito de SP
+                </span>
                 <span
                     class="n2"
                     style="margin: 9px; font-size: 17px; line-height: 23px; color: #000; text-align: center;"
-                    >Seus dados no seu dispositivo</span
                 >
+                    Seus dados no seu dispositivo
+                </span>
                 <span
                     class="n2"
                     style="margin: 9px; font-size: 17px; line-height: 23px; color: #000; text-align: center;"
-                    >Rotas sem internet</span
                 >
+                    Rotas sem internet
+                </span>
                 <span
                     class="n2"
                     style="margin: 9px; font-size: 17px; line-height: 23px; color: #000; text-align: center;"
-                    >Compartilhe com até 5 pessoas</span
                 >
+                    Compartilhe com até 5 pessoas
+                </span>
                 <span
                     class="n2"
                     style="margin: 9px; font-size: 17px; line-height: 23px; color: #000; text-align: center;"
-                    >Alertas de Inprevistos</span
                 >
+                    Alertas de Inprevistos
+                </span>
 
                 <span
                     class="n2"
                     style="margin: 9px; font-size: 17px; line-height: 23px; color: #000; text-align: center;"
-                    >Notificações Interativas (somente para iOS)</span
                 >
+                    Notificações Interativas (somente para iOS)
+                </span>
             </div>
         </div>
 
@@ -313,15 +312,17 @@ import "../assets/styles/body.css";
                 class="s1"
                 style="width: 85vw; padding-top: 4rem; font-size: clamp(40px, calc(100vw * 0.069), 165px); line-height: clamp(40px, calc(100vw * 0.069), 165px); color: #888; margin-inline: auto; margin-bottom: 16px;"
             >
-                DOIS PLANOS,<br /> UMA SÓ EXPERIÊNCIA.
+                DOIS PLANOS,
+                <br /> UMA SÓ EXPERIÊNCIA.
             </div>
             <div
                 class="g2"
                 style="width: 85vw; padding-bottom: 8rem; font-size: 21px; line-height: 21px; color: #111; margin-inline: auto;"
             >
                 Planos a partir de 17.90 (Plano Individual) e 28.90 (Plano
-                Familiar; compartilhe com até 5 pessoas, pelo preço de 2). <br
-                />Válido somente para o mercado brasileiro.
+                Familiar; compartilhe com até 5 pessoas, pelo preço de 2).{" "}
+                <br />
+                Válido somente para o mercado brasileiro.
             </div>
         </div>
 

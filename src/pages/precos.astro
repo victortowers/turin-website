@@ -1,11 +1,8 @@
 ---
-import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 import Bottom from "../components/bottom-logo2.astro";
-import Constuction from "../components/construction.astro";
 
 import "../assets/styles/fonts.css";
-import "../assets/styles/body.css";
 ---
 
 <!doctype html>
@@ -49,38 +46,6 @@ import "../assets/styles/body.css";
             .row {
                 flex-direction: column;
             }
-            .row-reverse {
-                flex-direction: row;
-                row-gap: 0.6rem;
-            }
-
-            .images {
-                height: 50vw;
-                margin: 16px;
-            }
-
-            .font-default {
-                height: calc(100vw * 0.091);
-                font-size: clamp(25px, calc(100vw * 0.076), 165px);
-                line-height: clamp(25px, calc(100vw * 0.076), 170px);
-            }
-
-            .images-flex {
-                width: 95vw;
-                display: flex;
-                margin-inline: auto;
-                justify-content: space-between;
-                height: 1100px;
-                gap: 1.3rem;
-            }
-
-            .widgets-1 {
-                display: flex;
-                flex-direction: column;
-                flex: 0 0 30%;
-                border: 1px solid #add1d1;
-                padding: 0.5rem;
-            }
 
             .frosted-glass {
                 border: 1px solid rgba(255, 255, 255, 0.25);
@@ -111,37 +76,12 @@ import "../assets/styles/body.css";
             }
 
             @media (min-width: 768px) {
-                .row-reverse {
-                    flex-direction: column;
-                }
-
                 .border-radius1 {
                     border-radius: 96px 18px 18px 18px;
                 }
 
                 .border-radius2 {
                     border-radius: 18px 18px 96px 18px;
-                }
-
-                .images {
-                    height: 50%;
-                    margin: 16px;
-                }
-
-                .font-default {
-                    height: calc(100vw * 0.091);
-                    font-size: clamp(25px, calc(100vw * 0.076), 165px);
-                    line-height: clamp(25px, calc(100vw * 0.076), 170px);
-                }
-
-                .images-flex {
-                    width: 85vw;
-                    height: 550px;
-                    gap: 0.5rem;
-                }
-
-                .widgets-1 {
-                    flex: 0 0 32%;
                 }
             }
 
@@ -151,7 +91,7 @@ import "../assets/styles/body.css";
                 }
 
                 .widgets2 {
-                    width: 50%;
+                    width: calc(50% - 7.5px);
                     padding: 4rem;
                 }
             }
@@ -313,7 +253,7 @@ import "../assets/styles/body.css";
                 style="background-color: rgba(240, 245, 240, 0.5); width: 90vw; margin-inline: auto; border: 1px #ccc solid"
             >
                 <div
-                    class="g1 mobile-text"
+                    class="g2 mobile-text"
                     style="font-weight: 600; width: 85vw; padding-top: 4rem; font-size: clamp(40px, calc(100vw * 0.069), 165px); line-height: clamp(40px, calc(100vw * 0.069), 165px); margin-inline: auto; margin-bottom: 16px; color: #888;"
                 >
                     Ainda em dúvida?
@@ -335,6 +275,6 @@ import "../assets/styles/body.css";
                 .
             </div>
         </div>
+        <Bottom />
     </body>
-    <Bottom />
 </html>
