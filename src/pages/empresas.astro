@@ -1,0 +1,59 @@
+---
+import Header from "../components/Header.astro";
+import Bottom from "../components/bottom-logo.astro";
+import Constuction from "../components/construction.astro";
+
+import "../assets/styles/fonts.css";
+import "../assets/styles/body.css";
+---
+
+<!doctype html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Turin: Saia no horário certo.</title>
+
+        <meta
+            name="description"
+            content="Trânsito em tempo real para você sempre sair no horário certo."
+        />
+        <link rel="canonical" href="https://turinflow.com.br/" />
+        <style>
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box;
+            }
+        </style>
+    </head>
+
+    <script
+        src="https://sp.turinflow.com.br/api/script.js"
+        data-site-id="3a248a45ee62"
+        defer
+    ></script>
+    <body>
+        <Header />
+        <div style="background-color: rgba(130, 150, 160, 1)">
+            <div
+                class="s1"
+                style="width: 85vw; padding-top: 4rem; font-size: clamp(40px, calc(100vw * 0.069), 165px); line-height: clamp(40px, calc(100vw * 0.069), 165px); color: #eee; margin-inline: auto; margin-bottom: 16px;"
+            >
+                EMPRESAS
+            </div>
+            <div
+                class="g2"
+                style="font-weight: 500; width: 85vw; padding-bottom: 8rem; font-size: 26px; line-height: 1.45; color: #eee; margin-inline: auto;"
+            >
+                Turin para Empresas: Traga tudo o que Turin oferece de melhor
+                para seus colaboradores! Esta modalidade está em estudo e poderá
+                ser implementado em um futuro breve. Manifeste seu interesse.
+            </div>
+            .
+        </div>
+    </body>
+
+    <Constuction />
+    <Bottom />
+</html>
