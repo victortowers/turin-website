@@ -5,3 +5,5 @@
 .env*
 !.env.example
 node_modules
+src/pages/precos.astro
+src/pages/precos-dark.astro
