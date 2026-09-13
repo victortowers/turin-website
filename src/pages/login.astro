@@ -1,0 +1,460 @@
+---
+import Header from "../components/Header.astro";
+import Bottom from "../components/bottom-logo.astro";
+
+import "../assets/styles/fonts.css";
+import "../assets/styles/body.css";
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <title>Sign in</title>
+
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: system-ui, sans-serif;
+                max-width: 400px;
+                margin: 80px auto;
+                padding: 20px;
+            }
+
+            button {
+                width: 100%;
+                padding: 10px;
+                margin-top: 10px;
+                font: inherit;
+                cursor: pointer;
+            }
+
+            button:disabled {
+                cursor: not-allowed;
+                opacity: 0.6;
+            }
+
+            #user-info {
+                margin-top: 20px;
+                padding: 15px;
+                background: #eee;
+            }
+
+            #error {
+                color: #b00020;
+                margin-top: 15px;
+            }
+
+            .hidden {
+                display: none;
+            }
+
+            /*
+             * Authentication processing overlay
+             */
+
+            #auth-processing {
+                position: fixed;
+                inset: 0;
+
+                display: none;
+                align-items: center;
+                justify-content: center;
+
+                background: rgba(255, 255, 255, 0.92);
+
+                z-index: 9999;
+            }
+
+            #auth-processing.active {
+                display: flex;
+            }
+
+            .auth-processing-content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 14px;
+
+                text-align: center;
+            }
+
+            .auth-spinner {
+                width: 32px;
+                height: 32px;
+
+                border: 3px solid #ddd;
+                border-top-color: #333;
+                border-radius: 50%;
+
+                animation: auth-spin 0.7s linear infinite;
+            }
+
+            #auth-processing-message {
+                color: #555;
+                font-size: 0.95rem;
+            }
+
+            @keyframes auth-spin {
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <!--
+            LOGGED OUT
+        -->
+        <div id="login">
+            <h1>Sign in</h1>
+
+            <button id="google-login">Sign in with Google</button>
+
+            <button id="oidc-login">Sign in with Pocket ID</button>
+            <button style="font-size: 12px;" id="anonymous-login">
+                Continuar sem conta
+            </button>
+
+            <div id="error"></div>
+        </div>
+
+        <!--
+            LOGGED IN
+        -->
+
+        <div id="logged-in" class="hidden">
+            <h1>Welcome</h1>
+
+            <div id="user-info"></div>
+
+            <button id="logout">Sign out</button>
+        </div>
+
+        <!--
+            AUTHENTICATION PROCESSING OVERLAY
+        -->
+
+        <div id="auth-processing" aria-live="polite" aria-busy="true">
+            <div class="auth-processing-content">
+                <div class="auth-spinner"></div>
+
+                <div id="auth-processing-message">Authenticating…</div>
+            </div>
+        </div>
+
+        <!--
+            Firebase Authentication SDK
+
+            Identity Platform uses this SDK on the client side.
+        -->
+        <script type="module">
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+
+            import {
+                getAuth,
+                GoogleAuthProvider,
+                OAuthProvider,
+                signInWithRedirect,
+                getRedirectResult,
+                onAuthStateChanged,
+                signOut,
+            } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+
+            /*
+             * ----------------------------------------------------
+             * 1. INITIALIZE IDENTITY PLATFORM
+             * ----------------------------------------------------
+             */
+
+            const firebaseConfig = {
+                apiKey: "AIzaSyASIFTLz8371OOiQxz0b0lKuq9Oa4Cwv8Y",
+                authDomain: "webauth.turinflow.com.br",
+
+                // Replace these with your actual values.
+                projectId: "YOUR_PROJECT_ID",
+                appId: "YOUR_APP_ID",
+            };
+
+            const app = initializeApp(firebaseConfig);
+
+            const auth = getAuth(app);
+
+            /*
+             * ----------------------------------------------------
+             * 2. IDENTITY PROVIDERS
+             * ----------------------------------------------------
+             */
+
+            const googleProvider = new GoogleAuthProvider();
+
+            const pocketIdProvider = new OAuthProvider("oidc.pocket-id");
+
+            /*
+             * ----------------------------------------------------
+             * 3. UI ELEMENTS
+             * ----------------------------------------------------
+             */
+
+            const login = document.querySelector("#login");
+
+            const loggedIn = document.querySelector("#logged-in");
+
+            const googleButton = document.querySelector("#google-login");
+
+            const pocketIdButton = document.querySelector("#oidc-login");
+
+            const processing = document.querySelector("#auth-processing");
+
+            const processingMessage = document.querySelector(
+                "#auth-processing-message",
+            );
+
+            /*
+             * ----------------------------------------------------
+             * 4. PROCESSING STATE
+             * ----------------------------------------------------
+             */
+
+            function showProcessing(message) {
+                processingMessage.textContent = message;
+
+                processing.classList.add("active");
+
+                googleButton.disabled = true;
+                pocketIdButton.disabled = true;
+            }
+
+            function hideProcessing() {
+                processing.classList.remove("active");
+
+                googleButton.disabled = false;
+                pocketIdButton.disabled = false;
+            }
+
+            /*
+             * ----------------------------------------------------
+             * 5. GOOGLE LOGIN
+             * ----------------------------------------------------
+             */
+
+            googleButton.addEventListener("click", async () => {
+                clearError();
+
+                try {
+                    showProcessing("Connecting to Google…");
+
+                    /*
+                     * Remember that we are leaving the page
+                     * for an OAuth redirect.
+                     */
+                    sessionStorage.setItem("authRedirectPending", "google");
+
+                    await signInWithRedirect(auth, googleProvider);
+                } catch (error) {
+                    sessionStorage.removeItem("authRedirectPending");
+
+                    hideProcessing();
+
+                    console.error("Google authentication error:", error);
+
+                    showError(
+                        error.message || "Unable to sign in with Google.",
+                    );
+                }
+            });
+
+            /*
+             * ----------------------------------------------------
+             * 6. POCKET ID LOGIN
+             * ----------------------------------------------------
+             */
+
+            pocketIdButton.addEventListener("click", async () => {
+                clearError();
+
+                try {
+                    showProcessing("Connecting to Pocket ID…");
+
+                    sessionStorage.setItem("authRedirectPending", "pocket-id");
+
+                    await signInWithRedirect(auth, pocketIdProvider);
+                } catch (error) {
+                    sessionStorage.removeItem("authRedirectPending");
+
+                    hideProcessing();
+
+                    console.error("Pocket ID authentication error:", error);
+
+                    showError(
+                        error.message || "Unable to sign in with Pocket ID.",
+                    );
+                }
+            });
+
+            /*
+             * ----------------------------------------------------
+             * 7. HANDLE OAUTH REDIRECT
+             * ----------------------------------------------------
+             */
+
+            window.addEventListener("pageshow", () => {
+                // If we're back on the page without an active redirect,
+                // don't leave the processing overlay stuck on screen.
+                if (
+                    performance.getEntriesByType("navigation")[0]?.type ===
+                    "back_forward"
+                ) {
+                    sessionStorage.removeItem("authRedirectPending");
+                    hideProcessing();
+                }
+            });
+
+            console.log("1. Auth page loaded");
+
+            const redirectProvider = sessionStorage.getItem(
+                "authRedirectPending",
+            );
+
+            /*
+             * If we previously started an OAuth redirect,
+             * show the processing screen immediately.
+             *
+             * This happens when the browser comes back from
+             * Google or Pocket ID.
+             */
+
+            if (redirectProvider) {
+                showProcessing(
+                    redirectProvider === "google"
+                        ? "Completing Google authentication…"
+                        : "Completing Pocket ID authentication…",
+                );
+            }
+
+            try {
+                console.log("2. Checking redirect result...");
+
+                const result = await getRedirectResult(auth);
+
+                console.log("3. getRedirectResult completed:", result);
+
+                /*
+                 * The redirect has now been handled.
+                 */
+
+                sessionStorage.removeItem("authRedirectPending");
+
+                if (result) {
+                    console.log("4. Redirect authentication succeeded");
+
+                    console.log("User:", result.user);
+                } else {
+                    console.log("4. No pending redirect");
+                }
+
+                hideProcessing();
+            } catch (error) {
+                sessionStorage.removeItem("authRedirectPending");
+
+                hideProcessing();
+
+                console.error("REDIRECT ERROR:", error);
+
+                console.error("Code:", error.code);
+
+                console.error("Message:", error.message);
+
+                showError(`${error.code || "unknown"}: ${error.message}`);
+            }
+
+            /*
+             * ----------------------------------------------------
+             * 8. WATCH AUTHENTICATION STATE
+             * ----------------------------------------------------
+             */
+
+            onAuthStateChanged(auth, (user) => {
+                const userInfo = document.querySelector("#user-info");
+
+                if (user) {
+                    /*
+                     * Firebase confirms that the user is
+                     * authenticated.
+                     */
+
+                    hideProcessing();
+
+                    login.classList.add("hidden");
+
+                    loggedIn.classList.remove("hidden");
+
+                    userInfo.innerHTML = `
+                        <strong>Email:</strong>
+                        ${escapeHtml(user.email || "")}
+                        <br>
+                        <strong>User ID:</strong>
+                        ${escapeHtml(user.uid)}
+                    `;
+                } else {
+                    /*
+                     * No authenticated user.
+                     */
+
+                    login.classList.remove("hidden");
+
+                    loggedIn.classList.add("hidden");
+                }
+            });
+
+            /*
+             * ----------------------------------------------------
+             * 9. LOG OUT
+             * ----------------------------------------------------
+             */
+
+            document
+                .querySelector("#logout")
+                .addEventListener("click", async () => {
+                    clearError();
+
+                    try {
+                        await signOut(auth);
+                    } catch (error) {
+                        console.error("Sign out error:", error);
+
+                        showError(error.message || "Unable to sign out.");
+                    }
+                });
+
+            /*
+             * ----------------------------------------------------
+             * 10. HELPERS
+             * ----------------------------------------------------
+             */
+
+            function showError(message) {
+                document.querySelector("#error").textContent = message;
+            }
+
+            function clearError() {
+                document.querySelector("#error").textContent = "";
+            }
+
+            function escapeHtml(value) {
+                return value
+                    .replaceAll("&", "&amp;")
+                    .replaceAll("<", "&lt;")
+                    .replaceAll(">", "&gt;")
+                    .replaceAll('"', "&quot;")
+                    .replaceAll("'", "&#039;");
+            }
+        </script>
+    </body>
+</html>
