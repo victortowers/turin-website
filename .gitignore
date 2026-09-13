@@ -12,3 +12,4 @@ src/components/Header copy 2.astro
 src/components/Header copy 3.astro
 src/components/Welcome.astro
 src/components/bottom-logo copy.astro
+src/pages/login-legacy.astro
