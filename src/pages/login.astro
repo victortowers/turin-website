@@ -1,6 +1,7 @@
 ---
 import Header from "../components/Header.astro";
 import Bottom from "../components/bottom-logo.astro";
+import Construction from "../components/construction.astro";
 
 import "../assets/styles/fonts.css";
 import "../assets/styles/body.css";
@@ -20,23 +21,36 @@ import "../assets/styles/body.css";
             }
 
             body {
-                font-family: system-ui, sans-serif;
-                max-width: 400px;
-                margin: 80px auto;
+                font-family: s1, system-ui, sans-serif;
+                margin: 20px 80px 0 80px;
                 padding: 20px;
-            }
-
-            button {
-                width: 100%;
-                padding: 10px;
-                margin-top: 10px;
-                font: inherit;
-                cursor: pointer;
+                margin-inline: auto;
+                width: min(1100px, 95%);
             }
 
             button:disabled {
                 cursor: not-allowed;
                 opacity: 0.6;
+            }
+
+            button {
+                width: 100%;
+                text-decoration: none;
+                color: #666;
+                border: 1px solid rgba(110, 110, 110, 0.1);
+                background-color: rgba(110, 110, 110, 0.1);
+                transition: 0.55s ease-in-out;
+                border-radius: 12px;
+                padding: 10px;
+                font-family: s1;
+                cursor: pointer;
+                margin-top: 10px;
+                transition: 0.41s ease-in-out;
+            }
+
+            button:hover {
+                background-color: rgba(29, 59, 177, 0.2);
+                transition: 0.41s ease-in-out;
             }
 
             #user-info {
@@ -66,7 +80,7 @@ import "../assets/styles/body.css";
                 align-items: center;
                 justify-content: center;
 
-                background: rgba(255, 255, 255, 0.92);
+                background: rgba(200, 200, 200, 0.95);
 
                 z-index: 9999;
             }
@@ -112,15 +126,16 @@ import "../assets/styles/body.css";
         <!--
             LOGGED OUT
         -->
-        <div id="login">
-            <h1>Sign in</h1>
+        <div id="login" style="text-align: center; letter-spacing: 1px;">
+            <h1 class="g2" style="font-weight: 800;">
+                Faça Login!
+            </h1>
+            <Construction />
 
-            <button id="google-login">Sign in with Google</button>
+            <button id="google-login">Continue com Google</button>
 
-            <button id="oidc-login">Sign in with Pocket ID</button>
-            <button style="font-size: 12px;" id="anonymous-login">
-                Continuar sem conta
-            </button>
+            <button id="oidc-login">Continue com Pocket ID (SSO)</button>
+            <button id="anonymous-login">Continuar sem conta</button>
 
             <div id="error"></div>
         </div>
@@ -145,7 +160,7 @@ import "../assets/styles/body.css";
             <div class="auth-processing-content">
                 <div class="auth-spinner"></div>
 
-                <div id="auth-processing-message">Authenticating…</div>
+                <div id="auth-processing-message">Authenticando…</div>
             </div>
         </div>
 
@@ -333,7 +348,7 @@ import "../assets/styles/body.css";
             if (redirectProvider) {
                 showProcessing(
                     redirectProvider === "google"
-                        ? "Completing Google authentication…"
+                        ? "Finalizando, aguarde…"
                         : "Completing Pocket ID authentication…",
                 );
             }
@@ -396,10 +411,10 @@ import "../assets/styles/body.css";
                     loggedIn.classList.remove("hidden");
 
                     userInfo.innerHTML = `
-                        <strong>Email:</strong>
+                        <strong style="font-family: g2; font-weight: 600; letter-spacing: 1px;">Email:</strong>
                         ${escapeHtml(user.email || "")}
                         <br>
-                        <strong>User ID:</strong>
+                        <strong style="font-family: g2; font-weight: 600; letter-spacing: 1px;">User ID:</strong>
                         ${escapeHtml(user.uid)}
                     `;
                 } else {
