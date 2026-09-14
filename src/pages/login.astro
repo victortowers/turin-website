@@ -197,18 +197,7 @@ import "../assets/styles/body.css";
 
             const app = initializeApp(firebaseConfig);
 
-            const authDebug = [];
-
-            function authTrace(event, data = {}) {
-                authDebug.push({
-                    time: new Date().toISOString(),
-                    event,
-                    data,
-                });
-
-                document.querySelector("#auth-debug").textContent =
-                    JSON.stringify(authDebug, null, 2);
-            }
+            const auth = getAuth(app);
 
             /*
              * ----------------------------------------------------
