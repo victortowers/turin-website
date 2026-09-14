@@ -127,6 +127,7 @@ import "../assets/styles/body.css";
             LOGGED OUT
         -->
         <div id="login" style="text-align: center; letter-spacing: 1px;">
+            <pre id="auth-debug"></pre>
             <h1 class="g2" style="font-weight: 800;">
                 Faça Login!
             </h1>
@@ -145,6 +146,7 @@ import "../assets/styles/body.css";
         -->
 
         <div id="logged-in" class="hidden">
+            <pre id="auth-debug"></pre>
             <h1>Welcome</h1>
 
             <div id="user-info"></div>
@@ -191,15 +193,22 @@ import "../assets/styles/body.css";
             const firebaseConfig = {
                 apiKey: "AIzaSyASIFTLz8371OOiQxz0b0lKuq9Oa4Cwv8Y",
                 authDomain: "webauth.turinflow.com.br",
-
-                // Replace these with your actual values.
-                projectId: "YOUR_PROJECT_ID",
-                appId: "YOUR_APP_ID",
             };
 
             const app = initializeApp(firebaseConfig);
 
-            const auth = getAuth(app);
+            const authDebug = [];
+
+            function authTrace(event, data = {}) {
+                authDebug.push({
+                    time: new Date().toISOString(),
+                    event,
+                    data,
+                });
+
+                document.querySelector("#auth-debug").textContent =
+                    JSON.stringify(authDebug, null, 2);
+            }
 
             /*
              * ----------------------------------------------------
@@ -403,7 +412,6 @@ import "../assets/styles/body.css";
                      * Firebase confirms that the user is
                      * authenticated.
                      */
-
                     hideProcessing();
 
                     login.classList.add("hidden");

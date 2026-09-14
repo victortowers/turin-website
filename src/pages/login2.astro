@@ -1,0 +1,885 @@
+---
+import Header from "../components/Header.astro";
+import Bottom from "../components/bottom-logo.astro";
+import Construction from "../components/construction.astro";
+
+import "../assets/styles/fonts.css";
+import "../assets/styles/body.css";
+---
+
+<script type="module">
+    /*
+     * ============================================================
+     * FIREBASE AUTHENTICATION
+     * ============================================================
+     *
+     * Supported authentication methods:
+     *
+     *   1. Google
+     *   2. Pocket ID / OIDC
+     *   3. Anonymous authentication
+     *
+     * The page also contains an on-page diagnostic system.
+     *
+     * No console.log(), console.error(), etc. are used.
+     *
+     * Diagnostic history is stored in sessionStorage so that
+     * information recorded before an OAuth redirect survives
+     * the redirect and can be displayed after returning.
+     */
+
+    /* ============================================================
+     * 1. FIREBASE IMPORTS
+     * ============================================================
+     */
+
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+
+    import {
+        getAuth,
+        GoogleAuthProvider,
+        OAuthProvider,
+        signInWithRedirect,
+        getRedirectResult,
+        onAuthStateChanged,
+        signOut,
+        signInAnonymously,
+        setPersistence,
+        browserLocalPersistence,
+    } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+
+    /* ============================================================
+     * 2. FIREBASE CONFIGURATION
+     * ============================================================
+     *
+     * The API key is intentionally present in the frontend.
+     *
+     * Firebase Web API keys are not secrets. Security comes from
+     * Firebase Authentication configuration, authorized domains,
+     * provider configuration, and backend security rules.
+     */
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyASIFTLz8371OOiQxz0b0lKuq9Oa4Cwv8Y",
+        authDomain: "webauth.turinflow.com.br",
+    };
+
+    /* ============================================================
+     * 3. INITIALIZE FIREBASE
+     * ============================================================
+     */
+
+    const app = initializeApp(firebaseConfig);
+
+    const auth = getAuth(app);
+
+    /* ============================================================
+     * 4. GET UI ELEMENTS
+     * ============================================================
+     */
+
+    const login = document.querySelector("#login");
+    const loggedIn = document.querySelector("#logged-in");
+
+    const googleButton = document.querySelector("#google-login");
+    const pocketIdButton = document.querySelector("#oidc-login");
+    const anonymousButton = document.querySelector("#anonymous-login");
+
+    const logoutButton = document.querySelector("#logout");
+
+    const processing = document.querySelector("#auth-processing");
+    const processingMessage = document.querySelector(
+        "#auth-processing-message",
+    );
+
+    const errorElement = document.querySelector("#error");
+
+    const debugElement = document.querySelector("#auth-debug");
+
+    const userInfo = document.querySelector("#user-info");
+
+    /* ============================================================
+     * 5. BASIC DOM VALIDATION
+     * ============================================================
+     *
+     * If the HTML is accidentally changed later, this diagnostic
+     * system tells us exactly which element is missing instead of
+     * causing an obscure "cannot read property of null" error.
+     */
+
+    const requiredElements = {
+        login,
+        loggedIn,
+        googleButton,
+        pocketIdButton,
+        anonymousButton,
+        logoutButton,
+        processing,
+        processingMessage,
+        errorElement,
+        debugElement,
+        userInfo,
+    };
+
+    const missingElements = Object.entries(requiredElements)
+        .filter(([, element]) => !element)
+        .map(([name]) => name);
+
+    /* ============================================================
+     * 6. DIAGNOSTIC HISTORY
+     * ============================================================
+     */
+
+    const DEBUG_STORAGE_KEY = "authDebug";
+    const REDIRECT_STORAGE_KEY = "authRedirectPending";
+
+    const MAX_DEBUG_ENTRIES = 100;
+
+    let authDebug = [];
+
+    try {
+        const storedDebug = sessionStorage.getItem(DEBUG_STORAGE_KEY);
+
+        if (storedDebug) {
+            const parsed = JSON.parse(storedDebug);
+
+            if (Array.isArray(parsed)) {
+                authDebug = parsed.slice(-MAX_DEBUG_ENTRIES);
+            }
+        }
+    } catch {
+        authDebug = [];
+    }
+
+    /* ============================================================
+     * 7. RENDER DIAGNOSTICS
+     * ============================================================
+     */
+
+    function renderAuthDebug() {
+        if (!debugElement) {
+            return;
+        }
+
+        debugElement.textContent = JSON.stringify(authDebug, null, 2);
+    }
+
+    /* ============================================================
+     * 8. RECORD DIAGNOSTIC EVENT
+     * ============================================================
+     */
+
+    function authTrace(event, data = {}) {
+        authDebug.push({
+            time: new Date().toISOString(),
+            event,
+            data,
+        });
+
+        /*
+         * Prevent the diagnostic system from growing forever.
+         */
+
+        if (authDebug.length > MAX_DEBUG_ENTRIES) {
+            authDebug = authDebug.slice(-MAX_DEBUG_ENTRIES);
+        }
+
+        try {
+            sessionStorage.setItem(
+                DEBUG_STORAGE_KEY,
+                JSON.stringify(authDebug),
+            );
+        } catch {
+            // Storage may be unavailable.
+        }
+
+        renderAuthDebug();
+    }
+
+    /* ============================================================
+     * 9. RECORD FIREBASE ERROR
+     * ============================================================
+     */
+
+    function authTraceError(event, error) {
+        authTrace(event, {
+            name: error?.name ?? null,
+            code: error?.code ?? null,
+            message: error?.message ?? null,
+        });
+    }
+
+    /* ============================================================
+     * 10. INITIAL DIAGNOSTICS
+     * ============================================================
+     */
+
+    authTrace("page_loaded", {
+        url: window.location.href,
+        visibilityState: document.visibilityState,
+        userAgent: navigator.userAgent,
+        language: navigator.language,
+    });
+
+    if (missingElements.length > 0) {
+        authTrace("missing_dom_elements", {
+            elements: missingElements,
+        });
+    }
+
+    /* ============================================================
+     * 11. TEST SESSION STORAGE
+     * ============================================================
+     */
+
+    try {
+        const testKey = "__firebase_auth_storage_test__";
+
+        sessionStorage.setItem(testKey, "ok");
+
+        const result = sessionStorage.getItem(testKey);
+
+        sessionStorage.removeItem(testKey);
+
+        authTrace("sessionStorage_test", {
+            available: true,
+            result,
+        });
+    } catch (error) {
+        authTraceError("sessionStorage_test_failed", error);
+    }
+
+    /* ============================================================
+     * 12. AUTH INITIALIZATION
+     * ============================================================
+     */
+
+    authTrace("auth_initialized", {
+        currentUserExists: !!auth.currentUser,
+        currentUserUid: auth.currentUser?.uid ?? null,
+    });
+
+    /* ============================================================
+     * 13. PROVIDERS
+     * ============================================================
+     */
+
+    const googleProvider = new GoogleAuthProvider();
+
+    /*
+     * This provider ID must match the OIDC provider ID configured
+     * inside Google Identity Platform.
+     *
+     * If your Identity Platform provider is named differently,
+     * change this string to that provider ID.
+     */
+
+    const pocketIdProvider = new OAuthProvider("oidc.pocket-id");
+
+    /* ============================================================
+     * 14. PROCESSING UI
+     * ============================================================
+     */
+
+    function setButtonsDisabled(disabled) {
+        if (googleButton) {
+            googleButton.disabled = disabled;
+        }
+
+        if (pocketIdButton) {
+            pocketIdButton.disabled = disabled;
+        }
+
+        if (anonymousButton) {
+            anonymousButton.disabled = disabled;
+        }
+
+        if (logoutButton) {
+            logoutButton.disabled = disabled;
+        }
+    }
+
+    function showProcessing(message) {
+        if (processingMessage) {
+            processingMessage.textContent = message;
+        }
+
+        if (processing) {
+            processing.classList.add("active");
+        }
+
+        setButtonsDisabled(true);
+    }
+
+    function hideProcessing() {
+        if (processing) {
+            processing.classList.remove("active");
+        }
+
+        setButtonsDisabled(false);
+    }
+
+    /* ============================================================
+     * 15. ERROR UI
+     * ============================================================
+     */
+
+    function showError(message) {
+        if (!errorElement) {
+            return;
+        }
+
+        errorElement.textContent = message || "Authentication failed.";
+    }
+
+    function clearError() {
+        if (!errorElement) {
+            return;
+        }
+
+        errorElement.textContent = "";
+    }
+
+    /* ============================================================
+     * 16. HTML ESCAPING
+     * ============================================================
+     */
+
+    function escapeHtml(value) {
+        return String(value)
+            .replaceAll("&", "&amp;")
+            .replaceAll("<", "&lt;")
+            .replaceAll(">", "&gt;")
+            .replaceAll('"', "&quot;")
+            .replaceAll("'", "&#039;");
+    }
+
+    /* ============================================================
+     * 17. DISPLAY USER
+     * ============================================================
+     */
+
+    function renderUser(user) {
+        if (!userInfo) {
+            return;
+        }
+
+        const providerNames = (user.providerData || [])
+            .map((provider) => provider.providerId)
+            .filter(Boolean);
+
+        userInfo.innerHTML = `
+            <strong
+                style="
+                    font-family: g2;
+                    font-weight: 600;
+                    letter-spacing: 1px;
+                "
+            >
+                ${user.isAnonymous ? "Anonymous account" : "Email"}:
+            </strong>
+
+            ${
+                user.isAnonymous
+                    ? "Anonymous"
+                    : escapeHtml(user.email || "No email")
+            }
+
+            <br>
+
+            <strong
+                style="
+                    font-family: g2;
+                    font-weight: 600;
+                    letter-spacing: 1px;
+                "
+            >
+                User ID:
+            </strong>
+
+            ${escapeHtml(user.uid)}
+
+            <br>
+
+            <strong
+                style="
+                    font-family: g2;
+                    font-weight: 600;
+                    letter-spacing: 1px;
+                "
+            >
+                Provider:
+            </strong>
+
+            ${escapeHtml(
+                providerNames.length > 0
+                    ? providerNames.join(", ")
+                    : user.isAnonymous
+                      ? "anonymous"
+                      : "unknown",
+            )}
+        `;
+    }
+
+    /* ============================================================
+     * 18. AUTHENTICATED / LOGGED-OUT UI
+     * ============================================================
+     */
+
+    function showAuthenticatedUI(user) {
+        hideProcessing();
+
+        if (login) {
+            login.classList.add("hidden");
+        }
+
+        if (loggedIn) {
+            loggedIn.classList.remove("hidden");
+        }
+
+        renderUser(user);
+    }
+
+    function showLoggedOutUI() {
+        if (login) {
+            login.classList.remove("hidden");
+        }
+
+        if (loggedIn) {
+            loggedIn.classList.add("hidden");
+        }
+    }
+
+    /* ============================================================
+     * 19. REDIRECT STATE
+     * ============================================================
+     */
+
+    const redirectProvider = sessionStorage.getItem(REDIRECT_STORAGE_KEY);
+
+    authTrace("redirect_state_checked", {
+        redirectProvider: redirectProvider ?? null,
+    });
+
+    if (redirectProvider) {
+        showProcessing(
+            redirectProvider === "google"
+                ? "Finalizando, aguarde…"
+                : redirectProvider === "pocket-id"
+                  ? "Finalizando autenticação do Pocket ID…"
+                  : "Finalizando autenticação…",
+        );
+    }
+
+    /* ============================================================
+     * 20. PAGESHOW
+     * ============================================================
+     *
+     * Particularly useful on Safari/iOS because pages may be
+     * restored through the back/forward cache.
+     */
+
+    window.addEventListener("pageshow", (event) => {
+        const navigationEntry = performance.getEntriesByType("navigation")[0];
+
+        authTrace("pageshow", {
+            persisted: event.persisted,
+            navigationType: navigationEntry?.type ?? null,
+            redirectPending: sessionStorage.getItem(REDIRECT_STORAGE_KEY),
+        });
+    });
+
+    /* ============================================================
+     * 21. CONFIGURE AUTH PERSISTENCE
+     * ============================================================
+     *
+     * browserLocalPersistence keeps the Firebase login available
+     * across normal page loads.
+     */
+
+    try {
+        await setPersistence(auth, browserLocalPersistence);
+
+        authTrace("auth_persistence_configured", {
+            persistence: "browserLocalPersistence",
+        });
+    } catch (error) {
+        authTraceError("auth_persistence_configuration_failed", error);
+    }
+
+    /* ============================================================
+     * 22. PROCESS OAUTH REDIRECT
+     * ============================================================
+     *
+     * This must happen on every page load.
+     *
+     * If the browser has just returned from Google/Pocket ID,
+     * Firebase consumes the redirect result here.
+     */
+
+    authTrace("getRedirectResult_start");
+
+    try {
+        const result = await getRedirectResult(auth);
+
+        authTrace("getRedirectResult_resolved", {
+            hasResult: !!result,
+            hasUser: !!result?.user,
+            providerId: result?.providerId ?? null,
+            userUid: result?.user?.uid ?? null,
+        });
+
+        /*
+         * Firebase has finished processing the redirect.
+         */
+
+        sessionStorage.removeItem(REDIRECT_STORAGE_KEY);
+
+        hideProcessing();
+    } catch (error) {
+        authTraceError("getRedirectResult_rejected", error);
+
+        sessionStorage.removeItem(REDIRECT_STORAGE_KEY);
+
+        hideProcessing();
+
+        showError(
+            `${error?.code || "unknown"}: ${
+                error?.message || "Authentication failed."
+            }`,
+        );
+    }
+
+    /* ============================================================
+     * 23. AUTH STATE LISTENER
+     * ============================================================
+     */
+
+    authTrace("registering_auth_state_listener");
+
+    onAuthStateChanged(auth, (user) => {
+        authTrace("onAuthStateChanged", {
+            authenticated: !!user,
+            uid: user?.uid ?? null,
+            email: user?.email ?? null,
+            isAnonymous: user?.isAnonymous ?? false,
+        });
+
+        if (user) {
+            sessionStorage.removeItem(REDIRECT_STORAGE_KEY);
+
+            showAuthenticatedUI(user);
+        } else {
+            hideProcessing();
+
+            showLoggedOutUI();
+        }
+    });
+
+    /* ============================================================
+     * 24. GOOGLE LOGIN
+     * ============================================================
+     */
+
+    googleButton?.addEventListener("click", async () => {
+        clearError();
+
+        authTrace("google_button_clicked");
+
+        try {
+            showProcessing("Connecting to Google…");
+
+            sessionStorage.setItem(REDIRECT_STORAGE_KEY, "google");
+
+            authTrace("google_redirect_start");
+
+            await signInWithRedirect(auth, googleProvider);
+
+            /*
+             * Normally the browser leaves the page before
+             * this code executes.
+             */
+
+            authTrace("google_redirect_call_resolved");
+        } catch (error) {
+            authTraceError("google_redirect_failed", error);
+
+            sessionStorage.removeItem(REDIRECT_STORAGE_KEY);
+
+            hideProcessing();
+
+            showError(error?.message || "Unable to sign in with Google.");
+        }
+    });
+
+    /* ============================================================
+     * 25. POCKET ID LOGIN
+     * ============================================================
+     */
+
+    pocketIdButton?.addEventListener("click", async () => {
+        clearError();
+
+        authTrace("pocket_id_button_clicked");
+
+        try {
+            showProcessing("Connecting to Pocket ID…");
+
+            sessionStorage.setItem(REDIRECT_STORAGE_KEY, "pocket-id");
+
+            authTrace("pocket_id_redirect_start");
+
+            await signInWithRedirect(auth, pocketIdProvider);
+
+            authTrace("pocket_id_redirect_call_resolved");
+        } catch (error) {
+            authTraceError("pocket_id_redirect_failed", error);
+
+            sessionStorage.removeItem(REDIRECT_STORAGE_KEY);
+
+            hideProcessing();
+
+            showError(error?.message || "Unable to sign in with Pocket ID.");
+        }
+    });
+
+    /* ============================================================
+     * 26. ANONYMOUS LOGIN
+     * ============================================================
+     *
+     * Unlike OAuth, anonymous authentication does not redirect
+     * anywhere. Firebase creates a temporary authenticated user
+     * directly in the browser.
+     */
+
+    anonymousButton?.addEventListener("click", async () => {
+        clearError();
+
+        authTrace("anonymous_button_clicked");
+
+        try {
+            showProcessing("Creating anonymous account…");
+
+            authTrace("anonymous_sign_in_start");
+
+            const credential = await signInAnonymously(auth);
+
+            authTrace("anonymous_sign_in_resolved", {
+                hasUser: !!credential?.user,
+                uid: credential?.user?.uid ?? null,
+                isAnonymous: credential?.user?.isAnonymous ?? false,
+            });
+
+            /*
+             * onAuthStateChanged() will update the UI.
+             */
+
+            hideProcessing();
+        } catch (error) {
+            authTraceError("anonymous_sign_in_failed", error);
+
+            hideProcessing();
+
+            showError(
+                `${error?.code || "unknown"}: ${
+                    error?.message || "Unable to continue without an account."
+                }`,
+            );
+        }
+    });
+
+    /* ============================================================
+     * 27. SIGN OUT
+     * ============================================================
+     */
+
+    logoutButton?.addEventListener("click", async () => {
+        clearError();
+
+        authTrace("sign_out_start");
+
+        try {
+            showProcessing("Signing out…");
+
+            await signOut(auth);
+
+            authTrace("sign_out_completed");
+
+            hideProcessing();
+
+            showLoggedOutUI();
+        } catch (error) {
+            authTraceError("sign_out_failed", error);
+
+            hideProcessing();
+
+            showError(error?.message || "Unable to sign out.");
+        }
+    });
+
+    /* ============================================================
+     * 28. INITIAL DEBUG RENDER
+     * ============================================================
+     */
+
+    renderAuthDebug();
+</script>
+<!-- ============================================================
+     AUTHENTICATION UI
+     ============================================================ -->
+<div id="login" style="text-align: center; letter-spacing: 1px;">
+    <h1 class="g2" style="font-weight: 800;">
+        Faça Login!
+    </h1>
+
+    <Construction />
+
+    <button id="google-login" type="button">
+        Continue com Google
+    </button>
+
+    <button id="oidc-login" type="button">
+        Continue com Pocket ID (SSO)
+    </button>
+
+    <button id="anonymous-login" type="button">
+        Continuar sem conta
+    </button>
+
+    <!-- ========================================================
+         PROCESSING OVERLAY
+         ======================================================== -->
+
+    <div id="auth-processing" aria-live="polite" aria-hidden="true">
+        <div class="auth-processing-spinner"></div>
+
+        <div id="auth-processing-message">Processando…</div>
+    </div>
+
+    <!-- ========================================================
+         ERROR
+         ======================================================== -->
+
+    <div id="error" role="alert" style="padding-bottom: 12rem;"></div>
+</div>
+<!-- ============================================================
+     AUTHENTICATED UI
+     ============================================================ -->
+<div
+    id="logged-in"
+    class="hidden"
+    style="text-align: center; letter-spacing: 1px;"
+>
+    <h1 class="g2" style="font-weight: 800;">
+        Você está autenticado!
+    </h1>
+
+    <div id="user-info"></div>
+
+    <button id="logout" type="button">
+        Sair
+    </button>
+</div>
+<!-- ============================================================
+     AUTH DIAGNOSTICS
+     ============================================================ -->
+<details id="auth-debug-container">
+    <summary>Authentication diagnostics</summary>
+
+    <pre
+        id="auth-debug"
+        style="
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+            text-align: left;
+        "
+    ></pre>
+</details>
+<style>
+    /*
+     * ============================================================
+     * AUTHENTICATION PROCESSING UI
+     * ============================================================
+     */
+
+    #auth-processing {
+        display: none;
+
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        gap: 0.8rem;
+
+        margin: 2rem auto;
+
+        text-align: center;
+
+        opacity: 0;
+        transition: opacity 180ms ease;
+    }
+
+    #auth-processing.active {
+        display: flex;
+        opacity: 1;
+    }
+
+    .auth-processing-spinner {
+        width: 28px;
+        height: 28px;
+
+        border: 3px solid currentColor;
+        border-top-color: transparent;
+
+        border-radius: 50%;
+
+        animation: auth-spin 700ms linear infinite;
+    }
+
+    @keyframes auth-spin {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    /*
+     * ============================================================
+     * HIDDEN STATE
+     * ============================================================
+     */
+
+    .hidden {
+        display: none !important;
+    }
+
+    /*
+     * ============================================================
+     * DEBUG PANEL
+     * ============================================================
+     */
+
+    #auth-debug-container {
+        margin: 2rem 1rem;
+        text-align: left;
+        opacity: 0.75;
+    }
+
+    #auth-debug {
+        max-height: 500px;
+        overflow: auto;
+
+        font-size: 0.75rem;
+        line-height: 1.4;
+    }
+
+    /*
+     * ============================================================
+     * DISABLED BUTTONS
+     * ============================================================
+     */
+
+    button:disabled {
+        opacity: 0.55;
+        cursor: wait;
+    }
+</style>
