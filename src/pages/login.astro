@@ -179,6 +179,7 @@ import "../assets/styles/body.css";
                 GoogleAuthProvider,
                 OAuthProvider,
                 signInWithRedirect,
+                signInWithPopup,
                 getRedirectResult,
                 onAuthStateChanged,
                 signOut,
@@ -196,9 +197,13 @@ import "../assets/styles/body.css";
             };
 
             const app = initializeApp(firebaseConfig);
+<<<<<<< HEAD
 
             const auth = getAuth(app);
 
+=======
+            const auth = getAuth(app);
+>>>>>>> aceee27 (I give up on trying to do this. Not today.)
             /*
              * ----------------------------------------------------
              * 2. IDENTITY PROVIDERS
@@ -206,9 +211,7 @@ import "../assets/styles/body.css";
              */
 
             const googleProvider = new GoogleAuthProvider();
-
             const pocketIdProvider = new OAuthProvider("oidc.pocket-id");
-
             /*
              * ----------------------------------------------------
              * 3. UI ELEMENTS
