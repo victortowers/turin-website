@@ -400,8 +400,9 @@ import "../assets/styles/body.css";
                      * authenticated.
                      */
 
-                    headerTitle.innerHTML = `<h1>Olá, ${escapeHtml(user.email || "usuário")}!</h1>
-                      <a>O que podemos fazer por você, hoje?</a>`;
+                    headerTitle.innerHTML = `<h1 style="font-size: 21px; margin-bottom: 0rem;">
+                      Olá, ${escapeHtml(user.name || "usuário")}!</h1>
+                      <i>O que podemos fazer por você, hoje?</i>`;
 
                     hideProcessing();
 
