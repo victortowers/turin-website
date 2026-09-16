@@ -146,9 +146,7 @@ import "../assets/styles/body.css";
         -->
 
         <div id="logged-in" class="hidden">
-            <pre id="auth-debug"></pre>
-            <h1>Welcome</h1>
-
+            <div id="header-title"></div>
             <div id="user-info"></div>
 
             <button id="logout">Sign out</button>
@@ -197,13 +195,8 @@ import "../assets/styles/body.css";
             };
 
             const app = initializeApp(firebaseConfig);
-<<<<<<< HEAD
-
             const auth = getAuth(app);
 
-=======
-            const auth = getAuth(app);
->>>>>>> aceee27 (I give up on trying to do this. Not today.)
             /*
              * ----------------------------------------------------
              * 2. IDENTITY PROVIDERS
@@ -264,7 +257,7 @@ import "../assets/styles/body.css";
                 clearError();
 
                 try {
-                    showProcessing("Connecting to Google…");
+                    showProcessing("Carregando, aguarde...");
 
                     /*
                      * Remember that we are leaving the page
@@ -281,7 +274,8 @@ import "../assets/styles/body.css";
                     console.error("Google authentication error:", error);
 
                     showError(
-                        error.message || "Unable to sign in with Google.",
+                        error.message ||
+                            "Não foi possível fazer login. Tente mais tarde.",
                     );
                 }
             });
@@ -398,12 +392,17 @@ import "../assets/styles/body.css";
 
             onAuthStateChanged(auth, (user) => {
                 const userInfo = document.querySelector("#user-info");
+                const headerTitle = document.querySelector("#header-title");
 
                 if (user) {
                     /*
                      * Firebase confirms that the user is
                      * authenticated.
                      */
+
+                    headerTitle.innerHTML = `<h1>Olá, ${escapeHtml(user.email || "usuário")}!</h1>
+                      <a>O que podemos fazer por você, hoje?</a>`;
+
                     hideProcessing();
 
                     login.classList.add("hidden");
