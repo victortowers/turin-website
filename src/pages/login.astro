@@ -108,7 +108,8 @@ import "../assets/styles/body.css";
                 border-top-color: #333;
                 border-radius: 50%;
 
-                animation: auth-spin 0.7s linear infinite;
+                /* Total duration scaled to 3.3s (1.1s * 3 steps) */
+                animation: auth-spin 2.6s cubic-bezier(0.4, 0, 0.5, 1) infinite;
             }
 
             #auth-processing-message {
@@ -117,8 +118,14 @@ import "../assets/styles/body.css";
             }
 
             @keyframes auth-spin {
-                to {
-                    transform: rotate(360deg);
+                0% {
+                    transform: rotate(0deg);
+                }
+                50% {
+                    transform: rotate(540deg);
+                }
+                100% {
+                    transform: rotate(1080deg);
                 }
             }
         </style>
