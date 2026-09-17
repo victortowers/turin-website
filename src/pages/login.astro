@@ -33,7 +33,8 @@ import "../assets/styles/body.css";
                 opacity: 0.6;
             }
 
-            button {
+            button,
+            .board1 {
                 width: 100%;
                 text-decoration: none;
                 color: #666;
@@ -48,7 +49,8 @@ import "../assets/styles/body.css";
                 transition: 0.41s ease-in-out;
             }
 
-            button:hover {
+            button:hover,
+            .board1:hover {
                 background-color: rgba(29, 59, 177, 0.2);
                 transition: 0.41s ease-in-out;
             }
@@ -147,7 +149,7 @@ import "../assets/styles/body.css";
 
         <div id="logged-in" class="hidden">
             <div id="header-title"></div>
-            <div id="user-info"></div>
+            <div id="user-info" class="board1"></div>
 
             <button id="logout">Sign out</button>
         </div>
@@ -411,10 +413,10 @@ import "../assets/styles/body.css";
                     loggedIn.classList.remove("hidden");
 
                     userInfo.innerHTML = `
-                        <strong style="font-family: g2; font-weight: 600; letter-spacing: 1px;">Email:</strong>
+                        <strong class="board1" style="font-family: g2; font-weight: 600; letter-spacing: 1px;">Email:</strong>
                         ${escapeHtml(user.email || "")}
                         <br>
-                        <strong style="font-family: g2; font-weight: 600; letter-spacing: 1px;">User ID:</strong>
+                        <strong class="board1" style="font-family: g2; font-weight: 600; letter-spacing: 1px;">User ID:</strong>
                         ${escapeHtml(user.uid)}
                     `;
                 } else {
