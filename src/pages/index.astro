@@ -1,6 +1,7 @@
 ---
 import Header from "../components/Header.astro";
 import Bottom from "../components/bottom-logo.astro";
+import Button from "../components/button1.astro";
 
 import "../assets/styles/fonts.css";
 import "../assets/styles/body.css";
@@ -102,6 +103,16 @@ import "../assets/styles/body.css";
                     color: rgba(95, 120, 120, 1);
                     transition: 0.25s ease-in-out;
                 }
+
+                .hover4 {
+                    background-color: inherit;
+                    transition: 0.53s ease-in-out;
+                }
+
+                .hover4:hover {
+                    background-color: rgba(95, 120, 120, 0.26);
+                    transition: 0.48s ease-in-out;
+                }
             }
 
             @media (min-width: 900px) {
@@ -134,7 +145,11 @@ import "../assets/styles/body.css";
                 coordenar sua viagem mais importante do dia. E, logo, poderemos
                 coordenar todos os compromissos da sua vida. Da sua, e de sua
                 família.
+                <br />
+                <br />
             </div>
+
+            <Button />
         </div>
 
         <div style="background-color: rgba(200, 209, 200, 1); padding-top: 2rem; padding-bottom: 8rem;">
