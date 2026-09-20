@@ -471,6 +471,17 @@ import "../assets/styles/body.css";
                     clearError();
 
                     try {
+                        await fetch(
+                            "https://auth.turinflow.com.br/sessionLogout",
+                            {
+                                method: "POST",
+                                credentials: "include",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                },
+                            },
+                        );
+
                         await signOut(auth);
                     } catch (error) {
                         console.error("Sign out error:", error);
