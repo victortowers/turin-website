@@ -430,6 +430,23 @@ import "../assets/styles/body.css";
                         <strong class="board1" style="font-family: g2; font-weight: 600; letter-spacing: 1px;">User ID:</strong>
                         ${escapeHtml(user.uid)}
                     `;
+
+                    const idToken = user.getIdToken();
+                    const responsed = fetch(
+                        "https://turin-auth-service-git-master-vtincs-projects.vercel.app/sessionLogin/",
+                        {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify({
+                                idToken: idToken,
+                            }),
+                        },
+                    );
+
+                    const data = responsed.json();
+                    console.log(data);
                 } else {
                     /*
                      * No authenticated user.
