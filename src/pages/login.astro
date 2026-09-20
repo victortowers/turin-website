@@ -403,7 +403,7 @@ import "../assets/styles/body.css";
              * ----------------------------------------------------
              */
 
-            onAuthStateChanged(auth, (user) => {
+            onAuthStateChanged(auth, async (user) => {
                 const userInfo = document.querySelector("#user-info");
                 const headerTitle = document.querySelector("#header-title");
 
@@ -431,9 +431,9 @@ import "../assets/styles/body.css";
                         ${escapeHtml(user.uid)}
                     `;
 
-                    const idToken = user.getIdToken();
-                    const responsed = fetch(
-                        "https://turin-auth-service-git-master-vtincs-projects.vercel.app/sessionLogin/",
+                    const idToken = await user.getIdToken();
+                    const responsed = await fetch(
+                        "https://turin-auth-service-git-master-vtincs-projects.vercel.app/sessionLogin",
                         {
                             method: "POST",
                             headers: {
@@ -445,7 +445,7 @@ import "../assets/styles/body.css";
                         },
                     );
 
-                    const data = responsed.json();
+                    const data = await responsed.json();
                     console.log(data);
                 } else {
                     /*
