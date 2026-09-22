@@ -471,7 +471,9 @@ import "../assets/styles/body.css";
                     clearError();
 
                     try {
-                        await fetch(
+
+                      showProcessing("Fazendo Logout...")           
+                      await fetch(
                             "https://auth.turinflow.com.br/sessionLogout",
                             {
                                 method: "POST",
@@ -483,6 +485,7 @@ import "../assets/styles/body.css";
                         );
 
                         await signOut(auth);
+                        hideProcessing()
                     } catch (error) {
                         console.error("Sign out error:", error);
 
