@@ -12,7 +12,16 @@ import "../assets/styles/globals.css";
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Visão Geral | Trânsito, simplificado.</title>
+        <link
+            rel="canonical"
+            href="https://turinflow.com.br/transito-ao-vivo"
+        />
+
+        <meta
+            name="description"
+            content="Turin, o site do trânsito em tempo real. Veja rotas pré-determinadas para entender o que está acontecendo."
+        />
+        <title>Visão Geral Alphaville | Trânsito ao Vivo</title>
         <style>
             :root {
                 --brand-main: #ffd700;
@@ -40,83 +49,21 @@ import "../assets/styles/globals.css";
         </div>
 
         <!-- THE PRODUCTION DASHBOARD -->
-        <div id="dashboard" style="min-height: 710px;">
-            <div class="master-1">
-                <div id="names" class="container-1">
-                    <div class="metric-label align-right monospace">
-                        Nome da Região
-                    </div>
-                    <div
-                        id="ui-stress"
-                        class="metric-value align-right monospace"
-                    >
-                        -----------------
-                    </div>
-                    <div id="names2" class="names-list"></div>
-                </div>
 
-                <div id="stress-index" class="container-2">
-                    <div class="metric-label monospace align-left">
-                        Atraso Real
-                    </div>
-                    <div
-                        id="ui-delay"
-                        class="metric-value monospace align-left"
-                    >
-                        -----------
-                    </div>
-                    <div id="stress-index2" class="traffic-list"></div>
-                </div>
-            </div>
-
-            <div class="master-2 align-left1">
-                <div id="ui-header" class="metric-label s1">
-                    Visão Geral
-                </div>
-                <div
-                    id="ui-status"
-                    class="small inset monospace"
-                    style="line-height: 1.5rem;"
-                >
-                    <i>Trânsito em tempo real, para todos.</i>
-                </div>
-                <div class="metric-grid s2">
-                    <p style="font-size: 0.7rem; color: #eee; margin-top: max(3px, 1.1%); text-align: left; margin-bottom: max(3px, 1.1%);">
-                        Dados por Turin. Análises feitas pelo Canarinho.
-                    </p>
-                </div>
-                <p
-                    class="g1"
-                    style="width: 75%; letter-spacing: 1px; font-weight: 800; font-size: 21px; color: #fdfdfd; margin-top: max(12px, 2.8%); text-align: left; margin-bottom: max(11px, 1.1%);"
-                >
-                    Queremos que a vida dos moradores de Alphaville seja mais
-                    tranquila, rápida e fácil. Portanto, a partir de hoje,
-                    lançamos o recurso "Visão Geral", com os dados Turin. A
-                    partir desta parceria, conseguimos atingir maior precisão
-                    sobre as condições das vias em Alphaville, da maneira mais
-                    rápida e prática. <br />
-                    <br />
-                    Todos merecem uma vida menos estressante e previsibilidade
-                    na volta para casa. TurinFlow e o Canarinho ficarão de olho
-                    nas vias, 24 horas por dia, para você nunca estar
-                    desatualizado.
-                </p>
-
-                <div
-                    class="g2"
-                    style="gap: 0rem; border:1px solid rgba(69, 86, 75, 0.28); padding-left: 12px; line-height: 1.2rem; width: 55%;"
-                >
-                    <div style="font-size: 0.9rem; color: #fdfdfd; margin-top: 0.3rem;">
-                        Atualizado às <span id="time_updated"></span>.
-                    </div>
-                    <div
-                        class="metric-label"
-                        style="font-size: 0.5rem; margin-top: 0rem; color: #eee; line-height: 0.75rem; padding-bottom: 0.45rem;"
-                    >
-                        <i>(Atualização Automática)</i>
-                    </div>
-                </div>
-            </div>
+        <div
+            id="dashboard"
+            style="height: auto; min-width: 85vw; margin-inline: auto; flex-direction: column; background-color: rgba(23, 36, 18, 0.09);"
+        >
+            <h1
+                style="color: #777; text-align: center; margin-top: 1rem; margin-bottom: 2rem;  "
+                class="monospace"
+            >
+                Visão Geral - Trânsito de Alphaville
+            </h1>
+            <div
+                id="names2"
+                style="display: flex; flex-direction: column;"
+            ></div>
         </div>
 
         <Footer />
@@ -234,40 +181,62 @@ import "../assets/styles/globals.css";
             function uiLoader(data) {
                 setTimeout(() => {
                     const namesContainer = document.getElementById("names2");
-                    const statusContainer =
-                        document.getElementById("stress-index2");
 
-                    document.getElementById("names2").innerHTML = "";
+                    if (!namesContainer) {
+                        throw new Error(
+                            "Dashboard container #names2 not found",
+                        );
+                    }
+
+                    if (!Array.isArray(data)) {
+                        throw new Error("Invalid pulse data");
+                    }
+
+                    namesContainer.innerHTML = "";
+
                     const namesHtml = data
-                        .map(
-                            (route) => `
-                    <span class="monospace align-right ui-roadnames">
-                        ${route.route_id.replace(/_/g, " ")}
-                    </span>
-                `,
-                        )
+                        .map((route) => {
+                            const routeName = String(
+                                route.route_id ?? "Rota",
+                            ).replace(/_/g, " ");
+
+                            const delay =
+                                route.delay == null || route.delay < 0
+                                    ? "<0.01 min"
+                                    : `${route.delay} minutos`;
+
+                            const status =
+                                route.status_label ?? "Dados indisponíveis";
+                            const statusColor = getStatusColor(
+                                route.stress_score,
+                            );
+
+                            return `
+                                <div style="background-color: rgba(123, 136, 118, 0.11); backdrop-filter: blur(10px); border-radius: calc(100vw * 0.021); width: 80%; margin-inline: auto; justify-content: center; padding: 1rem; margin: 0.8rem 1rem 0.8rem 1rem; text-align: center; border: 1px solid #777" class="route-row">
+                                    <span class="monospace align-right">
+                                        Rota: ${routeName}
+                                    </span>
+                                    <br />
+                                    <span class="monospace align-left">
+                                        Atraso de ${delay} <br />
+                                        <span style="color: ${statusColor}">
+                                            (${status})
+                                        </span>
+                                    </span>
+                                </div>
+                            `;
+                        })
                         .join("");
 
-                    // 3. Build the 'Status' string
-                    // Hint: Use the ui_color we set in the SQL view earlier
-                    document.getElementById("stress-index2").innerHTML = "";
-                    const statusHtml = data
-                        .map(
-                            (route) => `
-                    <span class="monospace align-left ui-roadnames">
-                        ${route.delay < 0 ? "<0.01 min" : route.delay == null ? "<0.01 min" : route.delay + " Minutos" || "Dados Indisponíveis"}  <span style="color: ${getStatusColor(route.stress_score)}">(${route.status_label})</span>
-                    </span>
-                `,
-                        )
-                        .join("");
+                    namesContainer.innerHTML = namesHtml;
 
-                    // 4. Inject into the DOM ONCE (High Performance)
-                    namesContainer.innerHTML += namesHtml;
-                    statusContainer.innerHTML += statusHtml;
+                    const timeUpdated = document.getElementById("time_updated");
 
-                    let date = new Date();
-                    document.getElementById("time_updated").innerText =
-                        date.toLocaleTimeString();
+                    if (timeUpdated) {
+                        timeUpdated.innerText = new Date().toLocaleTimeString(
+                            "pt-BR",
+                        );
+                    }
                 }, 400);
             }
 

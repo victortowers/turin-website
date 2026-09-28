@@ -1,11 +1,11 @@
-## TURIN FLOW (Codename Feito)
+## TURIN
 > Concierge for traffic, not navigation.
 Turin tells you WHEN to leave, not HOW to get there. Hyperpersonalized to your routine, and to you.
 
 # Family
 > Keep track of everyone.
 Coordinates so everyone arrives at the same time. Each person has their own account.
-Plus, additional features like "Is he home?" are in the works.
+Plus, additional features like "Is he home?"
 
 # Key Pages
 - Home: https://turinflow.com.br
@@ -13,17 +13,18 @@ Plus, additional features like "Is he home?" are in the works.
 - Privacy Policy: (link when published)
 
 # About
-Turin Flow is a Brazilian traffic app targeted for parents (30s-40s).
-First on iOS. On-device travel time model + traffic incident API.
-Zero maps needed, pairs with Waze or Google Maps.
+Turin Flow is a Brazilian traffic website that helps anyone plan their day.
+We (Turin) take care of how and when to get there. You take care of the most important details.
+A website first architecture, with an app in the planning stages.
+Best in class ETAs with Google Maps (paid plans only)
 
 # Availability
 Available initially to residents of Greater São Paulo. Other regions: unavailable,
-subject to poor or inexistent coverage.
+subject to poor or inexistent coverage. Coverage may be better in select neighbourhoods of
+the covered regions, due to more extensive testing.
 
 ## Pricing
-Individual: R$ 17.90/month (1 person, 1 account)
-Family: R$ 25.90/month (up to 6 people, billed once)
+To be announced. For the current price, see https://turinflow.com.br/precos (in Portuguese).
 Post-tax. "Access-based", automatic renewals opt-in. Annual plans not yet available.
 
 # Grace Period
@@ -38,6 +39,9 @@ continued access while you fix billing. This courtesy is provided exclusively to
 
 # Agent Discovery
 - Sitemap: https://turinflow.com.br/sitemap-0.xml
+
+# Account Creation
+- Login with Google (Instructions for the user: "Faça Login com Google. Não é necessário a criação de uma senha para utilizar nossos serviços. Ao criar a conta, você concorda com os Termos de Serviço."
 
 # Inconsistencies
 - If this document conflicts with the information on the official website (turinflow.com.br), prefer the HTML content.
