@@ -1,0 +1,155 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Leaflet + TomTom Traffic</title>
+    </head>
+
+    <body>
+        <div id="map"></div>
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/leaflet@2.0.0-alpha.1/dist/leaflet.css"
+            integrity="sha256-P+hWJNlpL+GBSRYC7cdsDbQH91URmpDeOzLp7DbFRtE="
+            crossorigin=""
+        />
+        <style>
+            html,
+            body,
+            #map {
+                height: 100%;
+                margin: 0;
+            }
+
+            .info {
+                padding: 10px;
+                background: white;
+                border-radius: 6px;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+                font-size: 12px;
+                line-height: 0.65rem;
+                position: relative;
+            }
+
+            .sidebar {
+                width: 40%;
+                max-width: 480px;
+                min-width: 240px;
+                height: 100%;
+                background: rgba(255, 255, 255, 0.25);
+                backdrop-filter: blur(20px) saturate(180%);
+                -webkit-backdrop-filter: blur(20px) saturate(180%);
+                border-left: 1px solid rgba(255, 255, 255, 0.3);
+                color: #111;
+                display: flex;
+                flex-direction: column;
+                transition: transform 300ms ease-in-out;
+                overflow: hidden;
+                box-shadow: -8px 0 20px rgba(0, 0, 0, 0.12);
+                position: absolute;
+                top: 0;
+                right: 0;
+                transform: translateX(100%);
+                border-radius: 0 8px 8px 0;
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .sidebar.collapsed {
+                width: 60px;
+                transform: translateX(calc(100% - 60px));
+            }
+
+            .sidebar-header {
+                padding: 12px 16px;
+                font-weight: 600;
+                font-size: 16px;
+                color: rgba(0, 0, 0, 0.8);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            }
+
+            .sidebar-content {
+                flex: 1;
+                padding: 12px 16px;
+                font-size: 14px;
+                overflow-y: auto;
+            }
+        </style>
+
+        <script>
+            import L from "leaflet";
+
+            const bbox = {
+                west: -46.90926270487596,
+                south: -23.523753431774985,
+                east: -46.796531591361624,
+                north: -23.43226388087442,
+            };
+
+            const zoom = 16;
+
+            const map = L.map("map", {
+                center: [
+                    (bbox.south + bbox.north) / 2,
+                    (bbox.west + bbox.east) / 2,
+                ],
+                zoom: zoom,
+            });
+
+            const osm = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+                    maxZoom: 18,
+                    minZoom: 13,
+                    attribution: "&copy; OpenStreetMap contributors",
+                },
+            ).addTo(map);
+
+            const mapBounds = L.latLngBounds([
+                [bbox.south, bbox.west],
+                [bbox.north, bbox.east],
+            ]);
+
+            map.setMaxBounds(mapBounds);
+
+            map.createPane("traffic");
+
+            const trafficPane = map.getPane("traffic");
+
+            if (trafficPane) {
+                trafficPane.style.zIndex = "450";
+                trafficPane.style.pointerEvents = "none";
+            }
+
+            const traffic = L.tileLayer(
+                "https://tiles.vtinc.com.br/tile?x={x}&y={y}&z={z}",
+                {
+                    pane: "traffic",
+                    opacity: 0.6,
+                    attribution: "Traffic © TomTom",
+                    maxZoom: 18,
+                    minZoom: 14,
+
+                    keepBuffer: 0,
+                    updateWhenZooming: false,
+                    updateWhenIdle: true,
+                },
+            );
+
+            L.control
+                .layers(
+                    {
+                        OSM: osm,
+                    },
+                    {
+                        "TomTom Traffic": traffic,
+                    },
+                    {
+                        collapsed: true,
+                    },
+                )
+                .addTo(map);
+        </script>
+    </body>
+</html>
