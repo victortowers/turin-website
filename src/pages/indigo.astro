@@ -98,11 +98,12 @@
             });
 
             const osm = L.tileLayer(
-                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                "https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png?key=cb1_4g9i_1_6095da898accf5d4f73fd36b",
                 {
                     maxZoom: 18,
                     minZoom: 13,
                     attribution: "&copy; OpenStreetMap contributors",
+                    referrerPolicy: "strict-origin-when-cross-origin",
                 },
             ).addTo(map);
 
