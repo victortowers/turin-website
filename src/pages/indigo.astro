@@ -103,13 +103,17 @@
             });
 
             const osm = L.tileLayer(
-                "https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png?key=cb1_4g9i_1_6095da898accf5d4f73fd36b",
+                "https://api.thunderforest.com/atlas/{z}/{x}/{y}.png?apikey=3deecce52af440d5983ca7b1aa886a2e",
                 {
                     maxZoom: 18,
                     minZoom: 13,
                     attribution:
-                        "&copy; OpenStreetMap contributors, &copy; CARTO",
+                        "Data &copy; OpenStreetMap contributors, Maps &copy; CARTO",
                     referrerPolicy: "strict-origin-when-cross-origin",
+
+                    keepBuffer: 0,
+                    updateWhenZooming: false,
+                    updateWhenIdle: true,
                 },
             ).addTo(map);
 
