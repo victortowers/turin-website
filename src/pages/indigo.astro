@@ -117,13 +117,6 @@
                 },
             ).addTo(map);
 
-            const mapBounds = L.latLngBounds([
-                [bbox.south, bbox.west],
-                [bbox.north, bbox.east],
-            ]);
-
-            map.setMaxBounds(mapBounds);
-
             map.createPane("traffic");
 
             const trafficPane = map.getPane("traffic");
@@ -146,7 +139,7 @@
                     updateWhenZooming: false,
                     updateWhenIdle: true,
                 },
-            );
+            ).addTo(map);
 
             L.control
                 .layers(
