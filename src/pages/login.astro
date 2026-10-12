@@ -438,7 +438,7 @@ import "../assets/styles/body.css";
 
                     const idToken = await user.getIdToken();
                     const responsed = await fetch(
-                        "https://auth.turinflow.com.br/sessionLogin",
+                        "https://f.turinflow.com.br/sessionLogin",
                         {
                             method: "POST",
                             credentials: "include",
@@ -474,9 +474,8 @@ import "../assets/styles/body.css";
                     clearError();
 
                     try {
-
-                      showProcessing("Fazendo Logout...")           
-                      await fetch(
+                        showProcessing("Fazendo Logout...");
+                        await fetch(
                             "https://auth.turinflow.com.br/sessionLogout",
                             {
                                 method: "POST",
@@ -488,7 +487,7 @@ import "../assets/styles/body.css";
                         );
 
                         await signOut(auth);
-                        hideProcessing()
+                        hideProcessing();
                     } catch (error) {
                         console.error("Sign out error:", error);
 
