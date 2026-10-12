@@ -416,13 +416,11 @@ import "../assets/styles/body.css";
                 const hour = new Date().getHours();
 
                 if (hour >= 5 && hour < 12) {
-                    return "Bom Dia, ";
+                    return "Bom Dia";
                 } else if (hour >= 12 && hour < 17) {
-                    return "Boa Tarde, ";
-                } else if (hour >= 17 && hour < 21) {
-                    return "Boa Noite, ";
+                    return "Boa Tarde";
                 } else {
-                    return "Boa Noite, ";
+                    return "Boa Noite";
                 }
             }
 
