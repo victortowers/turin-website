@@ -404,12 +404,6 @@ import "../assets/styles/body.css";
 
             /*
              * ----------------------------------------------------
-             * 8. WATCH AUTHENTICATION STATE
-             * ----------------------------------------------------
-             */
-
-            /*
-             * ----------------------------------------------------
              * 8. WATCH AUTHENTICATION STATE + LOAD API PROFILE
              * ----------------------------------------------------
              */
@@ -417,6 +411,22 @@ import "../assets/styles/body.css";
             // Change this URL if /api/me is hosted on another subdomain.
             const API_ME_URL = "https://f.turinflow.com.br/me";
             const SESSION_LOGIN_URL = "https://f.turinflow.com.br/sessionLogin";
+
+            function getGreeting() {
+                const hour = new Date().getHours();
+
+                if (hour >= 5 && hour < 12) {
+                    return "Bom Dia, ";
+                } else if (hour >= 12 && hour < 17) {
+                    return "Boa Tarde, ";
+                } else if (hour >= 17 && hour < 21) {
+                    return "Boa Noite, ";
+                } else {
+                    return "Boa Noite, ";
+                }
+            }
+
+            console.log(`${getGreeting()}!`);
 
             onAuthStateChanged(auth, async (user) => {
                 const userInfo = document.querySelector("#user-info");
@@ -493,7 +503,7 @@ import "../assets/styles/body.css";
 
                     headerTitle.innerHTML = `
                         <h1 style="font-size: 21px; margin-bottom: 0;">
-                            ${escapeHtml(profile.message || `Olá, ${displayName}!`)}
+                            ${escapeHtml(`${getGreeting()}, ${displayName}!`)}
                         </h1>
                         <i>O que podemos fazer por você, hoje?</i>
                     `;
@@ -534,8 +544,6 @@ import "../assets/styles/body.css";
                         <strong>Expiração da sessão:</strong>
                         ${escapeHtml(readableExpiry)}
                     `;
-
-                    console.log("Verified API profile:", profile);
                 } catch (error) {
                     console.error("Authentication/profile error:", error);
 
