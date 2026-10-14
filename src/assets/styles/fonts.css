@@ -17,6 +17,12 @@
         }
 
         @font-face {
+            font-family: "n3";
+            src: url("https://www.turinflow.com.br/assets/NotoSans-VariableFont_wdth%2Cwght.ttf");
+            font-display: swap;
+        }
+
+        @font-face {
             font-family: "g2";
             src: url("https://www.turinflow.com.br/assets/GoogleSansFlex_120pt-ExtraLight.ttf");
             font-display: swap;
@@ -50,6 +56,10 @@
             font-family: "s4";
             src: url("https://www.turinflow.com.br/assets/SpaceMono-BoldItalic.ttf");
             font-display: swap;
+        }
+
+        .n3 {
+            font-family: n3, -apple-system, BlinkMacSystemFont;
         }
 
         .n1 {
