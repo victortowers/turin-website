@@ -14,3 +14,6 @@ src/components/Welcome.astro
 src/components/bottom-logo copy.astro
 src/pages/login-legacy.astro
 src/pages/demo.astro
+src/pages/index copy.astro
+src/components/buttom.astro
+src/components/bottom-logo3.astro

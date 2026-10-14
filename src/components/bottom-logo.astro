@@ -4,16 +4,23 @@ import qr_code from "../assets/qr_code.png";
 ---
 
 <div
-    class="s1 hover3"
-    style="padding-top: 4rem; font-size: calc(100vw * 0.159); line-height: calc(100vw * 0.159); text-align: center; margin-bottom: 8px;"
+    class="s1 hover3 desktop"
+    style="padding-top: 4rem; font-size: clamp(16px, calc(100vw * 0.109), 90px); line-height: clamp(15px, calc(100vw * 0.11), 90px); text-align: center; margin-bottom: 8px;"
 >
-    TURINFLOW
+    TURIN<span class="hover4">FLOW</span>
+</div>
+
+<div
+    class="s1 hover3 mobile"
+    style="padding-top: 4rem; font-size: clamp(16px, calc(100vw * 0.109), 90px); line-height: clamp(15px, calc(100vw * 0.11), 90px); text-align: center; margin-bottom: 8px;"
+>
+    TURIN
 </div>
 <div
     class="g2"
-    style="letter-spacing: 1px; padding-bottom: 4rem; font-size: 21px; line-height: 21px; color: #111; margin-inline: auto; text-align: center;"
+    style="letter-spacing: 1px; padding-bottom: 4rem; font-size: 21px; line-height: 21px; margin-inline: auto; text-align: center;"
 >
-    Saia na hora certa.
+    Chegue com tranquilidade.
 </div>
 
 <footer class="footer">
@@ -89,12 +96,14 @@ import qr_code from "../assets/qr_code.png";
             </a>
         </div>
 
-        <div class="n2 mobile-1 image" style="color: #fff; height: auto;">
+        <div class="n2 mobile-1 desktop image" style="color: #fff; height: auto;">
             <img
                 style="width: 100%; height: auto; object-fit: contain;"
                 src={qr_code.src}
             />
         </div>
+
+        <div class="mobile" style="height: 3rem; width: 100vw;"></div>
     </div>
 
     <div
@@ -105,7 +114,7 @@ import qr_code from "../assets/qr_code.png";
             class="title1 s1 bottom-1"
             style="font-size: 1rem; color: #666; font-weight: 500; line-height: 1.3rem; padding-left: 0rem;"
         >
-            Turin:&nbsp;Saia na hora certa.
+            Turin:&nbsp;Chegando com tranquilidade.
         </span>
         <div
             class="title1 s1 desktop"
@@ -120,13 +129,31 @@ import qr_code from "../assets/qr_code.png";
 </footer>
 
 <style>
+    .mobile {
+        display: block;
+    }
+
     .hover3 {
-        color: #aaa;
-        transition: 0.32s ease-in-out;
+        color: rgba(170, 170, 170, 0.85);
+        transition: 0.31s ease-in-out;
     }
     .hover3:hover {
         color: rgba(111, 136, 136, 0.45);
-        transition: 0.25s ease-in-out;
+        transition: 0.28s ease-in-out;
+    }
+
+    .hover4 {
+        color: rgba(170, 170, 170, 0.85);
+        text-decoration: line-through;
+        text-decoration-thickness: 0.07em;
+        text-decoration-color: rgba(170, 170, 170, 0.65);
+        transition: 0.32s ease-in-out;
+    }
+
+    .hover4:hover {
+        color: rgba(111, 136, 136, 0.45);
+        text-decoration-color: rgba(111, 137, 137, 0.35);
+        transition: 0.31s ease-in-out;
     }
 
     .footer {
@@ -150,8 +177,6 @@ import qr_code from "../assets/qr_code.png";
         flex: 0 0 min(180px, 23%);
     }
     .desktop {
-        width: 0;
-        height: 0;
         display: none;
     }
 
