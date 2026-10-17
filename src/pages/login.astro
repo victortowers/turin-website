@@ -27,10 +27,9 @@ import "../assets/styles/body.css";
 
             body {
                 font-family: s1, system-ui, sans-serif;
-                margin: 20px 80px 0 80px;
                 padding: 20px;
                 margin-inline: auto;
-                width: min(1100px, 95%);
+                width: min(1100px, 99%);
             }
 
             button:disabled {
@@ -46,7 +45,7 @@ import "../assets/styles/body.css";
                 border: 1px solid rgba(110, 110, 110, 0.1);
                 background-color: rgba(110, 110, 110, 0.1);
                 transition: 0.55s ease-in-out;
-                border-radius: 12px;
+                border-radius: 8px;
                 padding: 10px;
                 font-family: s1;
                 cursor: pointer;
@@ -140,14 +139,34 @@ import "../assets/styles/body.css";
         <!--
             LOGGED OUT
         -->
-        <div id="login" style="text-align: center; letter-spacing: 1px;">
+        <div
+            id="login"
+            style="margin-inline: auto; text-align: center; border: 1px solid #999; border-radius: 8px; padding: 1rem; max-width: 800px;"
+        >
             <pre id="auth-debug"></pre>
-            <h1 class="g2" style="font-weight: 800;">
-                Faça Login!
-            </h1>
-            <Construction />
 
-            <button id="google-login">Continue com Google</button>
+            <img
+                src="../src/assets/login-image.png"
+                style="width: 100%; border-radius: 8px; border: 1px solid #999"
+                alt="Image of Parque Ibirapuera, Large Park in São Paulo."
+            />
+
+            <div
+                class="s1"
+                style="font-size: min(3vw, 14px); font-weight: 300; color: #777; padding: 0rem; margin: 0;"
+            >
+                Parque Ibirapuera. Maps &copy; Mapbox; Data © Openstreetmap.
+            </div>
+            <h1
+                class="g2"
+                style="font-size: 25px; font-weight: 300; color: #999; padding: 1rem; padding-bottom: 0.25rem; margin-bottom: 0.5rem; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px dashed #888"
+            >
+                Acesse sua conta Turin para continuar.
+            </h1>
+
+            <button class="g2" id="google-login">
+                Continue com Google
+            </button>
 
             <button id="oidc-login">Continue com Pocket ID (SSO)</button>
             <button id="anonymous-login">Continuar sem conta</button>
@@ -497,9 +516,10 @@ import "../assets/styles/body.css";
                             : "Desconhecido";
 
                     // 5. Render the API response, not the client-side claims.
-                    const displayName = profile.name.trim().split(/\s+/)[0] || "Usuário";
+                    const displayName =
+                        profile.name.trim().split(/\s+/)[0] || "Usuário";
 
-     headerTitle.innerHTML = `
+                    headerTitle.innerHTML = `
     <h1 style="font-size: 21px; margin-bottom: 0;">
         ${escapeHtml(`${getGreeting()}, ${displayName}.`)}
     </h1>
