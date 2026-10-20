@@ -1,0 +1,614 @@
+---
+import "../../assets/styles/fonts.css";
+---
+
+<!doctype html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Pesquisa Nominatim | Turin</title>
+    </head>
+
+    <body>
+        <main class="page">
+            <header class="page-header">
+                <h1>Pesquisa Nominatim</h1>
+                <p>Pesquise endereços e lugares no OpenStreetMap.</p>
+            </header>
+
+            <section class="search-section">
+                <form id="search-form">
+                    <label for="search-input">Endereço ou lugar</label>
+                    <div class="search-row">
+                        <input
+                            id="search-input"
+                            name="q"
+                            type="search"
+                            placeholder="Ex.: Avenida Paulista, São Paulo"
+                            required
+                        />
+                        <button type="submit">Pesquisar</button>
+                    </div>
+                </form>
+
+                <div class="suggestion-row">
+                    <span>Ou experimente:</span>
+                    <button id="suggestion" type="button">
+                        São Paulo, SP, Brasil
+                    </button>
+                </div>
+            </section>
+
+            <section class="results-section" aria-live="polite">
+                <h2>
+                    Resultados <span id="result-count"></span>
+                </h2>
+                <p id="status">Digite um endereço ou lugar para começar.</p>
+                <div id="results"></div>
+            </section>
+        </main>
+
+        <style>
+            :root {
+                --text: #292d29;
+                --muted: #858b84;
+                --border: #e2e6e0;
+                --border-hover: #c8d0c5;
+                --accent: #50634e;
+                --surface: #fff;
+                --soft: #f8f9f7;
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            body {
+                margin: 0;
+                background: #fff;
+                color: var(--text);
+                font-family: "s1", "Noto Sans", system-ui, sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+
+            button,
+            input {
+                font: inherit;
+            }
+
+            button {
+                cursor: pointer;
+            }
+
+            .page {
+                width: min(100% - 36px, 720px);
+                margin: 0 auto;
+                padding: 32px 0 48px;
+            }
+
+            .page-header {
+                margin-bottom: 28px;
+            }
+
+            h1 {
+                margin: 0;
+                font-size: 26px;
+                font-weight: 500;
+                letter-spacing: -0.04em;
+            }
+
+            .page-header p {
+                margin: 6px 0 0;
+                color: var(--muted);
+                font-size: 13px;
+            }
+
+            .search-section {
+                padding-bottom: 24px;
+                border-bottom: 1px solid var(--border);
+            }
+
+            label {
+                display: block;
+                margin-bottom: 8px;
+                font-size: 12px;
+                font-weight: 500;
+            }
+
+            .search-row {
+                display: flex;
+                gap: 8px;
+            }
+
+            input {
+                width: 100%;
+                min-width: 0;
+                height: 42px;
+                padding: 9px 12px;
+                border: 1px solid var(--border);
+                border-radius: 5px;
+                outline: none;
+                background: var(--surface);
+                color: var(--text);
+            }
+
+            input:focus {
+                border-color: var(--border-hover);
+            }
+
+            input::placeholder {
+                color: #a2a7a0;
+            }
+
+            .search-row button {
+                flex-shrink: 0;
+                padding: 0 15px;
+                border: 1px solid var(--border);
+                border-radius: 5px;
+                background: var(--soft);
+                color: var(--text);
+                font-size: 12px;
+            }
+
+            .search-row button:hover {
+                border-color: var(--border-hover);
+            }
+
+            .suggestion-row {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                gap: 8px;
+                margin-top: 12px;
+                color: var(--muted);
+                font-size: 12px;
+            }
+
+            .suggestion-row button {
+                padding: 0;
+                border: 0;
+                background: transparent;
+                color: var(--accent);
+                font-size: 12px;
+                text-decoration: underline;
+                text-decoration-color: #cbd3c8;
+                text-underline-offset: 3px;
+            }
+
+            .results-section {
+                padding-top: 24px;
+            }
+
+            h2 {
+                margin: 0 0 12px;
+                font-size: 16px;
+                font-weight: 500;
+            }
+
+            #result-count {
+                color: var(--muted);
+                font-size: 12px;
+            }
+
+            #status {
+                margin: 0 0 14px;
+                color: var(--muted);
+                font-size: 12px;
+            }
+
+            #status:empty {
+                display: none;
+            }
+
+            #results {
+                display: grid;
+                gap: 12px;
+            }
+
+            .result {
+                padding: 16px 0;
+                border-top: 1px solid var(--border);
+            }
+
+            .result-title {
+                margin: 0;
+                font-size: 14px;
+                font-weight: 500;
+                overflow-wrap: anywhere;
+            }
+
+            .result-address {
+                margin: 4px 0 0;
+                color: var(--muted);
+                font-size: 12px;
+                overflow-wrap: anywhere;
+            }
+
+            .result-meta {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 4px 16px;
+                margin-top: 10px;
+                color: var(--muted);
+                font-size: 11px;
+            }
+
+            .coordinates {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px 20px;
+                margin-top: 12px;
+            }
+
+            .coordinate {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: baseline;
+                gap: 6px;
+                font-size: 12px;
+            }
+
+            .coordinate-label {
+                color: var(--muted);
+                font-size: 11px;
+            }
+
+            .coordinate-value {
+                font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+                font-size: 12px;
+                font-variant-numeric: tabular-nums;
+            }
+
+            /* Actions are deliberately links, not large buttons. */
+            .result-actions {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                gap: 7px 16px;
+                margin-top: 12px;
+            }
+
+            .action-link {
+                appearance: none;
+                -webkit-appearance: none;
+                display: inline-block;
+                margin: 0;
+                padding: 0;
+                border: none;
+                border-radius: 0;
+                outline-offset: 4px;
+                background: transparent;
+                box-shadow: none;
+
+                color: var(--accent);
+                font: inherit;
+                font-size: 11px;
+                line-height: 1.7;
+                text-align: left;
+                text-decoration: underline;
+                text-decoration-color: #d4dbd1;
+                text-underline-offset: 3px;
+
+                cursor: pointer;
+            }
+
+            .action-link:hover {
+                background: transparent;
+                color: #303f2f;
+                text-decoration-color: currentColor;
+            }
+
+            .action-link:focus-visible {
+                outline: 1px solid var(--accent);
+            }
+
+            .action-link:active {
+                background: transparent;
+                box-shadow: none;
+            }
+
+            .result-details {
+                margin-top: 12px;
+                border-top: 1px solid var(--border);
+                padding-top: 9px;
+            }
+
+            .result-details summary {
+                width: fit-content;
+                color: var(--muted);
+                cursor: pointer;
+                font-size: 11px;
+            }
+
+            .result-details pre {
+                max-width: 100%;
+                max-height: 300px;
+                margin: 10px 0 0;
+                padding: 12px;
+                overflow: auto;
+                border: 1px solid var(--border);
+                border-radius: 5px;
+                background: var(--soft);
+                font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+                font-size: 11px;
+                white-space: pre-wrap;
+                overflow-wrap: anywhere;
+            }
+
+            @media (max-width: 480px) {
+                .page {
+                    width: calc(100% - 28px);
+                    padding-top: 22px;
+                }
+
+                .search-row {
+                    align-items: stretch;
+                }
+
+                .search-row button {
+                    padding: 0 11px;
+                }
+
+                .result-actions {
+                    gap: 6px 14px;
+                }
+            }
+        </style>
+
+        <script>
+            const form = document.querySelector("#search-form");
+            const input = document.querySelector("#search-input");
+            const suggestion = document.querySelector("#suggestion");
+            const resultsContainer = document.querySelector("#results");
+            const status = document.querySelector("#status");
+            const resultCount = document.querySelector("#result-count");
+
+            const NOMINATIM_URL = "https://nominatim.openstreetmap.org/search";
+            const MIN_REQUEST_INTERVAL = 1100;
+
+            let lastRequestTime = 0;
+            let activeController;
+
+            function element(tag, className, text) {
+                const node = document.createElement(tag);
+                if (className) node.className = className;
+                if (text !== undefined) node.textContent = String(text);
+                return node;
+            }
+
+            function actionLink(text, href) {
+                const link = element("a", "action-link", text);
+                link.href = href;
+                link.target = "_blank";
+                link.rel = "noopener noreferrer";
+                return link;
+            }
+
+            function addCoordinate(container, label, value) {
+                const item = element("div", "coordinate");
+                item.append(
+                    element("span", "coordinate-label", label),
+                    element("span", "coordinate-value", value),
+                );
+                container.append(item);
+            }
+
+            function renderResults(items) {
+                resultsContainer.replaceChildren();
+                resultCount.textContent = `(${items.length})`;
+
+                if (!items.length) {
+                    status.textContent = "Nenhum resultado encontrado.";
+                    return;
+                }
+
+                status.textContent = "";
+
+                const fragment = document.createDocumentFragment();
+
+                items.forEach((item) => {
+                    const card = element("article", "result");
+
+                    const title =
+                        item.name ||
+                        item.namedetails?.name ||
+                        item.display_name?.split(",")[0] ||
+                        "Lugar sem nome";
+
+                    card.append(
+                        element("h3", "result-title", title),
+                        element(
+                            "p",
+                            "result-address",
+                            item.display_name || "Endereço não informado",
+                        ),
+                    );
+
+                    const meta = element("div", "result-meta");
+
+                    if (item.class) {
+                        meta.append(
+                            element("span", "", `Categoria: ${item.class}`),
+                        );
+                    }
+
+                    if (item.type) {
+                        meta.append(element("span", "", `Tipo: ${item.type}`));
+                    }
+
+                    if (item.place_id !== undefined) {
+                        meta.append(
+                            element("span", "", `ID: ${item.place_id}`),
+                        );
+                    }
+
+                    if (meta.childElementCount) card.append(meta);
+
+                    const lat = Number(item.lat);
+                    const lon = Number(item.lon);
+                    const validCoordinates =
+                        Number.isFinite(lat) && Number.isFinite(lon);
+
+                    if (validCoordinates) {
+                        const coordinates = element("div", "coordinates");
+                        addCoordinate(
+                            coordinates,
+                            "Latitude: ",
+                            lat.toFixed(7),
+                        );
+                        addCoordinate(
+                            coordinates,
+                            "Longitude: ",
+                            lon.toFixed(7),
+                        );
+                        card.append(coordinates);
+
+                        const actions = element("div", "result-actions");
+
+                        const copy = element(
+                            "button",
+                            "action-link",
+                            "Copiar coordenadas",
+                        );
+                        copy.type = "button";
+
+                        copy.addEventListener("click", async () => {
+                            const text = `${lat}, ${lon}`;
+
+                            try {
+                                await navigator.clipboard.writeText(text);
+                                copy.textContent = "Copiado!";
+                            } catch {
+                                const textarea = element("textarea");
+                                textarea.value = text;
+                                textarea.style.position = "fixed";
+                                textarea.style.opacity = "0";
+                                document.body.append(textarea);
+                                textarea.select();
+                                const success = document.execCommand("copy");
+                                textarea.remove();
+                                copy.textContent = success
+                                    ? "Copiado!"
+                                    : "Falha ao copiar";
+                            }
+
+                            window.setTimeout(() => {
+                                copy.textContent = "Copiar coordenadas";
+                            }, 1600);
+                        });
+
+                        const osm = actionLink(
+                            "Ver no OpenStreetMap ↗",
+                            `https://www.openstreetmap.org/?mlat=${lat}&mlon=${lon}#map=17/${lat}/${lon}`,
+                        );
+
+                        const google = actionLink(
+                            "Ver no Google Maps ↗",
+                            `https://www.google.com/maps?q=${lat},${lon}`,
+                        );
+
+                        actions.append(copy, osm, google);
+                        card.append(actions);
+                    }
+
+                    const details = element("details", "result-details");
+                    const summary = element(
+                        "summary",
+                        "",
+                        "Ver resposta completa (JSON)",
+                    );
+                    const pre = element("pre");
+                    pre.textContent = JSON.stringify(item, null, 2);
+
+                    details.append(summary, pre);
+                    card.append(details);
+                    fragment.append(card);
+                });
+
+                resultsContainer.append(fragment);
+            }
+
+            async function search(query) {
+                const cleaned = query.trim();
+
+                if (!cleaned) {
+                    status.textContent =
+                        "Digite um endereço ou lugar para pesquisar.";
+                    return;
+                }
+
+                activeController?.abort();
+                activeController = new AbortController();
+
+                resultsContainer.replaceChildren();
+                resultCount.textContent = "";
+                status.textContent = "Pesquisando…";
+
+                try {
+                    const elapsed = Date.now() - lastRequestTime;
+                    const wait = Math.max(0, MIN_REQUEST_INTERVAL - elapsed);
+
+                    if (wait) {
+                        await new Promise((resolve) =>
+                            setTimeout(resolve, wait),
+                        );
+                    }
+
+                    if (activeController.signal.aborted) return;
+
+                    lastRequestTime = Date.now();
+
+                    const params = new URLSearchParams({
+                        q: cleaned,
+                        format: "jsonv2",
+                        addressdetails: "1",
+                        namedetails: "1",
+                        limit: "10",
+                        countrycodes: "br",
+                        viewbox: "-47.15,-23.30,-46.30,-24.10",
+                    });
+
+                    const response = await fetch(`${NOMINATIM_URL}?${params}`, {
+                        signal: activeController.signal,
+                        headers: { Accept: "application/json" },
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(
+                            response.status === 429
+                                ? "Muitas solicitações. Aguarde um pouco e tente novamente."
+                                : `Erro HTTP ${response.status} ao pesquisar.`,
+                        );
+                    }
+
+                    const data = await response.json();
+
+                    if (!activeController.signal.aborted) {
+                        renderResults(data);
+                    }
+                } catch (error) {
+                    if (error.name === "AbortError") return;
+
+                    console.error(error);
+                    resultsContainer.replaceChildren();
+                    resultCount.textContent = "";
+                    status.textContent =
+                        error.message ||
+                        "Não foi possível pesquisar. Verifique sua conexão.";
+                }
+            }
+
+            form.addEventListener("submit", (event) => {
+                event.preventDefault();
+                search(input.value);
+            });
+
+            suggestion.addEventListener("click", () => {
+                input.value = "São Paulo, SP, Brasil";
+                search(input.value);
+            });
+        </script>
+    </body>
+</html>
