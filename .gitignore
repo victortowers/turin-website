@@ -18,3 +18,4 @@ src/pages/index copy.astro
 src/components/buttom.astro
 src/components/bottom-logo3.astro
 src/pages/precos3.astro
+src/pages/legacy/
