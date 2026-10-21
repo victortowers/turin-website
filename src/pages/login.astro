@@ -59,13 +59,13 @@ import "../assets/styles/body.css";
             }
 
             .button2:hover {
-                background-color: rgba(29, 59, 177, 0.1);
+                background-color: rgba(111, 136, 136, 0.1);
                 transition: 0.41s ease-in-out;
             }
 
             button:hover,
             .board1:hover {
-                background-color: rgba(29, 59, 177, 0.1);
+                background-color: rgba(111, 136, 136, 0.15);
                 transition: 0.41s ease-in-out;
             }
 
@@ -95,8 +95,9 @@ import "../assets/styles/body.css";
                 display: none;
                 align-items: center;
                 justify-content: center;
-
-                background: rgba(200, 200, 200, 0.95);
+                backdrop-filter: blur(4px) saturate(110%);
+                -webkit-backdrop-filter: blur(4px) saturate(110%);
+                background: rgba(200, 200, 200, 0.75);
 
                 z-index: 9999;
             }
@@ -199,7 +200,7 @@ import "../assets/styles/body.css";
                 Continue com Pocket ID (SSO)
             </button>
             <button
-                class="button1 button2"
+                class="button1 button2 s1"
                 id="back-button"
                 onclick="history.length > 1 ? history.back() : location.href = '/'"
             >
@@ -407,6 +408,11 @@ import "../assets/styles/body.css";
                 clearError();
                 try {
                     showProcessing("Carregando, aguarde...");
+                    fetch("https://f.turinflow.com.br/me", {
+                        method: "GET",
+                        credentials: "include",
+                        headers: { Accept: "application/json" },
+                    });
                     sessionStorage.setItem("authRedirectPending", providerName);
                     await signInWithRedirect(auth, provider);
                 } catch (error) {
