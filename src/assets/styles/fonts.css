@@ -58,6 +58,12 @@
             font-display: swap;
         }
 
+        @font-face {
+            font-family: "g3";
+            src: url("https://www.turinflow.com.br/assets/GoogleSans_17pt-Medium.ttf");
+            font-display: swap;
+        }
+
         .n3 {
             font-family: n3, -apple-system, BlinkMacSystemFont;
         }
@@ -81,6 +87,11 @@
 
         .g2 {
             font-family: g2, -apple-system, BlinkMacSystemFont;
+            font-weight: 400;
+        }
+
+        .g3 {
+            font-family: g3, -apple-system, BlinkMacSystemFont;
             font-weight: 400;
         }
 
