@@ -1,0 +1,561 @@
+---
+import { ClientRouter } from "astro:transitions";
+import Header from "../components/Header.astro";
+import Bottom from "../components/bottom-logo.astro";
+import Privacy from "../components/privacy.astro";
+
+import "../assets/styles/fonts.css";
+import "../assets/styles/body.css";
+---
+
+<!doctype html>
+<html lang="pt-br">
+    <head>
+        <ClientRouter />
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Turin: Saia na hora certa.</title>
+        <meta
+            name="description"
+            content="Ajuda você a decidir quando sair, e não como chegar. Para você e para sua família."
+        />
+        <!-- This is the llms.txt discovery line -->
+        <link
+            rel="alternate"
+            type="text/markdown"
+            href="/llms.txt"
+            title="llms.txt (em Inglês)"
+        />
+        <link rel="canonical" href="https://turinflow.com.br/" />
+        <style>
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box;
+            }
+
+            :root {
+                --brand-main: #ffd700;
+                --brand-dark: #333;
+                --bg-light: #f9f9f9;
+                --light-2: #eee;
+                --mid-color1: #bec1b9;
+                --mid-color: #131b21;
+                --darker-1: #474646;
+            }
+
+            body {
+                animation-timeline: view();
+            }
+
+            .row {
+                flex-direction: column;
+                row-gap: 0.6rem;
+            }
+
+            .images {
+                height: 50vw;
+                margin: 16px;
+            }
+
+            .font-default {
+                height: calc(100vw * 0.091);
+                font-size: clamp(25px, calc(100vw * 0.076), 165px);
+                line-height: clamp(25px, calc(100vw * 0.076), 170px);
+            }
+
+            .images-flex {
+                width: 95vw;
+                display: flex;
+                margin-inline: auto;
+                justify-content: space-between;
+                height: 1100px;
+                gap: 1.3rem;
+            }
+
+            .widgets-1 {
+                display: flex;
+                flex-direction: column;
+                flex: 0 0 30%;
+                border: 2px solid #add1d1;
+                padding: 0.5rem;
+            }
+
+            @media (min-width: 768px) {
+                .images {
+                    height: 50%;
+                    margin: 16px;
+                }
+
+                .images-flex {
+                    width: 85vw;
+                    height: 550px;
+                    gap: 0.5rem;
+                }
+
+                .widgets-1 {
+                    flex: 0 0 32%;
+                }
+
+                .hover3 {
+                    color: rgba(100, 100, 100, 1);
+                    transition: 0.53s ease-in-out;
+                }
+                .hover3:hover {
+                    color: rgba(95, 120, 120, 1);
+                    transition: 0.25s ease-in-out;
+                }
+
+                .hover4 {
+                    background-color: inherit;
+                    transition: 0.53s ease-in-out;
+                }
+
+                .hover4:hover {
+                    background-color: rgba(95, 120, 120, 0.26);
+                    transition: 0.48s ease-in-out;
+                }
+            }
+
+            @media (min-width: 900px) {
+                .row {
+                    flex-direction: row;
+                }
+            }
+        </style>
+    </head>
+
+    <script
+        src="https://sp.turinflow.com.br/api/script.js"
+        data-site-id="3a248a45ee62"
+        defer
+    ></script>
+    <body>
+        <Header />
+        <div style="margin-top: 2rem; margin-bottom: 8rem; text-align: center;">
+            <div class="a1 hover3">
+                <h1
+                    class="n3"
+                    style="border-bottom: 1px dashed #888; padding-bottom: 16px; font-weight: 575; width: 81vw; color: rgba(120, 120, 120, 1); font-size: 40px; line-height: 40px; margin-inline: auto; margin-bottom: 16px;"
+                >
+                    Política de Privacidade
+                </h1>
+            </div>
+            <div
+                class="s1"
+                style="width: 80vw; font-size: 28px; line-height: 32px; color: rgba(130, 130 ,130, 1); margin-inline: auto; margin-bottom: clamp(1px, min(100vw * 0.06, 20px), 35px)"
+            >
+                O Turin foi desenvolvido para planejar seus deslocamentos e
+                trajetos com mais clareza e tranquilidade.
+            </div>
+
+            <div
+                class="s1"
+                style="width: 80vw; font-size: 28px; line-height: 35px; color: rgba(130, 130 ,130, 1); margin-inline: auto; margin-bottom: clamp(1px, min(100vw * 0.06, 20px), 35px)"
+            >
+                Esta Política de Privacidade explica quais informações a Turin
+                armazena, utiliza, processa e quais são os seus direitos,
+                conforme a Lei Geral de Proteção de Dados Pessoais (LGPD — Lei
+                nº 13.709/2018).
+            </div>
+
+            <div
+                class="g2"
+                style="width: 80vw; font-size: 28px; line-height: 35px; color: rgba(130, 130 ,130, 1); margin-inline: auto; margin-bottom: clamp(1px, min(100vw * 0.06, 20px), 35px)"
+            >
+                Estes termos foram atualizados pela última vez em 21/10/2026.
+            </div>
+        </div>
+
+        <Privacy
+            title="1. Quem é responsável pelos seus dados?"
+            background="rgba(200, 209, 200, 1);"
+            textColor="rgba(110, 100 ,100, 1);"
+        >
+            <p>
+                A Turin é responsável pelo processamento, armazenamento e
+                gerenciamento de seus dados pessoais realizado no âmbito da
+                prestação de seus serviços.
+            </p>
+            <p>
+                Em casos específicos e previstos por meio desta, a Turin poderá
+                contratar terceiros para viabilizar a prestação de serviços,
+                conforme descrito nesta Política de Privacidade.
+            </p>
+        </Privacy>
+
+        <Privacy title="2. Quais dados coletamos?" background="#eee">
+            <p>Os tipos de dados coletados incluem:</p>
+            <ul>
+                <li>Dados de conta, como e-mail e identificadores.</li>
+                <li>
+                    Dados de rota e localização, como endereços e coordenadas
+                    geográficas.
+                </li>
+                <li>
+                    Dados técnicos, como IP, navegador e informações de sessão.
+                </li>
+            </ul>
+            <p>
+                Esses dados são utilizados para fornecer e proteger nossos
+                serviços.
+            </p>
+        </Privacy>
+
+        <Privacy
+            title="3. Como utilizados seus dados?"
+            background="rgba(200, 209, 200, 1);"
+            textColor="rgba(110, 100 ,100, 1);"
+        >
+            <p>
+                Seus dados pessoais poderão ser utilizados para o fornecimento
+                do nosso serviço, incluindo mas não se limitando ao:
+            </p>
+            <ul>
+                <li>Acesso da sua conta Turin;</li>
+                <li>Recomendações ou informações sobre seu trajeto (rota);</li>
+                <li>
+                    Proteger contas, detectar abusos e prevenir acessos não
+                    autorizados por terceiros;
+                </li>
+                <li>Cumprir obrigações legais;</li>
+                <li>Corrigir problemas técnicos;</li>
+                <li>Melhoria dos serviços para todos os usuários Turin;</li>
+                <li>Pagamento e gerenciamento de assinaturas, se aplicável.</li>
+            </ul>
+
+            <p>
+                O tratamento de dados pessoais será realizado com base na
+                hipótese legal aplicável a cada finalidade, conforme a LGPD.
+                Isso inclui mas não se limita ao legítimo interesse,
+                consentimento, o exercício de direitos e/ou o cumprimento de
+                obrigações legais.
+            </p>
+        </Privacy>
+
+        <Privacy
+            title="4. Como funcionam os mapas e os trajetos?"
+            background="#eee"
+        >
+            <p>
+                O Turin utiliza dados geográficos e tecnologias de mapas para a
+                representação de locais, calcular percursos, fornecer
+                informações para trajetos, além de outras funcionalidades.
+            </p>
+            <p>
+                Informações sobre uma rota e os dados necessários (incluindo
+                endereços e/ou coordenadas geográficas) para processá-la podem
+                ser compartilhados com uma empresa terceira.
+            </p>
+
+            <p>
+                A Turin minimizará o processamento de dados por terceiros e a
+                quantidade de dados compartilhados, inclusive por meio da
+                alteração dos pontos de origem e destino, quanto aplicável. Esta
+                alteração automática poderá afetar as rotas e estimativas dos
+                trajetos fornecidos pela plataforma Turin.
+            </p>
+        </Privacy>
+
+        <Privacy
+            title="5. Quais empresas e/ou serviços a Turin depende?"
+            background="rgba(200, 209, 200, 1);"
+            textColor="rgba(110, 100 ,100, 1);"
+        >
+            <p>
+                O funcionamento pleno do Turin depende de serviços, sistemas ou
+                infraestrutura prestados por terceiros. Estratégias técnicas e
+                de redundância de alguns recursos permitirão, na maioria dos
+                casos, o funcionamento parcial da plataforma, mesmo diante de
+                uma indisponibilidade.
+            </p>
+            <p>Os fornecedores envolvidos incluem as empresas abaixo:</p>
+            <ul>
+                <li>
+                    Google: Serviços de autenticação e acesso, informações sobre
+                    sua rota (Google Maps) e hospedagem de serviços;
+                </li>
+                <br />
+                <li>
+                    Cloudflare: Serviços de proteção de nossos sistemas e outros
+                    serviços de hospedagem;
+                </li>
+                <br />
+                <li>
+                    Vercel: Serviços de Hospedagem, Authenticação e segurança;
+                </li>
+                <br />
+                <li>
+                    Neon: Serviços de backend e infraestrutura, armazenamento de
+                    dados (base de dados);
+                </li>
+                <br />
+                <li>
+                    Supabase: Base de dados adicional (backup) e armazenamento
+                    de contas;
+                </li>
+                <br />
+                <li>
+                    OpenStreetMap: Fonte de dados geográficos, para a
+                    representação de ruas, locais e outras características em
+                    toda a área de cobertura Turin. A OpenStreetMap não recebe
+                    dados pessoais gerenciados pela Turin;
+                </li>
+                <br />
+                <li>
+                    Mapbox e TomTom: Ambas as provedoras acima fornecem serviços
+                    de mapas e outros dados para complementar os dados do
+                    OpenstreetMap;
+                </li>
+                <br />
+                <li>
+                    Thunderforest: Fornecedora de mapas produzidos com os dados
+                    OSM. A Thunderforest não recebe dados pessoais gerenciados
+                    pela Turin. A Thunderforest pode receber dados sobre seu
+                    dispositivo, endereço IP e/ou outras métricas para o
+                    exclusivo fim de prestar serviços de visualização de mapas
+                    (“basemaps”).
+                </li>
+            </ul>
+
+            <p>
+                O tratamento de dados pessoais será realizado com base na
+                hipótese legal aplicável a cada finalidade, conforme a LGPD.
+                Isso inclui mas não se limita ao legítimo interesse,
+                consentimento, o exercício de direitos e/ou o cumprimento de
+                obrigações legais.
+            </p>
+        </Privacy>
+
+        <Privacy title="6. O que isso significa?" background="#eee">
+            <p>
+                A Turin depende de terceiros para prestar serviços à você, o
+                consumidor final. O compartilhamento ocorre apenas para
+                finalidades legítimas, em conformidade com esta Política de
+                Privacidade, os Termos e Condições Turin e a legislação
+                aplicável.
+            </p>
+            <p>A Turin não vende seus dados pessoais.</p>
+        </Privacy>
+
+        <Privacy
+            title="7.  Onde é feito o processamento de dados?"
+            background="rgba(200, 209, 200, 1);"
+            textColor="rgba(110, 100 ,100, 1);"
+        >
+            <p>
+                Alguns provedores podem processar ou armazenar informações fora
+                do Brasil. As transferências internacionais de dados pessoais
+                observarão os requisitos previstos na legislação aplicável e nas
+                normas da Autoridade Nacional de Proteção de Dados (ANPD).
+            </p>
+        </Privacy>
+
+        <Privacy
+            title="8. Quanto tempo armazenamos seus dados?"
+            background="#eee"
+        >
+            <p>
+                Os dados serão mantidos pelo período necessário para à prestação
+                dos serviços da plataforma e/ou cumprir obrigações legais e
+                regulatórias.
+            </p>
+            <p>
+                Algumas informações poderão ser armazenadas por períodos
+                adicionais quando houver um obrigação legal ou outra hipótese
+                prevista na legislação aplicável que justifique o armazenamento
+                e retenção por um período maior.
+            </p>
+        </Privacy>
+
+        <Privacy
+            title="9. Como protegemos seus dados?"
+            background="rgba(200, 209, 200, 1);"
+            textColor="rgba(110, 100 ,100, 1);"
+        >
+            <p>
+                A Turin adota medidas técnicas e administrativas para proteger
+                os dados pessoais contra acessos não autorizados, perda,
+                divulgação indevida, alteração ou outras formas de tratamento
+                inadequado.
+            </p>
+
+            <p>
+                Em caso de incidente de segurança que possa acarretar risco ou
+                dano relevante aos titulares dos dados, a Turin adotará todas as
+                providências e comunicações exigidas pela legislação vigente.
+            </p>
+        </Privacy>
+
+        <Privacy
+            title="10. Cookies e tecnologias semelhantes."
+            background="#eee"
+        >
+            <p>
+                Turin pode utilizar “cookies” e tecnologias semelhantes para
+                manter sessões de acesso, permitir a autenticação, proteger a
+                plataforma e garantir o funcionamento pleno dos recursos
+                oferecidos.
+            </p>
+            <p>Os cookies não são utilizados para fins de marketing.</p>
+        </Privacy>
+
+        <Privacy
+            title="11. Quais são os seus direitos?"
+            background="rgba(200, 209, 200, 1);"
+            textColor="rgba(110, 100 ,100, 1);"
+        >
+            <p>
+                A Lei Geral de Proteção Proteção de Dados Pessoais (LGPD)
+                garante direitos aos titulares, observadas as condições
+                previstas em lei.
+            </p>
+            <p>Entre eles, incluem-se:</p>
+            <ul>
+                <li>
+                    Confirmar se seus dados estão sendo tratados pela Turin;
+                </li>
+                <li style="padding-top: 12px; padding-bottom: 12px;">
+                    Solicitar acesso completo aos seus dados, conforme as
+                    condições previstos na LGPD;
+                </li>
+                <li>
+                    Solicitar a correção de dados incompletos, desatualizados ou
+                    incorretos;
+                </li>
+                <li style="padding-top: 12px; padding-bottom: 12px;">
+                    Solicitar a anonimização de dados nas hipóteses previstas em
+                    lei;
+                </li>
+                <li>
+                    Solicitar o bloqueio de dados nas hipóteses previstas em
+                    lei;
+                </li>
+                <li style="padding-top: 12px; padding-bottom: 12px;">
+                    Solicitar a eliminação de dados desnecessários, nas
+                    hipóteses previstas em lei;
+                </li>
+                <li>
+                    Solicitar a eliminação de dados tratados em desconformidade
+                    com a LGPD;
+                </li>
+                <li style="padding-top: 12px; padding-bottom: 12px;">
+                    Solicitar informações sobre as entidades com as quais seus
+                    dados são compartilhados;
+                </li>
+                <li>Solicitar a portabilidade dos seus dados;</li>
+                <li style="padding-top: 12px; padding-bottom: 12px;">
+                    Solicitar a eliminação dos dados tratados com consentimento;
+                </li>
+                <li>
+                    Opor-se a tratamentos realizados em desconformidade com a
+                    legislação vigente;
+                </li>
+                <li style="padding-top: 12px; padding-bottom: 12px;">
+                    Solicitar informações sobre a possibilidade de não fornecer
+                    consentimento e as consequências desta decisão, quando
+                    aplicável;
+                </li>
+            </ul>
+            <p>
+                Para exercer seus direitos e/ou esclarecer dúvidas sobre o
+                tratamento de seus dados pessoais, pela Turin ou por prestadoras
+                de serviço terceira(s), entre em contato pelo seguinte canal:
+            </p>
+            <p>
+                E-mail:{" "}
+                <a
+                    style="text-decoration-color: #000; color: #000;"
+                    href="mailto:privacidade@turinflow.com.br"
+                >
+                    privacidade@turinflow.com.br
+                </a>
+            </p>
+        </Privacy>
+
+        <Privacy title="12. Alterações da Política" background="#eee">
+            <p>
+                Esta política poderá ser atualizada para refletir mudanças do
+                Turin, nos fornecedores terceiros utilizados ou na legislação
+                aplicável. A versão vigente estará sempre disponível nesta
+                página e em{" "}
+                <a
+                    style="text-decoration-color: #000; color: #000;"
+                    href="https://turinflow.com.br/privacidade"
+                >
+                    https://turinflow.com.br/privacidade.
+                </a>
+            </p>
+            <p>
+                A Turin se compromete a informar os usuários, por meio de
+                e-mail, com pelo menos 30 dias de antecêndencia, a atualização
+                destes termos.
+            </p>
+        </Privacy>
+
+        <Privacy
+            title="13. Legislação Aplicável"
+            background="rgba(200, 209, 200, 1);"
+            textColor="rgba(110, 100 ,100, 1);"
+        >
+            <p>
+                Esta política está em conformidade com a legislação brasileira
+                aplicável para o processamento de dados, a privacidade de
+                usuários e o gerenciamento de dados, principalmente a Lei Geral
+                de Proteção de Dados (Lei n° 13.709/2018), o Marco Civil da
+                Internet (Lei n° 12.965/2014) e outras regulamentações da
+                Agência Nacional de Proteção de Dados (ANPD), quando aplicáveis.
+            </p>
+            <p>
+                A presente Política de Privacidade não substitui os direitos
+                previstos em lei e nem limita as obrigações legais do Turin e/ou
+                das terceiros que tratam e processam dados pessoais no âmbito de
+                seus serviços.
+            </p>
+        </Privacy>
+
+        <div style="margin-top: 4rem; margin-bottom: 8rem; text-align: center;">
+            <div
+                class="s1"
+                style="border-bottom: 1px dashed #777; padding-bottom: 16px; width: 80vw; font-size: 28px; line-height: 32px; color: rgba(130, 130 ,130, 1); margin-inline: auto; margin-bottom: clamp(1px, min(100vw * 0.06, 20px), 35px)"
+            >
+                O Turin acredita que chegar com tranquilidade também significa
+                ter clareza sobre como seus dados são tratados.
+            </div>
+
+            <div
+                class="s1"
+                style="font-weight: 800; width: 80vw; font-size: 23px; line-height: 35px; color: rgba(110, 110 ,110, 1); margin-inline: auto; margin-bottom: clamp(1px, 100vw * 0.06, 21px)"
+            >
+                Turin — Chegue com tranquilidade.
+            </div>
+            <a
+                style="display: inline-block; text-decoration: none; color: #888; border: 1px solid #aaa; padding: 0.75rem; border-radius: 8px; line-height: 14px; font-size: 14px; "
+                href="/documents/politica-de-privacidade.pdf"
+                download
+            >
+                ↓ Salve uma versão da Política de Privacidade em PDF
+            </a>
+        </div>
+
+        <div style="background-color: rgba(111, 129, 111, 1)">
+            <div
+                class="n3"
+                style="font-weight: 400; text-align: center; width: 85vw; padding-top: 4rem; font-size: clamp(40px, calc(100vw * 0.096), 90px); line-height: clamp(40px, calc(100vw * 0.092), 90px); color: rgba(220, 220, 220, 1); margin-inline: auto; padding-bottom: 19px;"
+            >
+                O verde Turin.
+            </div>
+            <div
+                class="s1"
+                style="text-align: center; width: 85vw; padding-bottom: 8rem; font-size: 26px; line-height: 32px; color: #dddddd; margin-inline: auto;"
+            >
+                O verde representa a naturalidade e a tranquilidade das
+                florestas brasileiras. A cor da Mata Atlântica é vinculada à
+                redução de estresse e evoca emoções de relaxamento e
+                tranquilidade.
+            </div>
+        </div>
+
+        <Bottom />
+    </body>
+</html>

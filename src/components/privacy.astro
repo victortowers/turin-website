@@ -1,0 +1,31 @@
+---
+interface Props {
+    title: string;
+    background?: string;
+    textColor?: string;
+}
+
+const {
+    title,
+    background = "#eee",
+    textColor = "rgba(130, 130, 130, 1)",
+} = Astro.props;
+---
+
+<div
+    style={`background-color: ${background}; padding-top: 2rem; padding-bottom: 8rem;`}
+>
+    <h2
+        class="s1 hover3"
+        style="width: 80vw; color: rgba(120, 120, 120, 1); font-size: 40px; line-height: 40px; margin-inline: auto; margin-bottom: 16px; margin-top: 16px;"
+    >
+        {title}
+    </h2>
+
+    <div
+        class="s1"
+        style={`width: 80vw; font-size: 20px; line-height: 32px; color: ${textColor}; margin-inline: auto;`}
+    >
+        <slot />
+    </div>
+</div>
