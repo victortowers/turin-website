@@ -1,0 +1,360 @@
+---
+import { ClientRouter } from "astro:transitions";
+import Header from "../../../components/header2.astro";
+
+import "../../../assets/styles/fonts.css";
+import "../../../assets/styles/buttons.css";
+import "../../../assets/styles/body.css";
+---
+
+<!doctype html>
+<html lang="pt-br">
+    <head>
+        <ClientRouter />
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Turin - Primeira Rota</title>
+        <meta name="description" content="Configure a primeira rota." />
+
+        <link
+            rel="canonical"
+            href="https://turinflow.com.br/app/onboarding/first-route"
+        />
+
+        <style>
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box;
+            }
+
+            :root {
+                --brand-main: #ffd700;
+                --brand-dark: #333;
+                --bg-light: #f9f9f9;
+                --light-2: #eee;
+                --mid-color1: #bec1b9;
+                --mid-color: #131b21;
+                --darker-1: #474646;
+            }
+
+            body {
+                animation-timeline: view();
+                background-color: rgba(200, 209, 200, 0.25);
+            }
+
+            /* Keep the header above the loading overlay. */
+            header {
+                position: relative;
+                z-index: 10001;
+            }
+
+            /* Loading overlay */
+            #loader {
+                position: fixed;
+                inset: 0;
+                z-index: 10000;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                background: rgba(200, 209, 200, 0.25);
+                opacity: 1;
+                visibility: visible;
+                pointer-events: auto;
+
+                transition:
+                    opacity 0.35s ease,
+                    visibility 0s linear 0.35s;
+            }
+
+            /* Spinner */
+            .spinner {
+                width: 42px;
+                height: 42px;
+                border: 3px solid rgba(100, 100, 100, 0.2);
+                border-top-color: #888;
+                border-radius: 50%;
+                animation: spin 0.8s linear infinite;
+            }
+
+            @keyframes spin {
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+
+            /* Hide the page until initialization finishes. */
+            #page-content.loading {
+                visibility: hidden;
+            }
+
+            /* Fade out the loader after initialization. */
+            #loader.finished {
+                opacity: 0;
+                visibility: hidden;
+                pointer-events: none;
+            }
+
+            .row {
+                flex-direction: column;
+                row-gap: 0.6rem;
+            }
+
+            .images {
+                height: 50vw;
+                margin: 16px;
+            }
+
+            .font-default {
+                height: calc(100vw * 0.091);
+                font-size: clamp(25px, calc(100vw * 0.076), 165px);
+                line-height: clamp(25px, calc(100vw * 0.076), 170px);
+            }
+
+            .images-flex {
+                width: 95vw;
+                display: flex;
+                margin-inline: auto;
+                justify-content: space-between;
+                height: 1100px;
+                gap: 1.3rem;
+            }
+
+            .widgets-1 {
+                display: flex;
+                flex-direction: column;
+                flex: 0 0 30%;
+                border: 2px solid #add1d1;
+                padding: 0.5rem;
+            }
+
+            @media (min-width: 768px) {
+                .images {
+                    height: 50%;
+                    margin: 16px;
+                }
+
+                .images-flex {
+                    width: 85vw;
+                    height: 550px;
+                    gap: 0.5rem;
+                }
+
+                .widgets-1 {
+                    flex: 0 0 32%;
+                }
+
+                .hover3 {
+                    color: #888;
+                    transition: 0.53s ease-in-out;
+                }
+
+                .hover3:hover {
+                    color: rgba(95, 120, 120, 0.63);
+                    transition: 0.39s ease-in-out;
+                }
+
+                .hover4 {
+                    background-color: inherit;
+                    transition: 0.53s ease-in-out;
+                }
+
+                .hover4:hover {
+                    background-color: rgba(95, 120, 120, 0.26);
+                    transition: 0.48s ease-in-out;
+                }
+            }
+
+            @media (min-width: 900px) {
+                .row {
+                    flex-direction: row;
+                }
+            }
+
+            @media (prefers-reduced-motion: reduce) {
+                .spinner {
+                    animation-duration: 2s;
+                }
+
+                #loader {
+                    transition: none;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <Header />
+
+        <!-- Loading overlay: the header remains visible above it. -->
+        <div id="loader" role="status" aria-label="Carregando">
+            <div class="spinner"></div>
+        </div>
+
+        <!-- Keep the loading class in the HTML to prevent content flashing. -->
+        <div id="page-content" class="loading">
+            <div style="margin-bottom: 8rem; display: flex; justify-self: center;">
+                <div
+                    class="a1 hover3"
+                    style="padding: 1rem; width: 93%; margin-inline: auto;"
+                >
+                    <div style="border: 1px solid #aaa; border-radius: 8px; padding-bottom: 0.5rem; margin-bottom: 1rem; display: flex; flex-direction: column;">
+                        <h1
+                            id="greeting"
+                            class="n3 hover3"
+                            style="padding-bottom: 1rem; text-align: center; border-bottom: 1px dashed #999; font-weight: 575; width: 75vw; font-size: clamp(40px, calc(100vw * 0.059), 70px); line-height: clamp(40px, calc(100vw * 0.059), 70px); margin-inline: auto; margin-bottom: 16px;"
+                        >
+                            Olá, Bem Vindo(a) ao Turin!
+                        </h1>
+
+                        <div
+                            class="s1"
+                            style="text-align: center; width: 70vw; font-size: 23px; line-height: 31px; color: #888; margin-inline: auto; margin-bottom: clamp(1px, min(100vw * 0.06, 20px), 35px)"
+                        >
+                            O que a Turin pode fazer pelo seu dia, hoje?
+                        </div>
+
+                        <a
+                            class="n3 button1"
+                            style="width: 85%; text-align: center; display: inline;"
+                            href="/"
+                        >
+                            <div
+                                class="s1"
+                                style="font-weight: 700; margin-top: 1rem; text-align: start; padding-left: 1rem; font-size: 19px; line-height: 21px; "
+                            >
+                                Dia a Dia &gt;
+                            </div>
+                            <div style="width: 80%; text-align: left; padding-left: 1rem; margin-bottom: 1rem; padding-top: 0.25rem; font-size: 14px; line-height: 17px; ">
+                                Organize seu trajeto para chegar no horário
+                                todos os dias, não importa onde seja. Trabalho,
+                                escola ou qualquer outro local. Atividade(s)
+                                recorrente(s).
+                            </div>
+                        </a>
+
+                        <a
+                            class="n3 button1"
+                            style="width: 85%; text-align: center; display: inline;"
+                            href="/"
+                        >
+                            <div
+                                class="s1"
+                                style="font-weight: 700; margin-top: 1rem; text-align: start; padding-left: 1rem; font-size: 19px; line-height: 21px; "
+                            >
+                                Chegar a tempo &gt;
+                            </div>
+                            <div style="width: 80%; text-align: left; padding-left: 1rem; margin-bottom: 1rem; padding-top: 0.25rem; font-size: 14px; line-height: 17px; ">
+                                Seja um encontro, atividade ou compromisso
+                                importante. Esta modalidade é não recorrente.
+                            </div>
+                        </a>
+
+                        <a
+                            class="n3 button1"
+                            style="width: 85%; text-align: center; display: inline;"
+                            href="/"
+                        >
+                            <div
+                                class="s1"
+                                style="font-weight: 700; margin-top: 1rem; text-align: start; padding-left: 1rem; font-size: 19px; line-height: 21px; "
+                            >
+                                Criar meu próprio &gt;
+                            </div>
+                            <div style="width: 80%; text-align: left; padding-left: 1rem; margin-bottom: 1rem; padding-top: 0.25rem; font-size: 14px; line-height: 17px; ">
+                                Quero configurar um trajeto diferente.
+                            </div>
+                        </a>
+                        <a
+                            class="n3 button1 button2"
+                            style="margin-top: 1rem; width: 85%; margin-bottom: 1rem; text-align: center;"
+                            href="/app/onboarding/start"
+                        >
+                            &lt; Voltar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // Runs before Astro prepares a client-side navigation.
+            function getGreeting() {
+                const hour = new Date().getHours();
+                if (hour >= 5 && hour < 12) return "Bom Dia";
+                if (hour >= 12 && hour < 17) return "Boa Tarde";
+                return "Boa Noite";
+            }
+
+            function renderProfile(profile) {
+                const greeting = document.querySelector("#greeting");
+
+                if (!greeting || !profile) return;
+
+                const displayName =
+                    String(profile.name ?? "Usuário")
+                        .trim()
+                        .split(/\s+/)[0] || "Usuário";
+
+                greeting.textContent = `${getGreeting()}, ${displayName}.`;
+            }
+
+            document.addEventListener("astro:before-preparation", () => {
+                const loader = document.getElementById("loader");
+                const content = document.getElementById("page-content");
+
+                if (loader) {
+                    loader.classList.remove("finished");
+                }
+
+                if (content) {
+                    content.classList.add("loading");
+                }
+            });
+
+            // Runs after Astro has loaded and rendered the destination page.
+            document.addEventListener("astro:page-load", async () => {
+                const loader = document.getElementById("loader");
+                const content = document.getElementById("page-content");
+
+                if (!loader || !content) return;
+
+                try {
+                    const response = await fetch(
+                        "https://f.turinflow.com.br/me",
+                        {
+                            method: "GET",
+                            credentials: "include",
+                            headers: {
+                                Accept: "application/json",
+                            },
+                        },
+                    );
+
+                    if (response.status === 401) {
+                        // No valid session. Redirect to your login page.
+                        window.location.href = "/login";
+                        return;
+                    }
+
+                    if (!response.ok) {
+                        throw new Error(
+                            "Não foi possível verificar sua sessão.",
+                        );
+                    }
+
+                    const user = await response.json();
+                    renderProfile(profile);
+                } catch (error) {
+                    console.error("Page initialization failed:", error);
+                } finally {
+                    // Reveal the page and fade away the spinner.
+                    content.classList.remove("loading");
+                    loader.classList.add("finished");
+                }
+            });
+        </script>
+    </body>
+</html>

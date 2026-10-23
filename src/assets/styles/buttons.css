@@ -1,0 +1,36 @@
+.board1,
+.button1 {
+    background-color: rgb(233, 233, 237);
+    width: 93%;
+    justify-self: center;
+    margin-inline: auto;
+    text-decoration: none;
+    color: #666;
+    border: 1px solid rgba(110, 110, 110, 0.1);
+
+    transition: 0.55s ease-in-out;
+    border-radius: 8px;
+    padding: 12px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.41s ease-in-out;
+}
+
+.button2 {
+    background-color: inherit;
+    justify-self: center;
+    margin-inline: auto;
+    border: 1px solid rgba(220, 220, 220, 0.1);
+    transition: 0.41s ease-in-out;
+}
+
+.button2:hover {
+    background-color: rgba(111, 136, 136, 0.1);
+    transition: 0.41s ease-in-out;
+}
+
+.button1:hover,
+.board1:hover {
+    background-color: rgba(111, 136, 136, 0.15);
+    transition: 0.41s ease-in-out;
+}
