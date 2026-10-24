@@ -113,21 +113,14 @@ import "../../../assets/styles/body.css";
                 line-height: clamp(25px, calc(100vw * 0.076), 170px);
             }
 
-            .images-flex {
-                width: 95vw;
-                display: flex;
-                margin-inline: auto;
-                justify-content: space-between;
-                height: 1100px;
-                gap: 1.3rem;
+            .hover3 {
+                color: #888;
+                transition: 0.53s ease-in-out;
             }
 
-            .widgets-1 {
-                display: flex;
-                flex-direction: column;
-                flex: 0 0 30%;
-                border: 2px solid #add1d1;
-                padding: 0.5rem;
+            .hover3:hover {
+                color: rgba(95, 120, 120, 0.63);
+                transition: 0.39s ease-in-out;
             }
 
             @media (min-width: 768px) {
@@ -145,25 +138,17 @@ import "../../../assets/styles/body.css";
                 .widgets-1 {
                     flex: 0 0 32%;
                 }
+            }
 
-                .hover3 {
-                    color: #888;
-                    transition: 0.53s ease-in-out;
+            @keyframes auth-spin {
+                0% {
+                    transform: rotate(0deg);
                 }
-
-                .hover3:hover {
-                    color: rgba(95, 120, 120, 0.63);
-                    transition: 0.39s ease-in-out;
+                50% {
+                    transform: rotate(540deg);
                 }
-
-                .hover4 {
-                    background-color: inherit;
-                    transition: 0.53s ease-in-out;
-                }
-
-                .hover4:hover {
-                    background-color: rgba(95, 120, 120, 0.26);
-                    transition: 0.48s ease-in-out;
+                100% {
+                    transform: rotate(1080deg);
                 }
             }
 
@@ -189,8 +174,20 @@ import "../../../assets/styles/body.css";
         <Header />
 
         <!-- Loading overlay: the header remains visible above it. -->
-        <div id="loader" role="status" aria-label="Carregando">
-            <div class="spinner"></div>
+        <div
+            id="loader"
+            role="status"
+            aria-label="Carregando"
+            style="display: flex; flex-direction: column;"
+        >
+            <div style="width: 32px; height: 32px; border: 3px solid #ddd; border-top-color: #333; border-radius: 50%; animation: auth-spin 2.6s cubic-bezier(0.4, 0, 0.5, 1) infinite;"></div>
+            <div
+                style="padding-top: 0.75rem"
+                class="s1"
+                id="auth-processing-message"
+            >
+                Authenticando…
+            </div>
         </div>
 
         <!-- Keep the loading class in the HTML to prevent content flashing. -->
@@ -206,7 +203,7 @@ import "../../../assets/styles/body.css";
                             class="n3 hover3"
                             style="padding-bottom: 1rem; text-align: center; border-bottom: 1px dashed #999; font-weight: 575; width: 75vw; font-size: clamp(40px, calc(100vw * 0.059), 70px); line-height: clamp(40px, calc(100vw * 0.059), 70px); margin-inline: auto; margin-bottom: 16px;"
                         >
-                            Olá, Bem Vindo(a) ao Turin!
+                            Olá, usuário(a)!
                         </h1>
 
                         <div
@@ -270,7 +267,7 @@ import "../../../assets/styles/body.css";
                         <a
                             class="n3 button1 button2"
                             style="margin-top: 1rem; width: 85%; margin-bottom: 1rem; text-align: center;"
-                            href="/app/onboarding/start"
+                            href="/app/onboarding"
                         >
                             &lt; Voltar
                         </a>
@@ -298,7 +295,8 @@ import "../../../assets/styles/body.css";
                         .trim()
                         .split(/\s+/)[0] || "Usuário";
 
-                greeting.textContent = `${getGreeting()}, ${displayName}.`;
+                greeting.textContent = `<h1 id="greeting" class="n3 hover3" style="padding-bottom: 1rem; text-align: center; border-bottom: 1px dashed #999; font-weight: 575; width: 75vw; font-size: clamp(40px, calc(100vw * 0.059), 70px); line-height: clamp(40px, calc(100vw * 0.059), 70px); margin-inline: auto; margin-bottom: 16px;"
+                >${getGreeting()}, ${displayName}.</h1>`;
             }
 
             document.addEventListener("astro:before-preparation", () => {
@@ -345,7 +343,7 @@ import "../../../assets/styles/body.css";
                         );
                     }
 
-                    const user = await response.json();
+                    const profile = await response.json();
                     renderProfile(profile);
                 } catch (error) {
                     console.error("Page initialization failed:", error);

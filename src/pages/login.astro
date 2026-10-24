@@ -174,7 +174,7 @@ import "../assets/styles/body.css";
             >
                 Utilize sua conta Turin para continuar.
             </h1>
-            
+
             <button
                 class="n3"
                 id="google-login"
@@ -587,6 +587,12 @@ import "../assets/styles/body.css";
                                 "Sua sessão é inválida ou expirou. Faça login novamente.",
                             );
                         }
+                        if (response.status === 200) {
+                            // No valid session. Redirect to your login page.
+                            window.location.href = "/app/onboarding";
+                            return;
+                        }
+
                         if (!response.ok) {
                             throw new Error(
                                 `Profile request failed: HTTP ${response.status}`,
