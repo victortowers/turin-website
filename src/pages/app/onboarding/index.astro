@@ -1,0 +1,174 @@
+---
+import { ClientRouter } from "astro:transitions";
+import Header from "../../../components/header2.astro";
+
+import "../../../assets/styles/fonts.css";
+import "../../../assets/styles/buttons.css";
+import "../../../assets/styles/body.css";
+---
+
+<!doctype html>
+<html lang="pt-br">
+    <head>
+        <ClientRouter />
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Turin - Primeiros Passos</title>
+        <meta name="description" content="Comece a configurar o Turin aqui." />
+
+        <link rel="canonical" href="https://turinflow.com.br/app/onboarding" />
+        <style>
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box;
+            }
+
+            :root {
+                --brand-main: #ffd700;
+                --brand-dark: #333;
+                --bg-light: #f9f9f9;
+                --light-2: #eee;
+                --mid-color1: #bec1b9;
+                --mid-color: #131b21;
+                --darker-1: #474646;
+            }
+
+            body {
+                animation-timeline: view();
+            }
+
+            .row {
+                flex-direction: column;
+                row-gap: 0.6rem;
+            }
+
+            .images {
+                height: 50vw;
+                margin: 16px;
+            }
+
+            .font-default {
+                height: calc(100vw * 0.091);
+                font-size: clamp(25px, calc(100vw * 0.076), 165px);
+                line-height: clamp(25px, calc(100vw * 0.076), 170px);
+            }
+
+            .images-flex {
+                width: 95vw;
+                display: flex;
+                margin-inline: auto;
+                justify-content: space-between;
+                height: 1100px;
+                gap: 1.3rem;
+            }
+
+            .widgets-1 {
+                display: flex;
+                flex-direction: column;
+                flex: 0 0 30%;
+                border: 2px solid #add1d1;
+                padding: 0.5rem;
+            }
+
+            @media (min-width: 768px) {
+                .images {
+                    height: 50%;
+                    margin: 16px;
+                }
+
+                .images-flex {
+                    width: 85vw;
+                    height: 550px;
+                    gap: 0.5rem;
+                }
+
+                .widgets-1 {
+                    flex: 0 0 32%;
+                }
+
+                .hover3 {
+                    color: rgba(100, 100, 100, 1);
+                    transition: 0.53s ease-in-out;
+                }
+                .hover3:hover {
+                    color: rgba(95, 120, 120, 1);
+                    transition: 0.25s ease-in-out;
+                }
+
+                .hover4 {
+                    background-color: inherit;
+                    transition: 0.53s ease-in-out;
+                }
+
+                .hover4:hover {
+                    background-color: rgba(95, 120, 120, 0.26);
+                    transition: 0.48s ease-in-out;
+                }
+            }
+
+            @media (min-width: 900px) {
+                .row {
+                    flex-direction: row;
+                }
+            }
+        </style>
+    </head>
+
+    <body style="background-color: rgba(200, 209, 200, 0.25);">
+        <Header />
+        <div style="margin-bottom: 8rem; display: flex; justify-self: center;">
+            <div
+                class="a1 hover3"
+                style="padding: 1rem; width: 93%; margin-inline: auto; "
+            >
+                <div style="border: 1px solid #aaa; border-radius: 8px; padding-bottom: 0.5rem; margin-bottom: 1rem; display: flex; flex-direction: column;">
+                    <h1
+                        class="n3"
+                        style="padding-bottom: 1rem; text-align: center; border-bottom: 1px dashed #999; font-weight: 575; width: 75vw; color: #888; font-size: clamp(40px, calc(100vw * 0.059), 90px); line-height: clamp(40px, calc(100vw * 0.059), 90px); margin-inline: auto; margin-bottom: 16px;"
+                    >
+                        Bem vindos ao Turin!
+                    </h1>
+
+                    <div
+                        class="s1"
+                        style="text-align: center; width: 70vw; font-size: 23px; line-height: 31px; color: #888; margin-inline: auto; margin-bottom: clamp(1px, min(100vw * 0.06, 20px), 35px)"
+                    >
+                        Turin te ajudará a chegar com tranquilidade, todos os
+                        dias. Não importa onde São Paulo esteja.
+                    </div>
+
+                    <div
+                        class="n3"
+                        style="padding-top: 8px; text-align: center; width: 70vw; font-size: 16px; line-height: 25px; color: #666; margin-inline: auto; margin-bottom: clamp(1px, 100vw * 0.06, 20px)"
+                    >
+                        Concorde com os{" "}
+                        <a style="color: #000; " href="/termos">
+                            Termos
+                        </a>{" "}
+                        e a{" "}
+                        <a style="color: #000; " href="/privacidade">
+                            Política de Privacidade Turin
+                        </a>{" "}
+                        para criar seu primeiro trajeto.
+                    </div>
+
+                    <a
+                        class="n3 button1"
+                        style="width: 70%; text-align: center;"
+                        href="/app/onboarding/first-route"
+                    >
+                        Concordo com os Termos &gt;
+                    </a>
+                    <a
+                        class="n3 button1 button2"
+                        style="width: 70%; margin-bottom: 2rem; text-align: center;"
+                        href="/"
+                    >
+                        &lt; Não concordo com os Termos
+                    </a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
