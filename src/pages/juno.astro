@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Turin: Trânsito Agora em São Paulo</title>
+        <meta
+            name="description"
+            content="O Turin mostra a você o trânsito em São Paulo. Veja os locais de congestionamento aqui."
+        />
+        <link rel="canonical" href="https://turinflow.com.br/juno" />
+
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/maplibre-gl@6.16.0/dist/maplibre-gl.css"
+        />
+    </head>
+
+    <body>
+        <div id="map"></div>
+
+        <style is:global>
+            html,
+            body,
+            #map {
+                height: 100%;
+                margin: 0;
+            }
+        </style>
+
+        <script>
+            import * as maplibregl from "https://cdn.jsdelivr.net/npm/maplibre-gl@6.16.0/+esm";
+            import { Protocol } from "https://cdn.jsdelivr.net/npm/pmtiles@4.5.0/+esm";
+            import {
+                LIGHT,
+                layers,
+            } from "https://cdn.jsdelivr.net/npm/@protomaps/basemaps@5.7.2/+esm";
+
+            // São Paulo metropolitan region, roughly: Jundiaí to São José dos
+            // Campos, and Sorocaba up to the Serra da Cantareira.
+
+            const bbox = {
+                west: -46.90926270487596,
+                south: -23.523753431774985,
+                east: -46.796531591361624,
+                north: -23.43226388087442,
+            };
+
+            const zoom = 15;
+            const maxZoom = 20;
+            const minZoom = 8;
+            const trafficOpacity = 0.6;
+
+            const center = [
+                (bbox.west + bbox.east) / 2,
+                (bbox.south + bbox.north) / 2,
+            ];
+
+            const protocol = new Protocol();
+            maplibregl.addProtocol("pmtiles", protocol.tile);
+
+            // Start from the stock "light" flavor and override only what Turin
+            // needs, so upstream improvements still come through.
+            const flavor = {
+                ...LIGHT,
+                // Highways are the things drivers care about; make SP's
+                // radiales and marginais read at a glance.
+                highway: "#f6c26b",
+                bridges_highway: "#f6c26b",
+                // The calm light theme is white-on-white, which hides the traffic
+                // overlay underneath; give the base map a tint so congestion pops.
+                earth: "#e8e6e1",
+                minor_a: "#dcdfe3",
+                minor_b: "#eef0f2",
+                major: "#e3e6e9",
+                buildings: "#d3d7db",
+                water: "#8ec5e8",
+                city_label: "#1f3b57",
+                subplace_label: "#4a6274",
+            };
+
+            const sources = {
+                protomaps: {
+                    type: "vector",
+                    // Daily Protomaps build; swap for your own archive once it's hosted.
+                    url: "https://maps.turinflow.com.br/sp.pmtiles",
+                    attribution:
+                        '<a href="https://protomaps.com">Protomaps</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+                },
+                traffic: {
+                    type: "raster",
+                    tiles: [
+                        "https://tiles.vtinc.com.br/tile?x={x}&y={y}&z={z}",
+                    ],
+                    tileSize: 256,
+                    maxzoom: maxZoom,
+                    attribution: "Traffic &copy; TomTom",
+                },
+            };
+
+            const basemapStyle = {
+                version: 8,
+                glyphs: "https://protomaps.github.io/basemaps-assets/fonts/{fontstack}/{range}.pbf",
+                sprite: "https://protomaps.github.io/basemaps-assets/sprites/v4/light",
+                sources,
+                layers: [
+                    ...layers("protomaps", flavor, { lang: "pt" }),
+                    // Turin's own overlays go in as ordinary style layers, which
+                    // keeps them below the labels instead of on top of them.
+                    ...turinLayers(),
+                ],
+            };
+
+            // Everything here renders above the basemap fills and roads but below
+            // the labels, so street names stay readable. These need `sources` to
+            // be declared up front too, otherwise MapLibre aborts the style.
+            function turinLayers() {
+                return [
+                    {
+                        id: "traffic",
+                        type: "raster",
+                        source: "traffic",
+                        paint: { "raster-opacity": trafficOpacity },
+                    },
+                ];
+            }
+
+            const map = new maplibregl.Map({
+                container: "map",
+                style: basemapStyle,
+                center,
+                zoom,
+                minZoom,
+                maxZoom,
+                maxBounds: [
+                    [bbox.west, bbox.south],
+                    [bbox.east, bbox.north],
+                ],
+                attributionControl: {
+                    compact: true,
+                    customAttribution: "Turin Flow",
+                },
+            });
+        </script>
+    </body>
+</html>
