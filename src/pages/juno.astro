@@ -82,8 +82,10 @@
             const sources = {
                 protomaps: {
                     type: "vector",
-                    // Daily Protomaps build; swap for your own archive once it's hosted.
-                    url: "https://maps.turinflow.com.br/sp.pmtiles",
+                    // The pmtiles:// scheme routes through the Protocol registered
+                    // above so only byte ranges are fetched, never the whole file.
+                    url: "pmtiles://https://maps.turinflow.com.br/sp.pmtiles",
+                    maxzoom: 21,
                     attribution:
                         '<a href="https://protomaps.com">Protomaps</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
                 },
