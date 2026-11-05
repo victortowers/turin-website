@@ -47,8 +47,12 @@
             };
 
             const zoom = 15;
-            const maxZoom = 20;
             const minZoom = 8;
+            // One knob for the camera. The archive is built to z20 (the CI
+            // extracts with --maxzoom=20); MapLibre overzooms past that, so the
+            // source is capped at 20 while the camera may go one level deeper.
+            const tileMaxZoom = 21;
+            const maxZoom = 20;
             const trafficOpacity = 0.6;
 
             const center = [
@@ -61,110 +65,109 @@
 
             // Start from the stock "light" flavor and override only what Turin
             // needs, so upstream improvements still come through.
-            
+
             const flavor = {
-    ...LIGHT,
+                ...LIGHT,
 
-    // LAND
-    background: "#f4f2ec",
-    earth: "#f4f2ec",
-    sand: "#eee4d2",
-    beach: "#e9dfc9",
+                // LAND
+                background: "#f4f2ec",
+                earth: "#f4f2ec",
+                sand: "#eee4d2",
+                beach: "#e9dfc9",
 
-    // NATURE
-    park_a: "#e3ebdf",
-    park_b: "#dce7d7",
-    wood_a: "#d2e1cc",
-    wood_b: "#c8dbc1",
-    scrub_a: "#e5e9d9",
-    scrub_b: "#dce3d1",
-    glacier: "#e8f0f2",
+                // NATURE
+                park_a: "#e3ebdf",
+                park_b: "#dce7d7",
+                wood_a: "#d2e1cc",
+                wood_b: "#c8dbc1",
+                scrub_a: "#e5e9d9",
+                scrub_b: "#dce3d1",
+                glacier: "#e8f0f2",
 
-    // WATER
-    water: "#b7d5e5",
-    ocean_label: "#527b91",
+                // WATER
+                water: "#b7d5e5",
+                ocean_label: "#527b91",
 
-    // BUILDINGS AND URBAN AREAS
-    buildings: "#d8d5cf",
-    industrial: "#e7e1d7",
-    aerodrome: "#e8e4dc",
-    hospital: "#f0e0dc",
-    school: "#eee7d7",
+                // BUILDINGS AND URBAN AREAS
+                buildings: "#d8d5cf",
+                industrial: "#e7e1d7",
+                aerodrome: "#e8e4dc",
+                hospital: "#f0e0dc",
+                school: "#eee7d7",
 
-    // LOCAL ROADS
-    minor_a: "#fffefa",
-    minor_b: "#f8f7f2",
-    minor_casing: "#e2ded5",
-    minor_service: "#f2efe8",
-    minor_service_casing: "#e4dfd5",
+                // LOCAL ROADS
+                minor_a: "#fffefa",
+                minor_b: "#f8f7f2",
+                minor_casing: "#e2ded5",
+                minor_service: "#f2efe8",
+                minor_service_casing: "#e4dfd5",
 
-    // ARTERIAL ROADS
-    major: "#f0dfc1",
-    major_casing_early: "#dfc9a6",
-    major_casing_late: "#e6d5bb",
+                // ARTERIAL ROADS
+                major: "#f0dfc1",
+                major_casing_early: "#dfc9a6",
+                major_casing_late: "#e6d5bb",
 
-    // HIGHWAYS
-    highway: "#e8b66e",
-    highway_casing_early: "#c99b5c",
-    highway_casing_late: "#d6aa70",
+                // HIGHWAYS
+                highway: "#e8b66e",
+                highway_casing_early: "#c99b5c",
+                highway_casing_late: "#d6aa70",
 
-    // CONNECTORS AND OTHER ROADS
-    link: "#efd3a5",
-    link_casing: "#d9bd98",
-    other: "#f5f2eb",
-    pedestrian: "#eee8dc",
-    pier: "#e3d9c8",
+                // CONNECTORS AND OTHER ROADS
+                link: "#efd3a5",
+                link_casing: "#d9bd98",
+                other: "#f5f2eb",
+                pedestrian: "#eee8dc",
+                pier: "#e3d9c8",
 
-    // BRIDGES
-    bridges_highway: "#e8b66e",
-    bridges_highway_casing: "#c99b5c",
-    bridges_major: "#f0dfc1",
-    bridges_major_casing: "#dfc9a6",
-    bridges_minor: "#fffefa",
-    bridges_minor_casing: "#e2ded5",
-    bridges_link: "#efd3a5",
-    bridges_link_casing: "#d9bd98",
-    bridges_other: "#f5f2eb",
-    bridges_other_casing: "#e2ded5",
+                // BRIDGES
+                bridges_highway: "#e8b66e",
+                bridges_highway_casing: "#c99b5c",
+                bridges_major: "#f0dfc1",
+                bridges_major_casing: "#dfc9a6",
+                bridges_minor: "#fffefa",
+                bridges_minor_casing: "#e2ded5",
+                bridges_link: "#efd3a5",
+                bridges_link_casing: "#d9bd98",
+                bridges_other: "#f5f2eb",
+                bridges_other_casing: "#e2ded5",
 
-    // TUNNELS
-    tunnel_highway: "#dfb77f",
-    tunnel_highway_casing: "#c6a477",
-    tunnel_major: "#e7d8bd",
-    tunnel_major_casing: "#d5c5aa",
-    tunnel_minor: "#efeee8",
-    tunnel_minor_casing: "#d9d6cd",
-    tunnel_link: "#e8d1ae",
-    tunnel_link_casing: "#d2bd9e",
-    tunnel_other: "#eeece5",
-    tunnel_other_casing: "#d9d6cd",
+                // TUNNELS
+                tunnel_highway: "#dfb77f",
+                tunnel_highway_casing: "#c6a477",
+                tunnel_major: "#e7d8bd",
+                tunnel_major_casing: "#d5c5aa",
+                tunnel_minor: "#efeee8",
+                tunnel_minor_casing: "#d9d6cd",
+                tunnel_link: "#e8d1ae",
+                tunnel_link_casing: "#d2bd9e",
+                tunnel_other: "#eeece5",
+                tunnel_other_casing: "#d9d6cd",
 
-    // RAILWAYS AND BOUNDARIES
-    railway: "#b5a9a0",
-    boundaries: "#c7c2b7",
-    military: "#e8ddd0",
-    zoo: "#e1eadb",
-    runway: "#e5e0d6",
+                // RAILWAYS AND BOUNDARIES
+                railway: "#b5a9a0",
+                boundaries: "#c7c2b7",
+                military: "#e8ddd0",
+                zoo: "#e1eadb",
+                runway: "#e5e0d6",
 
-    // LABELS
-    city_label: "#354957",
-    subplace_label: "#536671",
-    state_label: "#536671",
-    country_label: "#354957",
-    roads_label_major: "#495760",
-    roads_label_minor: "#64717a",
+                // LABELS
+                city_label: "#354957",
+                subplace_label: "#536671",
+                state_label: "#536671",
+                country_label: "#354957",
+                roads_label_major: "#495760",
+                roads_label_minor: "#64717a",
 
-    // LABEL HALOS
-    city_label_halo: "#f4f2ec",
-    subplace_label_halo: "#f4f2ec",
-    state_label_halo: "#f4f2ec",
-    roads_label_major_halo: "#f4f2ec",
-    roads_label_minor_halo: "#f4f2ec",
-    address_label: "#53616a",
-    address_label_halo: "#f4f2ec",
+                // LABEL HALOS
+                city_label_halo: "#f4f2ec",
+                subplace_label_halo: "#f4f2ec",
+                state_label_halo: "#f4f2ec",
+                roads_label_major_halo: "#f4f2ec",
+                roads_label_minor_halo: "#f4f2ec",
+                address_label: "#53616a",
+                address_label_halo: "#f4f2ec",
             };
 
-            
             const sources = {
                 protomaps: {
                     type: "vector",
@@ -181,7 +184,6 @@
                         "https://tiles.vtinc.com.br/tile?x={x}&y={y}&z={z}",
                     ],
                     tileSize: 256,
-                    maxzoom: maxZoom,
                     attribution: "Traffic &copy; TomTom",
                 },
             };
@@ -219,11 +221,9 @@
                 center,
                 zoom,
                 minZoom,
+                // Stops the camera at the archive's last real zoom. Without this,
+                // MapLibre happily zooms to 22 and shows empty canvas.
                 maxZoom,
-                maxBounds: [
-                    [bbox.west, bbox.south],
-                    [bbox.east, bbox.north],
-                ],
                 attributionControl: {
                     compact: true,
                     customAttribution: "turinflow.com.br",
