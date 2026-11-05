@@ -42,7 +42,7 @@
             };
 
             const zoom = 15;
-            const minZoom = 8;
+            const minZoom = 4;
 
             // The archive is built with --maxzoom=15. The source declares that
             // truth; the camera may go a little deeper and overzoom z15 tiles.
@@ -230,6 +230,7 @@
                             "fill-opacity": 0.6,
                         },
                     },
+
                     {
                         id: "water",
                         type: "fill",
@@ -370,29 +371,27 @@
                         },
                     },
                     {
+                        // Debug styling: solid black at full opacity so walls are
+                        // unmistakable if the source-layer contains them at all.
+                        // The geometry filter keeps closed ways (walls enclosing a
+                        // terrace or garden) from drawing their outline twice.
                         id: "barriers",
                         type: "line",
                         source: "turin",
                         "source-layer": "barriers",
+                        minzoom: 13,
+                        filter: ["==", ["geometry-type"], "LineString"],
                         paint: {
-                            "line-color": [
-                                "match",
-                                ["get", "kind"],
-                                "hedge",
-                                c.hedge,
-                                "retaining_wall",
-                                c.barrier,
-                                c.barrier,
-                            ],
-                            "line-opacity": 0.7,
+                            "line-color": "#000000",
+                            "line-opacity": 1,
                             "line-width": [
                                 "interpolate",
                                 ["linear"],
                                 ["zoom"],
-                                15,
-                                0.5,
+                                13,
+                                1,
                                 18,
-                                2,
+                                4,
                             ],
                         },
                     },
