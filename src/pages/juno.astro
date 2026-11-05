@@ -230,27 +230,6 @@
                             "fill-opacity": 0.6,
                         },
                     },
-
-                    {
-                        id: "barriers",
-                        type: "line",
-                        source: "protomaps",
-                        "source-layer": "barriers",
-                        minzoom: 13,
-                        filter: ["==", ["geometry-type"], "LineString"],
-                        paint: {
-                            "line-color": "#9b9187",
-                            "line-width": [
-                                "interpolate",
-                                ["linear"],
-                                ["zoom"],
-                                14,
-                                0.5,
-                                20,
-                                2,
-                            ],
-                        },
-                    },
                     {
                         id: "water",
                         type: "fill",
