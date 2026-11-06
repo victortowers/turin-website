@@ -290,13 +290,7 @@
                         filter: ["==", ["get", "class"], "aerodrome"],
                         paint: { "fill-color": "#e7e3da" },
                     },
-                    {
-                        id: "water",
-                        type: "fill",
-                        source: "turin",
-                        "source-layer": "water",
-                        paint: { "fill-color": c.water },
-                    },
+                    
                     {
                         id: "park",
                         type: "fill",
@@ -327,6 +321,14 @@
                         source: "turin",
                         "source-layer": "building",
                         paint: { "fill-color": c.buildings },
+                    },
+                    
+                    {
+                        id: "water",
+                        type: "fill",
+                        source: "turin",
+                        "source-layer": "water",
+                        paint: { "fill-color": c.water },
                     },
                 ];
             }
