@@ -139,14 +139,13 @@
 
             const roadClasses = {
                 minor: [
+                    "minor",
                     "residential",
                     "unclassified",
                     "service",
                     "living_street",
-                    "track",
-                    "path",
                 ],
-                major: ["tertiary", "secondary", "primary", "minor"],
+                major: ["tertiary", "secondary", "primary"],
                 highway: ["motorway", "trunk"],
                 path: ["pedestrian", "footway", "cycleway", "steps"],
             };
@@ -290,7 +289,7 @@
                         filter: ["==", ["get", "class"], "aerodrome"],
                         paint: { "fill-color": "#e7e3da" },
                     },
-                    
+
                     {
                         id: "park",
                         type: "fill",
@@ -322,7 +321,7 @@
                         "source-layer": "building",
                         paint: { "fill-color": c.buildings },
                     },
-                    
+
                     {
                         id: "water",
                         type: "fill",
@@ -354,6 +353,37 @@
                         },
                     },
                     {
+                        id: "road_path",
+                        type: "line",
+                        source: "turin",
+                        "source-layer": "transportation",
+                        filter: [
+                            "in",
+                            ["get", "class"],
+                            ["literal", ["track", "path"]],
+                        ],
+                        layout: { "line-cap": "round", "line-join": "round" },
+                        paint: {
+                            "line-color": "#d5cffc",
+                            "line-opacity": [
+                                "interpolate",
+                                ["linear"],
+                                ["zoom"],
+                                13,
+                                0.6,
+                            ],
+                            "line-width": [
+                                "interpolate",
+                                ["exponential", 1.6],
+                                ["zoom"],
+                                13,
+                                0.4,
+                                18,
+                                4,
+                            ],
+                        },
+                    },
+                    {
                         id: "road_service",
                         type: "line",
                         source: "turin",
@@ -361,7 +391,7 @@
                         filter: [
                             "in",
                             ["get", "class"],
-                            ["literal", ["service", "track", "path"]],
+                            ["literal", ["service"]],
                         ],
                         layout: { "line-cap": "round", "line-join": "round" },
                         paint: {
@@ -861,12 +891,10 @@
                         type: "symbol",
                         source: "turin",
                         "source-layer": "poi",
-                        minzoom: 13,
+                        minzoom: 14,
                         filter: [
                             "all",
                             ["has", "name:latin"],
-                            // The profile maps amenity=school to class "school"; universities and
-                            // colleges are separate classes because OpenMapTiles keeps them apart.
                             [
                                 "in",
                                 ["get", "class"],
@@ -876,20 +904,35 @@
                         layout: {
                             "text-field": ["get", "name:latin"],
                             "text-font": ["Noto Sans Regular"],
+                            // Fade in rather than pop, and only once the street grid
+                            // underneath is already legible.
                             "text-size": [
                                 "interpolate",
                                 ["linear"],
                                 ["zoom"],
+                                15,
+                                8,
+                                18,
                                 13,
-                                9,
-                                17,
-                                11,
                             ],
+                            "text-allow-overlap": false,
+                            "symbol-sort-key": ["get", "min_zoom"],
                         },
                         paint: {
                             "text-color": c.labelSoft,
                             "text-halo-color": c.halo,
                             "text-halo-width": 1,
+                            "text-opacity": [
+                                "interpolate",
+                                ["linear"],
+                                ["zoom"],
+                                15,
+                                0,
+                                16,
+                                0.5,
+                                17,
+                                1,
+                            ],
                         },
                     },
                 ];
