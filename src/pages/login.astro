@@ -566,6 +566,18 @@ import "../assets/styles/body.css";
 
                     try {
                         const idToken = await user.getIdToken();
+                        
+                        const sessioned = await fetch(API_ME_URL, {
+                            method: "GET",
+                            credentials: "include",
+                            headers: { Accept: "application/json" },
+                        });
+                        if (response.status === 401) {
+                            throw new Error(
+                                "Sua sessão é inválida ou expirou. Faça login novamente.",
+                            );
+                        }
+                        
                         const sessionResponse = await fetch(SESSION_LOGIN_URL, {
                             method: "POST",
                             credentials: "include",
@@ -588,6 +600,13 @@ import "../assets/styles/body.css";
                                 "Sua sessão é inválida ou expirou. Faça login novamente.",
                             );
                         }
+                        
+                        if (sessioned.status === 200) {
+                            // No valid session. Redirect to your login page.
+                            window.location.href = "/app/onboarding";
+                            return;
+                        }
+                        
                         if (response.status === 200) {
                             // No valid session. Redirect to your login page.
                             window.location.href = "/app/onboarding";
