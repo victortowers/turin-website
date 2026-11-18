@@ -84,6 +84,7 @@
                 },
                 natural: "#e5e9d9",
                 urban: "#e9e4da",
+                construction: "#000000",
 
                 // WATER
                 water: "#b7d5e5",
@@ -245,6 +246,21 @@
                             "fill-opacity": 0.6,
                         },
                     },
+
+                    {
+                        // landuse=construction. Tilemaker's OMT profile emits these with
+                        // class="construction"; the stock palette has no branch for them.
+                        id: "landuse_construction",
+                        type: "fill",
+                        source: "turin",
+                        "source-layer": "landuse",
+                        filter: ["==", ["get", "class"], "construction"],
+                        paint: {
+                            "fill-color": "rgba(0, 0, 0, 1)",
+                            "fill-outline-color": "#8a7fae",
+                        },
+                    },
+
                     {
                         // Faux walls. The tilemaker OpenMapTiles profile emits no
                         // barrier geometry at all, so the gated-community walls
