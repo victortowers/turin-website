@@ -572,10 +572,17 @@ import "../assets/styles/body.css";
                             credentials: "include",
                             headers: { Accept: "application/json" },
                         });
-                        if (response.status === 401) {
+                        
+                        if (sessioned.status === 401) {
                             throw new Error(
                                 "Sua sessão é inválida ou expirou. Faça login novamente.",
                             );
+                        }
+                        
+                        if (sessioned.status === 200) {
+                            // No valid session. Redirect to your login page.
+                            window.location.href = "/app/onboarding";
+                            return;
                         }
                         
                         const sessionResponse = await fetch(SESSION_LOGIN_URL, {
@@ -599,12 +606,6 @@ import "../assets/styles/body.css";
                             throw new Error(
                                 "Sua sessão é inválida ou expirou. Faça login novamente.",
                             );
-                        }
-                        
-                        if (sessioned.status === 200) {
-                            // No valid session. Redirect to your login page.
-                            window.location.href = "/app/onboarding";
-                            return;
                         }
                         
                         if (response.status === 200) {
