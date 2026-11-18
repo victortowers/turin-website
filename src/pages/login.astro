@@ -432,7 +432,7 @@ import "../assets/styles/body.css";
                 showProcessing("Fazendo logout...");
                 try {
                     const response = await fetch(
-                        "https://auth.turinflow.com.br/sessionLogout",
+                        "https://auth.turinflow.com.br/auth/sessionLogout",
                         {
                             method: "POST",
                             credentials: "include",
@@ -572,12 +572,6 @@ import "../assets/styles/body.css";
                             credentials: "include",
                             headers: { Accept: "application/json" },
                         });
-                        
-                        if (sessioned.status === 401) {
-                            throw new Error(
-                                "Sua sessão é inválida ou expirou. Faça login novamente.",
-                            );
-                        }
                         
                         if (sessioned.status === 200) {
                             // No valid session. Redirect to your login page.
