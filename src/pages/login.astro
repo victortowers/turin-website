@@ -282,6 +282,9 @@ import "../assets/styles/body.css";
                 authDomain: "turinflow.com.br",
             };
 
+            async function sleep(ms) {
+                await new Promise((resolve) => setTimeout(resolve, ms));
+            }
             // Initialize Firebase only once, even if Astro reruns this script.
             if (!state.auth) {
                 const app = getApps().length
@@ -388,6 +391,7 @@ import "../assets/styles/body.css";
 
             async function renderAuthUI(user = state.currentUser) {
                 showProcessing("Aguardando o servidor...");
+                await sleep(250);
                 const sessioned = await fetch(API_ME_URL, {
                     method: "GET",
                     credentials: "include",
@@ -545,7 +549,6 @@ import "../assets/styles/body.css";
                             : "No pending redirect",
                         result || "",
                     );
-                    hideProcessing();
                 } catch (error) {
                     sessionStorage.removeItem("authRedirectPending");
                     hideProcessing();
@@ -597,6 +600,7 @@ import "../assets/styles/body.css";
                             credentials: "include",
                             headers: { Accept: "application/json" },
                         });
+
                         if (response.status === 401) {
                             throw new Error(
                                 "Sua sessão é inválida ou expirou. Faça login novamente.",
