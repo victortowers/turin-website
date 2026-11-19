@@ -387,6 +387,7 @@ import "../assets/styles/body.css";
             }
 
             async function renderAuthUI(user = state.currentUser) {
+                showProcessing("Aguardando o servidor...");
                 const sessioned = await fetch(API_ME_URL, {
                     method: "GET",
                     credentials: "include",
@@ -399,6 +400,7 @@ import "../assets/styles/body.css";
                     return;
                 }
 
+                hideProcessing();
                 const login = element("#login");
                 const loggedIn = element("#logged-in");
                 if (!login || !loggedIn) return;
