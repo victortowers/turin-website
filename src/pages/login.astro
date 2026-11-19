@@ -386,8 +386,8 @@ import "../assets/styles/body.css";
                 `;
             }
 
-            function renderAuthUI(user = state.currentUser) {
-                const sessioned = fetch(API_ME_URL, {
+            async function renderAuthUI(user = state.currentUser) {
+                const sessioned = await fetch(API_ME_URL, {
                     method: "GET",
                     credentials: "include",
                     headers: { Accept: "application/json" },
