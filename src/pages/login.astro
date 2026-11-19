@@ -387,6 +387,18 @@ import "../assets/styles/body.css";
             }
 
             function renderAuthUI(user = state.currentUser) {
+                const sessioned = fetch(API_ME_URL, {
+                    method: "GET",
+                    credentials: "include",
+                    headers: { Accept: "application/json" },
+                });
+
+                if (sessioned.status === 200) {
+                    // No valid session. Redirect to your login page.
+                    window.location.href = "/app/onboarding";
+                    return;
+                }
+
                 const login = element("#login");
                 const loggedIn = element("#logged-in");
                 if (!login || !loggedIn) return;
@@ -566,19 +578,6 @@ import "../assets/styles/body.css";
 
                     try {
                         const idToken = await user.getIdToken();
-                        
-                        const sessioned = await fetch(API_ME_URL, {
-                            method: "GET",
-                            credentials: "include",
-                            headers: { Accept: "application/json" },
-                        });
-                        
-                        if (sessioned.status === 200) {
-                            // No valid session. Redirect to your login page.
-                            window.location.href = "/app/onboarding";
-                            return;
-                        }
-                        
                         const sessionResponse = await fetch(SESSION_LOGIN_URL, {
                             method: "POST",
                             credentials: "include",
@@ -601,7 +600,7 @@ import "../assets/styles/body.css";
                                 "Sua sessão é inválida ou expirou. Faça login novamente.",
                             );
                         }
-                        
+
                         if (response.status === 200) {
                             // No valid session. Redirect to your login page.
                             window.location.href = "/app/onboarding";
