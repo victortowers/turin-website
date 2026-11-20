@@ -20,3 +20,5 @@ src/components/bottom-logo3.astro
 src/pages/precos3.astro
 src/pages/legacy/
 src/pages/app/onboarding/1.astro
+.astro/
+agent.md

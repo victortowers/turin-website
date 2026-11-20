@@ -1,0 +1,163 @@
+---
+import { ClientRouter } from "astro:transitions";
+import Header from "../components/Header.astro";
+import Bottom from "../components/bottom-logo2.astro";
+
+import "../assets/styles/fonts.css";
+import "../assets/styles/body.css";
+---
+
+<!doctype html>
+<html lang="pt-br">
+    <head>
+        <ClientRouter />
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="robots" content="noindex" />
+        <title>Turin: Algo saiu do horário.</title>
+        <meta
+            name="description"
+            content="A página que você procura não está disponível. Volte para a página inicial do Turin."
+        />
+        <style is:global>
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box;
+            }
+
+            :root {
+                --brand-main: #ffd700;
+                --brand-dark: #333;
+                --bg-light: #f9f9f9;
+                --light-2: #eee;
+                --mid-color1: #bec1b9;
+                --mid-color: #131b21;
+                --darker-1: #474646;
+            }
+
+            body {
+                background-color: rgba(250, 250, 250, 1);
+            }
+
+            main {
+                padding-top: 2rem;
+                padding-bottom: 4rem;
+            }
+
+            .row1 {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                row-gap: 0.6rem;
+                width: 85vw;
+                margin-inline: auto;
+            }
+
+            .code1 {
+                font-size: clamp(18px, calc(100vw * 0.131), 165px);
+                line-height: clamp(18px, calc(100vw * 0.131), 165px);
+                color: #555;
+                margin-bottom: 8px;
+                letter-spacing: 1px;
+            }
+
+            .route1 {
+                font-size: clamp(16px, calc(100vw * 0.03), 28px);
+                line-height: clamp(24px, calc(100vw * 0.04), 36px);
+                color: rgba(120, 120, 120, 1);
+                font-weight: 350;
+                word-break: break-word;
+            }
+
+            .link1 {
+                display: inline-flex;
+                transition: 0.41s ease-in-out;
+            }
+
+            .link1:hover {
+                background-color: rgba(95, 120, 120, 0.26);
+                transition: 0.48s ease-in-out;
+            }
+
+            @media (min-width: 768px) {
+                .text1 {
+                    width: min(50vw, 620px);
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <Header />
+
+        <main>
+            <div class="row1">
+                <h1 class="s1 code1">ERRO</h1>
+                <div class="s2 route1" id="error-route">
+                    A página que você pediu não foi encontrada (HTTP 404).
+                </div>
+                <p
+                    class="g2"
+                    style="font-size: 21px;
+                line-height: 28px;
+                color: rgba(136, 136, 136, 1);
+                width: min(60vw, 640px);
+                margin-top: clamp(0.5rem, 4vw, 1.1rem);
+                margin-bottom: clamp(0.5rem, 4vw, 1.5rem);"
+                >
+                    Entramos em uma rua sem saída. O Turin chegou com
+                    tranquilidade até aqui, mas não encontrou nada neste
+                    endereço. Volte para o início e siga com o seu trajeto.
+                </p>
+                <a
+                    class="s1 link1"
+                    style="text-decoration: none;
+                text-align: center;
+                color: rgba(130, 130, 130, 1);
+                border: 1px solid rgba(111, 129, 111, 1);
+                border-radius: 6px;
+                padding: 1rem;
+                padding-left: 2rem;
+                padding-right: 2rem;
+                max-width: 310px;
+                font-size: clamp(12px, 100vw * 0.013, 15px);
+                margin-left: 2rem; margin-right: 2rem;
+                line-height: clamp(12px, max(100vw * 0.014, 48px), 18px);"
+                    href="/"
+                >
+                    &lt; VOLTAR PARA O INÍCIO
+                </a>
+                <p class="g2 text1"></p>
+            </div>
+        </main>
+
+        <Bottom />
+
+        <script>
+            const fallbackRoute = "A rota que você pediu saiu do horário.";
+            const routeElement = document.getElementById("error-route");
+
+            if (routeElement) {
+                const path = window.location.pathname;
+
+                if (path && path !== "/" && path !== "/erro") {
+                    const lastSegment = path
+                        .replace(/\/+$/, "")
+                        .split("/")
+                        .pop();
+
+                    if (lastSegment) {
+                        routeElement.textContent = lastSegment;
+                        routeElement.setAttribute("title", path);
+                    }
+                }
+
+                if (!routeElement.textContent?.trim()) {
+                    routeElement.textContent = fallbackRoute;
+                }
+            }
+        </script>
+    </body>
+</html>
