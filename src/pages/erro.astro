@@ -134,30 +134,5 @@ import "../assets/styles/body.css";
         </main>
 
         <Bottom />
-
-        <script>
-            const fallbackRoute = "A rota que você pediu saiu do horário.";
-            const routeElement = document.getElementById("error-route");
-
-            if (routeElement) {
-                const path = window.location.pathname;
-
-                if (path && path !== "/" && path !== "/erro") {
-                    const lastSegment = path
-                        .replace(/\/+$/, "")
-                        .split("/")
-                        .pop();
-
-                    if (lastSegment) {
-                        routeElement.textContent = lastSegment;
-                        routeElement.setAttribute("title", path);
-                    }
-                }
-
-                if (!routeElement.textContent?.trim()) {
-                    routeElement.textContent = fallbackRoute;
-                }
-            }
-        </script>
     </body>
 </html>
